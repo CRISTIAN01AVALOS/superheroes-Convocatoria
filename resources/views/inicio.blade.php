@@ -59,9 +59,9 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                     {{-- <img class="img-fluid" src="{{asset('images/slider/BANNER-DE-BIENVENIDA.png')}}" alt="First slide"> --}}
-                    <img class="img-fluid" src="{{asset('images/slider/banner-con.jpg')}}" alt="First slide">
+                    <img class="img-fluid" src="{{asset('images/slider/banner_plataforma.jpg')}}" alt="First slide">
 
-                    <div class="card-img-overlay bg-overlay">
+                    {{-- <div class="card-img-overlay bg-overlay">
                         <div class="carousel-caption d-none d-sm-block">
                         <h3>CONVOCATORIA</h3>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere minima, 
@@ -70,7 +70,7 @@
                                 labore possimus maiores, iusto culpa laboriosam mollitia.
                         </p>
                         </div>
-                    </div>
+                    </div> --}}
                     </div>
                     
                 </div>
