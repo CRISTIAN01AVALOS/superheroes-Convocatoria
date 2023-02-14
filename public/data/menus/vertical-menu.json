@@ -1,0 +1,96 @@
+{
+    "menu": [
+      {
+        "url": "inicio/",
+        "name": "Inicio",
+        "i18n": "Inicio",
+        "icon": "globe"
+      },
+      {
+        "url": "entidades/",
+        "name": "Entidades",
+        "i18n": "Entidades",
+        "icon": "thumbnails-small"
+      },
+      {
+        "url": "digitalizaciones/",
+        "name": "Digitalizaciones",
+        "i18n": "digitalizaciones",
+        "icon": "desktop"
+      },
+      {
+        "navheader": "Administración"
+      },
+      {
+        "url": "#",
+        "name": "Usuarios",
+        "i18n": "usuarios",
+        "icon": "users",
+        "submenu":[
+          {
+            "url": "/usuarios",
+            "name": "Listado de usuarios",
+            "i18n": "Listado de usuarios",
+            "icon":"clock"
+          },
+          {
+            "url": "/usuarios/roles/listado",
+            "name": "Roles",
+            "i18n": "Roles",
+            "icon":"clock"
+          }
+        ]
+      },
+
+      {
+        "url": "#",
+        "name": "Catalogos",
+        "i18n": "Chat",
+        "icon": "notebook",
+        "submenu":[
+            {
+              "url": "#",
+              "name": "unidades de tiempo",
+              "i18n": "unidades de tiempo",
+              "icon":"clock"
+            },
+            {   
+             "url":"#",
+             "name":"Tipos de resolutivo",
+             "i18n":"Tipos de resolutivo", 
+             "icon":"sheet"  
+            },
+            {   
+            "url":"#",
+            "name":"Tipos de requisito",
+            "i18n":"Tipos de requisito", 
+            "icon":"sheet"  
+           }
+        ]
+      },
+      {
+        "url": "#",
+        "name": "Ejemplos",
+        "icon": "paper-clip",
+        "submenu":[
+          {
+            "url": "ejemploplantilla/",
+            "name": "Ejemplo",
+            "icon": "apple"
+          },
+          {
+            "url": "ejemploplantilla/layout",
+            "name": "Formularios",
+            "i18n": "Formularios",
+            "icon": "priority-low"
+          },
+          {
+            "url": "ejemploplantilla/formulario",
+            "name": "Formulario",
+            "i18n": "Formularios",
+            "icon": "pencil"
+          }
+        ]
+      }
+    ]
+  }
