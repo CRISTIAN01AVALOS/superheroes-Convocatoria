@@ -1,6 +1,6 @@
 @extends('layouts.fullLayoutMaster')
 {{-- title --}}
-@section('title','Convocatoria Super Héroes')
+@section('title','Concurso de dibujo')
 
 <style>
     .imgCenter {
@@ -41,7 +41,10 @@
 @section('content')
     <div class="header-con">
         <div class="card-header cint-header">
-            <h4 class="card-title text-center" style="color: white;">CONVOCATORIA SUPER HÉREOS</h4>
+            <div class="brand-logo">
+                <img src="{{asset('images/logo/logoTamaulipas2022bb.png')}}" alt="Logo Tamaulipas" class="logo" height="70" width="190">
+                {{-- <h3 class="card-title text-center" style="color: white;">CONCURSO DE DIBUJO</h3> --}}
+            </div>
         </div>
     </div>
     <br>
@@ -54,7 +57,7 @@
                 <div id="carousel-example-caption" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {{-- <li data-target="#carousel-example-caption" data-slide-to="0" class="active"></li> --}}
-                    <a href="#registro-con"><li class="active"></li></a>
+                    <a href="#registro-con"><li class="active" style="background-color:#ab0033;"></li></a>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
