@@ -12,6 +12,8 @@
 
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom-style.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/style2.css')}}"> --}}
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/veda.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/colors.css')}}">

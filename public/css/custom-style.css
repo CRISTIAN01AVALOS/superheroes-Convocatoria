@@ -36,6 +36,14 @@ element.style {
   text-decoration: none;
 }
 
+/* ------------------------------------------------------------- */
+.swal2-styled.swal2-confirm {
+  background-color: #ab0033 !important;
+}
+
+/* .swal2-styled.swal2-cancel{
+  background-color: #505050 !important;
+} */
 /* -------------------- btn-primary --------------------------- */
 .main-menu.menu-light .navigation > li ul .active {
   background: #54565abe !important;

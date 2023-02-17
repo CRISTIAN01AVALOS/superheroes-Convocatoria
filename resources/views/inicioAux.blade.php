@@ -326,3 +326,83 @@
   <script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js" integrity="sha512-8pbzenDolL1l5OPSsoURCx9TEdMFTaeFipASVrMYKhuYtly+k3tcsQYliOEKTmuB1t7yuzAiVo+yd7SJz+ijFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>    
+
+
+  <script>
+    //   $.ajax({
+        //     url: "{{ route('empleado.buscar') }}",
+        //     data: {
+        //       valor:busqueda,
+        //       "_token": "{{ csrf_token() }}",
+        //     },
+        //     dataType: "json",
+        //     type: "POST",
+        //     success: function(data) {
+
+        //       console.log(data[0]);
+
+        //       if (data[0] == 'Existe') {
+
+        //         console.log("Este usuario ya existe");
+        //         const Toast = Swal.mixin({
+        //           toast: true,
+        //           position: 'top-end',
+        //           showConfirmButton: false,
+        //           timer: 4000,
+        //           timerProgressBar: true,
+        //           didOpen: (toast) => {
+        //             toast.addEventListener('mouseenter', Swal.stopTimer)
+        //             toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //           }
+        //         })
+        //         Toast.fire({
+        //           icon: 'error',
+        //           title: 'Este empleado ya esta registrado en el sistema'
+        //         })
+
+        //       } else {
+
+        //         console.log(data[0].NombreS[0]);
+        //         console.log(data[0].Apellido1[0]);
+        //         console.log(data[0].Apellido2[0]);
+        //         console.log(data[0].FechaNac[0]);
+
+        //         if ( data[0].NombreS[0] == undefined ) {
+        //           console.log("No hay coincidencias");
+        //         } else {
+
+        //           var curp_val = document.getElementById("curp").value;
+        //           console.log(curp_val);
+        //           var inp_nombre = document.getElementById("nombreEmpleado");
+        //           var inp_apellido_p = document.getElementById("apellidoPaterno");
+        //           var inp_apellido_m = document.getElementById("apellidoMaterno");
+        //           var inp_cumple = document.getElementById("cumple");
+        //           var inp_rfc = document.getElementById("rfc");
+                  
+        //           inp_nombre.value = data[0].NombreS[0];
+        //           inp_apellido_p.value = data[0].Apellido1[0];
+        //           inp_apellido_m.value = data[0].Apellido2[0];
+        //           inp_cumple.value = data[0].FechaNac[0];
+        //           inp_rfc.value = curp_val.substr(0,10);
+        //           // inp_rfc.value = "RFC";
+
+        //           var nombreEmpleadoInput = document.getElementById("nombreEmpleado").value;
+        //           var apellidoPEmpleadoInput = document.getElementById("apellidoPaterno").value;
+        //           var apellidoMEmpleadoInput = document.getElementById("apellidoMaterno").value;
+        //           var nombreCurpInput = document.getElementById("curp").value;
+
+        //           var label_nombre_empleado = document.getElementById("nombreEmpleadoLabel");
+        //           var label_curp_empleado = document.getElementById("curpEmpleadoLabel");
+
+        //           label_nombre_empleado.innerHTML = "<small><b>NOMBRE: " + nombreEmpleadoInput + " " + apellidoPEmpleadoInput + " " + apellidoMEmpleadoInput + "</b></small>";
+        //           label_curp_empleado.innerHTML = "<small><b>CURP: "+nombreCurpInput+"</b></small>";
+        //           console.log(nombreEmpleadoInput);
+                  
+        //         }
+
+        //       } 
+              
+        //     }
+
+        //   });
+  </script>

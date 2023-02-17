@@ -16,6 +16,13 @@ Route::get('/','DashboardController@inicioCon');
 Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
+//consultar curp alumno
+Route::post('/consultar-curp','DashboardController@search')->name('alumno.buscar');
+Route::post('/consultar-curp-exitente','DashboardController@buscarAlumno')->name('alumno.buscarAlumno');
+//guardar registro
+Route::post('/guardar-registro/', 'DashboardController@guardarRegistro')->name('alumno.guardarRegistro');
+// bases del concurso
+Route::get('/bases-concurso/', 'DashboardController@basesConcurso')->name('alumno.bases-concurso');
 //Application Routes
 Route::get('/app-email','ApplicationController@emailApplication');
 Route::get('/app-chat','ApplicationController@chatApplication');
