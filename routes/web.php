@@ -23,6 +23,25 @@ Route::post('/consultar-curp-exitente','DashboardController@buscarAlumno')->name
 Route::post('/guardar-registro/', 'DashboardController@guardarRegistro')->name('alumno.guardarRegistro');
 // bases del concurso
 Route::get('/bases-concurso/', 'DashboardController@basesConcurso')->name('alumno.bases-concurso');
+
+Route::get('/clear_cache', function () {
+    $clear[0] = \Artisan::call('cache:clear');
+    $clear[1] = \Artisan::call('route:clear');
+    $clear[2] = \Artisan::call('optimize:clear');
+    $clear[3] = \Artisan::call('config:cache');
+    $clear[4] = \Artisan::call('view:clear');
+    $clear[5] = \Artisan::call('clear-compiled');
+    $clear[6] = \Artisan::call('config:clear');
+    dd($clear);
+});
+
+
+
+
+
+
+
+
 //Application Routes
 Route::get('/app-email','ApplicationController@emailApplication');
 Route::get('/app-chat','ApplicationController@chatApplication');
