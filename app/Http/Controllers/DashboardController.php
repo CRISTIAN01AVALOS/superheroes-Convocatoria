@@ -10,6 +10,7 @@ use SoapClient;
 use SoapFault;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreFormConcurso;
 
 class DashboardController extends Controller
 {
@@ -35,17 +36,8 @@ class DashboardController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function guardarRegistro(Request $request){
+    public function guardarRegistro(StoreFormConcurso $request){
 
-        $request->validate([
-            'curp' => 'required|max:18',
-            'telefono_titular' => 'required',
-            'domicilio_casa' => 'required',
-            'correo_titular' => 'required',
-            'nombre_personaje' => 'required',
-            'valores_personaje' => 'required',
-            'descripcion_personaje' => 'required',
-        ]);
 
         if($request->hasFile("getFileDibujo")){
 
@@ -83,7 +75,7 @@ class DashboardController extends Controller
                         echo '<script>';
                         echo 'console.log('. json_encode( $e ) .');';
                         echo '</script>';
-                        return redirect('/')->with('registro', 'imagenNo');
+                        return redirect('/')->with('registro', 'imagenFormatoNo');
                         // return redirect('/')->with('message-fail', $e->getMessage());
                     }
                     

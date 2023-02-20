@@ -171,7 +171,7 @@
                   <img src="{{ asset('images/slider/bu5.jpg') }}" alt="Logo Tamaulipas"
                     class="logo" height="100" width="190">
                 </a>
-                <div class="text-card">Resgistrate</div>
+                <div class="text-card">Registrate</div>
               </div>
             </div>
           </div>
@@ -328,7 +328,7 @@
                       <input type="text" id="valores_personaje"
                         class="form-control @error('valores_personaje') is-invalid @enderror" name="valores_personaje"
                         value="{{ old('valores_personaje') }}" placeholder="Valores del personaje"
-                        maxlength="90" required>
+                        maxlength="90">
                       @error('valores_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -342,7 +342,7 @@
                       <input type="text" id="descripcion_personaje"
                         class="form-control @error('descripcion_personaje') is-invalid @enderror"
                         name="descripcion_personaje" value="{{ old('descripcion_personaje') }}"
-                        placeholder="Breve descripcion del personaje" maxlength="120" required>
+                        placeholder="Breve descripción del personaje" maxlength="120" required>
                       @error('descripcion_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -726,6 +726,7 @@
 
   function validarArchivo(){
 
+    
       var mostrarBoton = document.getElementById("verImagen");
       var mostrarMensaje = document.getElementById("archivoCargado");
       var mostrarMensajeImg = document.getElementById("archivoCargadoError");
@@ -736,6 +737,8 @@
         // console.log("No imagen");
         $imagenPrevisualizacion.src = "";
         mostrarMensajeImg.style.display = "inline";
+        mostrarBoton.style.display = "none";
+        mostrarMensaje.style.display = "none";
         return;
       }
 
@@ -744,6 +747,8 @@
 
   function is_img(idinputfile) {
     var fileInput = document.getElementById(idinputfile);
+    var mostrarBoton = document.getElementById("verImagen");
+    var mostrarMensaje = document.getElementById("archivoCargado");
 
     fileInput.addEventListener('change', function () {
 
@@ -767,13 +772,14 @@
           icon: 'error',
           title: 'Extensión no permitida. Utiliza: .jpeg/.jpg/.png/'
         })
+        mostrarBoton.style.display = "none";
+        mostrarMensaje.style.display = "none";
         fileInput.value = '';
         return false;
 
       } else {
 
-        var mostrarBoton = document.getElementById("verImagen");
-        var mostrarMensaje = document.getElementById("archivoCargado");
+        
         var mostrarMensajeImg = document.getElementById("archivoCargadoError");
         const $seleccionArchivos = document.querySelector("#getFileDibujo"),
           $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
@@ -829,12 +835,22 @@
 
 @if(session('registro') === 'imagenNo')
   <script>
-    Swal.fire(
-      '¡No se ha podido registrar!',
-      'error',
-      'error'
-    )
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
 
+      Toast.fire({
+        icon: 'error',
+        title: 'El archivo de imagen es obligatorio'
+      })
   </script>
 @endif
 
@@ -848,6 +864,28 @@
 
   </script>
 @endif
+
+@if(session('registro') === 'imagenFormatoNo')
+  <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'error',
+        title: 'Extensión no permitida. Utiliza: .jpeg/.jpg/.png/'
+      })
+  </script>
+@endif
+
 
 <script>
   $(document).ready(function () {
