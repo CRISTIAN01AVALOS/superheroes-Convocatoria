@@ -94,7 +94,7 @@ class DashboardController extends Controller
                         echo '</script>';
 
                         $update_registro->update();
-                        return redirect('/')->with('registro', 'Ok');
+                        // return redirect('/')->with('registro', 'Ok');
 
                     } catch (QueryException  $e) {
                         echo '<script>';
@@ -105,7 +105,7 @@ class DashboardController extends Controller
                     }
                 
                 }else{
-                    return redirect('/')->with('registro', 'imagenNo');
+                    // return redirect('/')->with('registro', 'imagenNo');
                 }
             }
 
@@ -113,7 +113,7 @@ class DashboardController extends Controller
             echo '<script>';
             echo 'console.log('. json_encode( $e ) .');';
             echo '</script>';
-            return redirect('/')->with('registro', 'No');
+            // return redirect('/')->with('registro', 'No');
         }
 
     }
