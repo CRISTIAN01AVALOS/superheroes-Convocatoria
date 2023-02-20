@@ -39,43 +39,26 @@ class DashboardController extends Controller
 
         $request->validate([
             'curp' => 'required|max:18',
-            'telefono' => 'required',
-            'direccion' => 'required',
-            'correo' => 'required',
-            'nombrePersonaje' => 'required',
-            'valoresPersonaje' => 'required',
-            'descripcionPersonaje' => 'required',
+            'telefono_titular' => 'required',
+            'domicilio_casa' => 'required',
+            'correo_titular' => 'required',
+            'nombre_personaje' => 'required',
+            'valores_personaje' => 'required',
+            'descripcion_personaje' => 'required',
         ]);
-        
-        $registro = new RegistroConcurso();
-        $registro->curp = $request['curp'];
-        $registro->nombre_alumno = $request['nombre'];
-        $registro->ap_paterno = $request['apellidoPaterno'];
-        $registro->ap_materno = $request['apellidoMaterno'];
-        $registro->genero_alumno = $request['AluSexo'];
-        $registro->cct = $request['clave_cct'];
-        $registro->nombre_cct = $request['nombre_cct'];
-        $registro->grado_alumno = $request['gradoEscolar2'];
-        $registro->grupo_alumno = $request['grupoAlumno'];
-        $registro->estatus_alumno = $request['estatusAlumno'];
-        $registro->ciclo_escolar = $request['Ciclo_Escolar'];
-        $registro->turno = $request['Desc_Turno'];
-        $registro->id_municipio = $request['id_cct'];
-        $registro->telefono_titular = $request['telefono'];
-        $registro->domicilio_casa = $request['direccion'];
-        $registro->correo_titular = $request['correo'];
-        $registro->nombre_personaje = $request['nombrePersonaje'];
-        $registro->valores_personaje = $request['valoresPersonaje'];
-        $registro->descripcion_personaje = $request['descripcionPersonaje'];
 
-        try {
+        if($request->hasFile("getFileDibujo")){
 
-            $registro->save();
-            $id_registro = $registro->id_registro_concurso;
-            if($request->hasFile("getFileDibujo")){
-            
+                $registro = new RegistroConcurso($request->all());
+                $registro->save();
+                $fecha_registro = new DateTime(date("Y-m-d"));
+                $registro->folio = $fecha_registro->format("y")."-cd-".$registro->id_registro_concurso;
+                $registro->update();
+
+            try {
+
                 $file=$request->file("getFileDibujo");
-                $nombre = "dibujo-".$id_registro.".".$file->guessExtension();
+                $nombre = "dibujo-".$registro->id_registro_concurso.".".$file->guessExtension();
     
                 $ruta = public_path("dibujos_de_alumnos/".$nombre);
     
@@ -83,8 +66,8 @@ class DashboardController extends Controller
                 
                     copy($file, $ruta);
                     $fecha_registro = new DateTime(date("Y-m-d"));
-                    $update_registro = RegistroConcurso::find($id_registro);
-                    $update_registro->folio = $fecha_registro->format("y")."-cd-".$id_registro;
+                    $update_registro = RegistroConcurso::find($registro->id_registro_concurso);
+                    $update_registro->folio = $fecha_registro->format("y")."-cd-".$registro->id_registro_concurso;
                     $update_registro->url_archivo_dibujo = $nombre;
 
                     try {
@@ -94,26 +77,26 @@ class DashboardController extends Controller
                         echo '</script>';
 
                         $update_registro->update();
-                        // return redirect('/')->with('registro', 'Ok');
+                        return redirect('/')->with('registro', 'Ok');
 
                     } catch (QueryException  $e) {
                         echo '<script>';
                         echo 'console.log('. json_encode( $e ) .');';
                         echo '</script>';
-                        // return redirect('/')->with('registro', 'imagenNo');
+                        return redirect('/')->with('registro', 'imagenNo');
                         // return redirect('/')->with('message-fail', $e->getMessage());
                     }
-                
-                }else{
-                    // return redirect('/')->with('registro', 'imagenNo');
+                    
                 }
-            }
 
-        } catch (QueryException $e) {
-            echo '<script>';
-            echo 'console.log('. json_encode( $e ) .');';
-            echo '</script>';
-            // return redirect('/')->with('registro', 'No');
+            } catch (QueryException $e) {
+                echo '<script>';
+                echo 'console.log('. json_encode( $e ) .');';
+                echo '</script>';
+                return redirect('/')->with('registro', 'No');
+            }
+        }else{
+            return redirect('/')->with('registro', 'imagenNo');
         }
 
     }

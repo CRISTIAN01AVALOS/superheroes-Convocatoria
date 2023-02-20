@@ -213,30 +213,29 @@
                     </div>
                   </div>
 
-
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="nombre">Nombre</label>
-                      {{-- value="{{ old('nombre') }}" --}}
-                      <input type="text" id="nombre" class="form-control" name="nombre" placeholder="" maxlength="90"
-                        readonly value="{{ old('nombre') }}">
+                      <label for="nombre_alumno">Nombre</label>
+                      {{-- value="{{ old('nombre_alumno') }}" --}}
+                      <input type="text" id="nombre_alumno" class="form-control" name="nombre_alumno" placeholder="" maxlength="90"
+                        readonly value="{{ old('nombre_alumno') }}">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="apellidoPaterno">Apellido paterno</label>
-                      {{-- value="{{ old('apellidoPaterno') }}" --}}
-                      <input type="text" id="apellidoPaterno" class="form-control" name="apellidoPaterno" placeholder=""
-                        maxlength="30" readonly value="{{ old('apellidoPaterno') }}">
+                      <label for="ap_paterno">Apellido paterno</label>
+                      {{-- value="{{ old('ap_paterno') }}" --}}
+                      <input type="text" id="ap_paterno" class="form-control" name="ap_paterno" placeholder=""
+                        maxlength="30" readonly value="{{ old('ap_paterno') }}">
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="apellidoMaterno">Apellido materno</label>
-                      {{-- value="{{ old('apellidoMaterno') }}" --}}
-                      <input type="text" id="apellidoMaterno" class="form-control" name="apellidoMaterno" placeholder=""
-                        maxlength="90" readonly value="{{ old('apellidoMaterno') }}">
+                      <label for="ap_materno">Apellido materno</label>
+                      {{-- value="{{ old('ap_materno') }}" --}}
+                      <input type="text" id="ap_materno" class="form-control" name="ap_materno" placeholder=""
+                        maxlength="90" readonly value="{{ old('ap_materno') }}">
                     </div>
                   </div>
                   <div class="col-6">
@@ -267,11 +266,11 @@
 
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="telefono">Teléfono (Campo obligatorio)</label>
-                      <input type="number" id="telefono" class="form-control @error('telefono') is-invalid @enderror"
-                        name="telefono" value="{{ old('telefono') }}"
+                      <label for="telefono_titular">Teléfono (Campo obligatorio)</label>
+                      <input type="number" id="telefono_titular" class="form-control @error('telefono_titular') is-invalid @enderror"
+                        name="telefono_titular" value="{{ old('telefono_titular') }}"
                         placeholder="Teléfono del papá, mamá o persona adulta que considere" maxlength="10" required>
-                      @error('telefono')
+                      @error('telefono_titular')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -280,11 +279,11 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="direccion">Dirección (Campo obligatorio)</label>
-                      <input type="text" id="direccion" class="form-control @error('direccion') is-invalid @enderror"
-                        name="direccion" value="{{ old('direccion') }}"
+                      <label for="domicilio_casa">Dirección (Campo obligatorio)</label>
+                      <input type="text" id="domicilio_casa" class="form-control @error('domicilio_casa') is-invalid @enderror"
+                        name="domicilio_casa" value="{{ old('domicilio_casa') }}"
                         placeholder="Dirección de casa" maxlength="120" required>
-                      @error('direccion')
+                      @error('domicilio_casa')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -294,12 +293,12 @@
 
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="correo">Correo electrónico (Campo obligatorio)</label>
-                      <input type="email" id="correo" class="form-control @error('correo') is-invalid @enderror"
-                        name="correo" value="{{ old('correo') }}"
+                      <label for="correo_titular">Correo electrónico (Campo obligatorio)</label>
+                      <input type="email" id="correo_titular" class="form-control @error('correo_titular') is-invalid @enderror"
+                        name="correo_titular" value="{{ old('correo_titular') }}"
                         placeholder="Correo electrónico del papá, mamá o persona adulta que considere" maxlength="30"
                         required>
-                      @error('correo')
+                      @error('correo_titular')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -311,12 +310,12 @@
 
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="nombrePersonaje">Nombre del personaje (Campo obligatorio)</label>
-                      <input type="text" id="nombrePersonaje"
-                        class="form-control @error('nombrePersonaje') is-invalid @enderror" name="nombrePersonaje"
-                        value="{{ old('nombrePersonaje') }}" placeholder="Nombre del personaje"
+                      <label for="nombre_personaje">Nombre del personaje (Campo obligatorio)</label>
+                      <input type="text" id="nombre_personaje"
+                        class="form-control @error('nombre_personaje') is-invalid @enderror" name="nombre_personaje"
+                        value="{{ old('nombre_personaje') }}" placeholder="Nombre del personaje"
                         maxlength="30" required>
-                      @error('nombrePersonaje')
+                      @error('nombre_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -325,12 +324,12 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="valoresPersonaje">Valores del superhéroe o superheroína (Campo obligatorio)</label>
-                      <input type="text" id="valoresPersonaje"
-                        class="form-control @error('valoresPersonaje') is-invalid @enderror" name="valoresPersonaje"
-                        value="{{ old('valoresPersonaje') }}" placeholder="Valores del personaje"
+                      <label for="valores_personaje">Valores del superhéroe o superheroína (Campo obligatorio)</label>
+                      <input type="text" id="valores_personaje"
+                        class="form-control @error('valores_personaje') is-invalid @enderror" name="valores_personaje"
+                        value="{{ old('valores_personaje') }}" placeholder="Valores del personaje"
                         maxlength="90" required>
-                      @error('valoresPersonaje')
+                      @error('valores_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -339,12 +338,12 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="descripcionPersonaje">Breve descripción del personaje (Campo obligatorio)</label>
-                      <input type="text" id="descripcionPersonaje"
-                        class="form-control @error('descripcionPersonaje') is-invalid @enderror"
-                        name="descripcionPersonaje" value="{{ old('descripcionPersonaje') }}"
+                      <label for="descripcion_personaje">Breve descripción del personaje (Campo obligatorio)</label>
+                      <input type="text" id="descripcion_personaje"
+                        class="form-control @error('descripcion_personaje') is-invalid @enderror"
+                        name="descripcion_personaje" value="{{ old('descripcion_personaje') }}"
                         placeholder="Breve descripcion del personaje" maxlength="120" required>
-                      @error('descripcionPersonaje')
+                      @error('descripcion_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -353,23 +352,23 @@
                   </div>
 
                   <div class="col-6 ocultar">
-                    <input type="text" id="clave_cct" class="form-control" name="clave_cct" placeholder=""
+                    <input type="text" id="cct" class="form-control" name="cct" placeholder=""
                       maxlength="30" readonly>
                     <input type="text" id="nombre_cct" class="form-control" name="nombre_cct" placeholder=""
                       maxlength="30" readonly>
-                    <input type="text" id="estatusAlumno" class="form-control" name="estatusAlumno" placeholder=""
+                    <input type="text" id="estatus_alumno" class="form-control" name="estatus_alumno" placeholder=""
                       maxlength="30" readonly>
-                    <input type="text" id="AluSexo" class="form-control" name="AluSexo" placeholder="" maxlength="30"
+                    <input type="text" id="genero_alumno" class="form-control" name="genero_alumno" placeholder="" maxlength="30"
                       readonly>
-                    <input type="text" id="Ciclo_Escolar" class="form-control" name="Ciclo_Escolar" placeholder=""
+                    <input type="text" id="ciclo_escolar" class="form-control" name="ciclo_escolar" placeholder=""
                       maxlength="30" readonly>
-                    <input type="text" id="Desc_Turno" class="form-control" name="Desc_Turno" placeholder=""
+                    <input type="text" id="turno" class="form-control" name="turno" placeholder=""
                       maxlength="30" readonly>
-                    <input type="text" id="id_cct" class="form-control" name="id_cct" placeholder="" maxlength="30"
+                    <input type="text" id="id_municipio" class="form-control" name="id_municipio" placeholder="" maxlength="30"
                       readonly>
-                    <input type="text" id="grupoAlumno" class="form-control" name="grupoAlumno" placeholder=""
+                    <input type="text" id="grupo_alumno" class="form-control" name="grupo_alumno" placeholder=""
                       maxlength="30" readonly>
-                    <input type="text" id="gradoEscolar2" class="form-control" name="gradoEscolar2" placeholder=""
+                    <input type="text" id="grado_alumno" class="form-control" name="grado_alumno" placeholder=""
                       maxlength="30" readonly>
                   </div>
 
@@ -714,7 +713,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  var input1 = document.getElementById('telefono');
+  var input1 = document.getElementById('telefono_titular');
 
   input1.addEventListener('input', function () {
     if (this.value.length > 10)
@@ -946,22 +945,22 @@
                   var mostrarBotonRegistrar = document.getElementById("registrar");
                   mostrarBotonRegistrar.disabled = false;
                   var curp_val = document.getElementById("curp");
-                  var inp_nombre = document.getElementById("nombre");
-                  var inp_apellido_p = document.getElementById("apellidoPaterno");
-                  var inp_apellido_m = document.getElementById("apellidoMaterno");
+                  var inp_nombre = document.getElementById("nombre_alumno");
+                  var inp_apellido_p = document.getElementById("ap_paterno");
+                  var inp_apellido_m = document.getElementById("ap_materno");
                   var inp_escuela = document.getElementById("escuela");
                   var inp_grado_escolar = document.getElementById("gradoEscolar");
                   var inp_municipio = document.getElementById("municipio");
 
-                  var inp_clave_cct = document.getElementById("clave_cct");
+                  var inp_clave_cct = document.getElementById("cct");
                   var inp_nombre_cct = document.getElementById("nombre_cct");
-                  var inp_statusAlumno = document.getElementById("estatusAlumno");
-                  var inp_AluSexo = document.getElementById("AluSexo");
-                  var inp_Ciclo_Escolar = document.getElementById("Ciclo_Escolar");
-                  var inp_Desc_Turno = document.getElementById("Desc_Turno");
-                  var inp_id_cct = document.getElementById("id_cct");
-                  var inp_grupo_escolar = document.getElementById("grupoAlumno");
-                  var inp_gradoEscolar2 = document.getElementById("gradoEscolar2");
+                  var inp_statusAlumno = document.getElementById("estatus_alumno");
+                  var inp_AluSexo = document.getElementById("genero_alumno");
+                  var inp_Ciclo_Escolar = document.getElementById("ciclo_escolar");
+                  var inp_Desc_Turno = document.getElementById("turno");
+                  var inp_id_cct = document.getElementById("id_municipio");
+                  var inp_grupo_escolar = document.getElementById("grupo_alumno");
+                  var inp_gradoEscolar2 = document.getElementById("grado_alumno");
 
                   inp_nombre.value = data[0][0].AluNombre;
                   inp_apellido_p.value = data[0][0].AluApePat;
@@ -994,9 +993,9 @@
                 console.log("Error");
 
                 var curp_val = document.getElementById("curp");
-                var inp_nombre = document.getElementById("nombre");
-                var inp_apellido_p = document.getElementById("apellidoPaterno");
-                var inp_apellido_m = document.getElementById("apellidoMaterno");
+                var inp_nombre = document.getElementById("nombre_alumno");
+                var inp_apellido_p = document.getElementById("ap_paterno");
+                var inp_apellido_m = document.getElementById("ap_materno");
                 var inp_escuela = document.getElementById("escuela");
                 var inp_grado_escolar = document.getElementById("gradoEscolar");
                 var inp_municipio = document.getElementById("municipio");
