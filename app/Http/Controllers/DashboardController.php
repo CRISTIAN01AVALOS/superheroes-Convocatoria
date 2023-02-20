@@ -100,7 +100,7 @@ class DashboardController extends Controller
                         echo '<script>';
                         echo 'console.log('. json_encode( $e ) .');';
                         echo '</script>';
-                        return redirect('/')->with('registro', 'imagenNo');
+                        // return redirect('/')->with('registro', 'imagenNo');
                         // return redirect('/')->with('message-fail', $e->getMessage());
                     }
                 

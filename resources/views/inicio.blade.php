@@ -832,7 +832,7 @@
   <script>
     Swal.fire(
       '¡No se ha podido registrar!',
-      'El alumno no ha sido registrado',
+      'error',
       'error'
     )
 
