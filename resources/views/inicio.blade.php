@@ -381,6 +381,7 @@
                           class="bx bx-plus"></i>Agregar archivo</label>
                       <input type="file" class="d-none @error('getFileDibujo') is-invalid @enderror" id="getFileDibujo"
                         name="getFileDibujo" required>
+                      <span style="color: #ab0033; display: none;" id="archivoCargadoError">Falta cargar el archivo de imagen</span>
                       <span style="color: #ab0033; display: none;" id="archivoCargado">Archivo cargado</span>
                       <button id="verImagen" style="display: none;" type="button" class="btn btn-secondary"
                         data-toggle="modal" data-target="#exampleModalScrollable">Ver imagen</button>
@@ -388,7 +389,7 @@
                   </div>
 
                   <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mr-1 mb-1" id="registrar" disabled>Registrar</button>
+                    <button type="submit" class="btn btn-primary mr-1 mb-1" id="registrar" disabled onclick="validarArchivo()">Registrar</button>
                     {{-- <a class="btn btn-light-secondary mr-1 mb-1" href="{{ url()->previous() }}"
                     role="button">Cancelar</a> --}}
                   </div>
@@ -723,6 +724,25 @@
 </script>
 
 <script>
+
+  function validarArchivo(){
+
+      var mostrarBoton = document.getElementById("verImagen");
+      var mostrarMensaje = document.getElementById("archivoCargado");
+      var mostrarMensajeImg = document.getElementById("archivoCargadoError");
+      const $seleccionArchivos = document.querySelector("#getFileDibujo"),
+        $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+      const archivos = $seleccionArchivos.files;
+      if (!archivos || !archivos.length) {
+        // console.log("No imagen");
+        $imagenPrevisualizacion.src = "";
+        mostrarMensajeImg.style.display = "inline";
+        return;
+      }
+
+    // console.log("ValidarImg");
+  }
+
   function is_img(idinputfile) {
     var fileInput = document.getElementById(idinputfile);
 
@@ -752,19 +772,23 @@
         return false;
 
       } else {
+
         var mostrarBoton = document.getElementById("verImagen");
         var mostrarMensaje = document.getElementById("archivoCargado");
+        var mostrarMensajeImg = document.getElementById("archivoCargadoError");
         const $seleccionArchivos = document.querySelector("#getFileDibujo"),
           $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
         // $seleccionArchivos.addEventListener("change", () => {
         const archivos = $seleccionArchivos.files;
         if (!archivos || !archivos.length) {
+          console.log("No imagen");
           $imagenPrevisualizacion.src = "";
           return;
         }
 
         mostrarBoton.style.display = "inline";
         mostrarMensaje.style.display = "inline";
+        mostrarMensajeImg.style.display = "none";
         const primerArchivo = archivos[0];
         const objectURL = URL.createObjectURL(primerArchivo);
         $imagenPrevisualizacion.src = objectURL;
@@ -872,6 +896,7 @@
 
       $.ajax({
         url: "{{ route('alumno.buscarAlumno') }}",
+        // url: "https://proyectoscete.tamaulipas.gob.mx/concursodedibujo/public/consultar-curp-exitente",
         data: {
           curpAlumno,
           "_token": "{{ csrf_token() }}",
@@ -904,6 +929,7 @@
           } else {
             $.ajax({
               url: "{{ route('alumno.buscar') }}",
+              // url: "https://proyectoscete.tamaulipas.gob.mx/concursodedibujo/public/consultar-curp",
               data: {
                 valor: curpAlumno,
                 "_token": "{{ csrf_token() }}",
