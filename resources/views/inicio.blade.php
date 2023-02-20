@@ -171,7 +171,7 @@
                   <img src="{{ asset('images/slider/bu5.jpg') }}" alt="Logo Tamaulipas"
                     class="logo" height="100" width="190">
                 </a>
-                <div class="text-card">Resgistrate</div>
+                <div class="text-card">Resgitrate</div>
               </div>
             </div>
           </div>
