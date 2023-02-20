@@ -12,6 +12,7 @@ class RegistroConcurso extends Model
     // protected $fillable = [];
 
     protected $connection = "pcete";
+    protected $primaryKey = 'id_registro_concurso';
     protected $table = 'cdvs_registro_concurso';
     protected $fillable = [];
 
