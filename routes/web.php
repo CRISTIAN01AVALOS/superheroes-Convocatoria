@@ -12,7 +12,7 @@ use App\Http\Controllers\LanguageController;
 */
 // dashboard Routes
 // Route::get('/','DashboardController@dashboardEcommerce');
-Route::get('/','DashboardController@inicioCon');
+Route::get('/','DashboardController@inicioCon')->name('alumno.inicio');
 Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
@@ -21,8 +21,13 @@ Route::post('/consultar-curp','DashboardController@search')->name('alumno.buscar
 Route::post('/consultar-curp-exitente','DashboardController@buscarAlumno')->name('alumno.buscarAlumno');
 //guardar registro
 Route::post('/guardar-registro/', 'DashboardController@guardarRegistro')->name('alumno.guardarRegistro');
+//actualizar registro
+Route::post('/actualizar-registro/', 'DashboardController@actualizarRegistro')->name('alumno.actualizarRegistro');
 // bases del concurso
 Route::get('/bases-concurso/', 'DashboardController@basesConcurso')->name('alumno.bases-concurso');
+
+// enviar formulario de dudas y preguntas
+Route::post('/enviar-dudas-preguntas/', 'DashboardController@enviarFomurlarioDudas')->name('alumno.enviarFomurlarioDudas');
 
 Route::get('/clear_cache', function () {
     $clear[0] = \Artisan::call('cache:clear');

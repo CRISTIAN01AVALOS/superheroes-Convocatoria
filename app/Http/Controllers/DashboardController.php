@@ -11,6 +11,9 @@ use SoapFault;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreFormConcurso;
+use App\Mail\CorreoFormularioDudas;
+use App\Mail\CorreRegistroSuccess;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -44,7 +47,8 @@ class DashboardController extends Controller
                 $registro = new RegistroConcurso($request->all());
                 $registro->save();
                 $fecha_registro = new DateTime(date("Y-m-d"));
-                $registro->folio = $fecha_registro->format("y")."-cd-".$registro->id_registro_concurso;
+                $idConCeros = str_pad($registro->id_registro_concurso, 4, "0", STR_PAD_LEFT);
+                $registro->folio = $fecha_registro->format("y")."-CD-".$idConCeros;
                 $registro->update();
 
             try {
@@ -57,18 +61,19 @@ class DashboardController extends Controller
                 if($file->guessExtension()=="jpg" || $file->guessExtension()=="png" || $file->guessExtension()=="jpeg"){
                 
                     copy($file, $ruta);
+
                     $fecha_registro = new DateTime(date("Y-m-d"));
                     $update_registro = RegistroConcurso::find($registro->id_registro_concurso);
-                    $update_registro->folio = $fecha_registro->format("y")."-cd-".$registro->id_registro_concurso;
                     $update_registro->url_archivo_dibujo = $nombre;
 
                     try {
 
-                        echo '<script>';
-                        echo 'console.log('. json_encode( "Try" ) .');';
-                        echo '</script>';
-
                         $update_registro->update();
+
+                        Mail::to($request['correo_titular'])->send(new CorreRegistroSuccess(
+                            $registro
+                        ));
+
                         return redirect('/')->with('registro', 'Ok');
 
                     } catch (QueryException  $e) {
@@ -93,17 +98,92 @@ class DashboardController extends Controller
 
     }
 
+    
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function actualizarRegistro(Request $request){
+
+        echo '<script>';
+        echo 'console.log('. json_encode( $request['idRegistro'] ) .');';
+        echo 'console.log('. json_encode( $request['urlRegistro'] ) .');';
+        echo '</script>';
+
+        if($request->hasFile("getFileDibujoUpdate")){
+
+            $file=$request->file("getFileDibujoUpdate");
+            $nombre = $request['urlRegistro'];
+
+            $ruta = public_path("dibujos_de_alumnos/".$nombre);
+
+            if($file->guessExtension()=="jpg" || $file->guessExtension()=="png" || $file->guessExtension()=="jpeg"){
+            
+                copy($file, $ruta);
+
+                $update_registro = RegistroConcurso::find($request['idRegistro']);
+                $update_registro->url_archivo_dibujo = $nombre;
+
+                try {
+
+                    $update_registro->update();
+                    return redirect('/')->with('registro', 'updateOk');
+
+                } catch (QueryException  $e) {
+                    echo '<script>';
+                    echo 'console.log('. json_encode( $e ) .');';
+                    echo '</script>';
+                    return redirect('/')->with('registro', 'imagenFormatoNo');
+                }
+                
+            }
+
+        }else{
+            return redirect('/')->with('registro', 'imagenNo');
+        }
+
+    }
+
     public function buscarAlumno(Request $request){
 
+        $arrayData = array();
+        $aux = 1;
         $buscar_alumno = RegistroConcurso::where('curp', $request['curpAlumno'])->get();
+        array_push($arrayData, json_decode($aux, true), json_decode($buscar_alumno, true));
 
         if (count($buscar_alumno) > 0) {
-            return 1;
+            return $arrayData;
         } else {
             return 0;
         }
-        
  
+    }
+
+    // ------------- enviar formulario de dudas y preguntas
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function enviarFomurlarioDudas(Request $request){
+
+        $request->validate([
+            'nombrePregunta'            => 'required',
+            'mensajePregunta'            => 'required',
+        ]);
+
+        $infoDudas = new \stdClass();
+        $infoDudas->nombrePregunta = $request['nombrePregunta'];
+        $infoDudas->mensajePregunta = $request['mensajePregunta'];
+        $infoDudas->correoPregunta = $request['correoPregunta'];
+        
+        Mail::to('consultadibujaunsuperheroe@set.edu.mx')->send(new CorreoFormularioDudas(
+            $infoDudas
+        ));
+
+        return redirect('/')->with('enviarDudas', 'Ok');         
+
     }
 
     public function search(Request $request){
