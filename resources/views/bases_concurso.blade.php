@@ -48,12 +48,8 @@
                 <div class="card-content">
                     <div class="card-body">
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident consequuntur corporis perferendis? Esse accusamus vitae dolore quod quisquam nulla, fugiat ut eligendi architecto quos? Deserunt possimus vero voluptatum reprehenderit ipsa?</p>
+                        {{-- <iframe src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe> --}}
+                        <iframe class="col-12" height="1000" src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe>
 
                     </div>
                 </div>

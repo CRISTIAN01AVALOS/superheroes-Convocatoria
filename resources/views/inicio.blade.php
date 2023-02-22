@@ -3,73 +3,7 @@
 {{-- header('Access-Control-Allow-Origin: *'); --}}
 @section('title','Concurso de dibujo')
 
-
 <style>
-
-  .imgCenter {
-    display: block;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .divCenter {
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-  }
-
-  .container {
-    height: 600px;
-    position: relative;
-    /* border: 3px solid #dbe4ed;  */
-    /* Border color is optional */
-  }
-
-  .center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-
-  .cint-header {
-    background-color: #ab0033 !important;
-  }
-
-  .ocultar {
-    display: none;
-  }
-
-  .text-card {
-    color: black !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-  }
-
-  .contenedor:hover .imagen {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-  }
-
-  .contenedor {
-    overflow: hidden;
-  }
-
-  img,
-  img:hover,
-  .post-centro,
-  .post-centro:hover {
-    transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-  }
-
-  .zoomea:hover {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-  }
-
 </style>
 
 @section('content')
@@ -114,21 +48,19 @@
       </div>
     </div>
 
-    <div class="col-12" style="width: 85%; padding-left: 12.5%;">
+    <div class="col-12 div-botones2">
       <div class="row">
 
         <div class="col-sm-3 col-3 dashboard-users-success">
           <div class="card text-center">
             <div class="card-content">
               <div class="card-body py-1 post-centro zoomea">
-                {{-- <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
-                            <i class="bx bx-briefcase-alt font-medium-5"></i>
-                          </div> --}}
-                <a href="{{ route('alumno.bases-concurso') }}">
+                <a href="{{ route('alumno.bases-concurso') }}"> 
+
                   <img src="{{ asset('images/slider/bu1.jpg') }}" alt="Logo Tamaulipas"
-                    class="logo" height="100" width="190">
-                </a>
-                <div class="text-card">Bases del concurso</div>
+                  class="res-logo" >
+                 </a>
+                <div class="text-card2">Bases del concurso</div>
               </div>
             </div>
           </div>
@@ -140,9 +72,9 @@
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#premios-con">
                   <img src="{{ asset('images/slider/bu2.jpg') }}" alt="Logo Tamaulipas"
-                    class="logo" height="100" width="190">
+                    class="res-logo" >
                 </a>
-                <div class="text-card">Premios</div>
+                <div class="text-card2">Premiación</div>
               </div>
             </div>
           </div>
@@ -154,9 +86,9 @@
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#dudas-con">
                   <img src="{{ asset('images/slider/bu4.jpg') }}" alt="Logo Tamaulipas"
-                    class="logo" height="100" width="190">
+                    class="res-logo" >
                 </a>
-                <div class="text-card">Dudas y preguntas</div>
+                <div class="text-card2">Dudas y preguntas</div>
                 {{-- text-muted line-ellipsis --}}
               </div>
             </div>
@@ -169,9 +101,9 @@
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#registro-con">
                   <img src="{{ asset('images/slider/bu5.jpg') }}" alt="Logo Tamaulipas"
-                    class="logo" height="100" width="190">
+                    class="res-logo" >
                 </a>
-                <div class="text-card">Registrate</div>
+                <div class="text-card2">Registrate</div>
               </div>
             </div>
           </div>
@@ -190,7 +122,7 @@
             <h4 class="card-title text-center"><b>FORMULARIO DE REGISTRO</b></h4>
           </div>
 
-          <div class="card-body">
+          <div class="card-body" id="form-registro">
             <form action="{{ route('alumno.guardarRegistro') }}" method="POST"
               class="form form-vertical" enctype="multipart/form-data">
               @csrf
@@ -257,10 +189,10 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="municipio">Municipio</label>
-                      {{-- value="{{ old('municipio') }}" --}}
-                      <input type="text" id="municipio" class="form-control" name="municipio" placeholder=""
-                        maxlength="90" readonly value="{{ old('municipio') }}">
+                      <label for="nombre_municipio">Municipio</label>
+                      {{-- value="{{ old('nombre_municipio') }}" --}}
+                      <input type="text" id="nombre_municipio" class="form-control" name="nombre_municipio" placeholder=""
+                        maxlength="90" readonly value="{{ old('nombre_municipio') }}">
                     </div>
                   </div>
 
@@ -396,9 +328,114 @@
               </div>
             </form>
           </div>
+
+          {{-- ------------------------------- formulario updated ------------------------- --}}
+          <div class="card-body" id="form-actualizar" style="display: none;">
+            {{-- {{ route('alumno.actualizarRegistro') }} --}}
+            <form action="{{ route('alumno.actualizarRegistro') }}" method="POST" class="d-inline formulario-update" enctype="multipart/form-data">
+              @csrf
+              <div class="form-body">
+                <div class="row">
+
+                  {{-- <div class="col-6">
+                    <div class="form-group">
+                      <label for="curpUp">Curp</label>
+                      <input type="text" id="curpUp" class="form-control" name="curpUp" placeholder="Curp del alumno"
+                        maxlength="18" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      
+                    </div>
+                  </div> --}}
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="nombre_alumnoUp">Nombre</label>
+                      <input type="text" id="nombre_alumnoUp" class="form-control" name="nombre_alumnoUp" placeholder="" maxlength="90"
+                        readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="ap_paternoUp">Apellido paterno</label>
+                      <input type="text" id="ap_paternoUp" class="form-control" name="ap_paternoUp" placeholder=""
+                        maxlength="30" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="ap_maternoUp">Apellido materno</label>
+                      <input type="text" id="ap_maternoUp" class="form-control" name="ap_maternoUp" placeholder=""
+                        maxlength="90" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="escuelaUp">Escuela</label>
+                      <input type="text" id="escuelaUp" class="form-control" name="escuelaUp" placeholder="" maxlength="90"
+                        readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="gradoEscolarUp">Grado escolar</label>
+                      <input type="text" id="gradoEscolarUp" class="form-control" name="gradoEscolarUp" placeholder=""
+                        maxlength="30" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="municipioUp">Municipio</label>
+                      <input type="text" id="municipioUp" class="form-control" name="municipioUp" placeholder=""
+                        maxlength="90" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-6" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" id="idRegistro" class="form-control" name="idRegistro" placeholder=""
+                        maxlength="30" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" id="urlRegistro" class="form-control" name="urlRegistro" placeholder=""
+                        maxlength="90" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="">Actualizar archivo</label>
+                      <label for="getFileDibujoUpdate"
+                        class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i
+                          class="bx bx-plus"></i>Agregar archivo</label>
+                      <input type="file" class="d-none @error('getFileDibujoUpdate') is-invalid @enderror" id="getFileDibujoUpdate"
+                        name="getFileDibujoUpdate" required>
+                      <span style="color: #ab0033; display: none;" id="archivoCargadoErrorUp">Falta cargar el archivo de imagen</span>
+                      <span style="color: #ab0033; display: none;" id="archivoCargadoUp">Archivo cargado</span>
+                      <button id="verImagenUp" style="display: none;" type="button" class="btn btn-secondary"
+                        data-toggle="modal" data-target="#exampleModalScrollableUp">Ver nueva imagen</button>
+                    </div>
+                  </div>
+
+                  <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mr-1 mb-1" id="actualizarReg" onclick="validarArchivoRem()">Actualizar</button> 
+                    {{-- onclick="validarArchivoRem()" --}}
+                    {{-- <button class="btn btn-light-secondary mr-1 mb-1" role="button" onclick="regresarFormRegistro()">Regresar</button> --}}
+                    <a class="btn btn-light-secondary mr-1 mb-1" href="{{ route('alumno.inicio') }}">Regresar</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
-      {{-- <br><br> --}}
     </div>
 
     <div class="col-12">
@@ -413,38 +450,44 @@
 
         <div class="col-12">
           <div class="card-header">
-            <h4 class="card-title text-center"><b>PREMIOS</b></h4>
+            <h4 class="card-title text-center"><b>PREMIACIÓN</b></h4>
           </div>
         </div>
 
-        <div class="col-3">
+        {{-- <div class="col-3">
           <div class="card">
             <div class="card-content">
               <div class="card-body text-center">
-                {{-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae aliquam quia non, perferendis reprehenderit quisquam eveniet eius nemo rem in corrupti ex et exercitationem ipsam mollitia voluptates quaerat doloribus pariatur!</p> --}}
-                {{-- <div class="dashboard-content-right"> --}}
-                {{-- <img src="{{asset('images/icon/cup.png') }}" height="220"
-                width="220" class="logo"
-                alt="Dashboard Ecommerce"/> --}}
                 <img src="{{ asset('images/slider/bu2.jpg') }}" alt="Logo Tamaulipas" class="logo"
                   height="120" width="210">
-                {{-- </div> --}}
+              </div>
+            </div>
+          </div>
+        </div> --}}
+
+        <div class="col-2">
+          <div class="card">
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body text-center">
+
+                  <h5> <b> Se otorgará un reconocimiento a las personas ganadoras. </b> </h5>
+
+                  <h5>Los resultados del concurso se darán a conocer el 28 de abril de 2023 en los sitios de internet oficiales
+                  de la Secretaría de Educación de Tamaulipas.</h5>
+
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-9">
+        <div class="col-2">
           <div class="card">
             <div class="card-content">
-              <div class="card-body">
-                <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non voluptatibus maiores asperiores omnis
-                  voluptatum obcaecati numquam? Praesentium, quam explicabo, ut nihil vero totam rerum cumque alias
-                  similique, distinctio minus ipsa.</P>
-                <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae atque distinctio sequi ad, amet
-                  reiciendis! Atque mollitia iusto non odit a? Enim facilis voluptas dicta facere ratione molestias
-                  sapiente beatae.</P>
-              </div>
             </div>
           </div>
         </div>
@@ -468,8 +511,8 @@
           </div>
 
           <div class="card-body">
-            <form action="#" class="form form-vertical" enctype="multipart/form-data">
-              {{-- method="POST" @csrf --}}
+            <form action="{{ route('alumno.enviarFomurlarioDudas') }}" method="POST" class="form form-vertical" enctype="multipart/form-data">
+              @csrf
               <div class="form-body">
                 <div class="row">
 
@@ -477,7 +520,7 @@
                     <div class="form-group">
                       <label for="nombrePregunta">Nombre</label>
                       <input type="text" id="nombrePregunta" class="form-control" name="nombrePregunta"
-                        placeholder="Nombre completo" maxlength="18" required
+                        placeholder="Nombre completo" maxlength="90" required
                         value="{{ old('nombrePregunta') }}">
                     </div>
                   </div>
@@ -560,150 +603,48 @@
     </div>
   </div>
 
+  <div class="col-md-6 col-12">
+    <div class="card">
+      <div class="card-content">
+
+        <!--scrolling content Modal -->
+        <div class="modal fade" id="exampleModalScrollableUp" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-info">
+                <h5 class="modal-title white" id="exampleModalScrollableTitle">Archivo cargado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="bx bx-x"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="container">
+                  <div class="center">
+
+                    <img id="imagenPrevisualizacionUp" width="400">
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                  <i class="bx bx-x d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Cerrar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
 
-{{-- <div class="header-con"> --}}
-    {{-- <div class="row">
-        <div class="col-12">
-            <div class="col-3">
-                <h2>Secretaría de Educación</h2>
-                <p>Calzada General Luis Caballero s/n,<br>
-                entre calle Ayacahuite y calle Álamo,<br>
-                Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
-                <p>
-                834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
-            </div>
-            <div class="col-3">
-                <h2>Secretaría de Educación</h2>
-                <div class="menu-secretaria-de-educacion-container">
-                    <ul id="menu-secretaria-de-educacion" class="clean-list menu">
-                        <li id="menu-item-584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-584"><a
-                            href="http://www.tamaulipas.gob.mx/educacion/conocenos/">Conócenos</a></li>
-                        <li id="menu-item-21089"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21089"><a
-                            href="https://www.tamaulipas.gob.mx/educacion/conocenos/">Código de Conducta</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-3" id="footer-links">
-                <h2>Información por Perfiles</h2>
-                <div class="menu-informacion-por-perfiles-container">
-                <ul id="menu-informacion-por-perfiles" class="clean-list menu">
-                    <li id="menu-item-590" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-590"><a
-                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/padres-de-familia/">Padres de Familia</a></li>
-                    <li id="menu-item-589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-589"><a
-                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/estudiantes/">Estudiantes</a></li>
-                    <li id="menu-item-588" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-588"><a
-                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/escuelas/">Escuelas</a></li>
-                    <li id="menu-item-587" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-587"><a
-                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/docentes/">Docentes</a></li>
-                </ul>
-                </div>
-            </div>
-            <div class="col-3">
-                <h2>Sitios Recomendados</h2>
-                <div class="menu-sitios-recomendados-container">
-                <ul id="menu-sitios-recomendados" class="clean-list menu">
-                    <li id="menu-item-41738"
-                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41738"><a
-                        href="http://www.tamaulipas.gob.mx/">Gobierno del Estado de Tamaulipas</a></li>
-                    <li id="menu-item-41739"
-                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41739"><a
-                        href="http://www.diftamaulipas.gob.mx/">DIF Tamaulipas</a></li>
-                    <li id="menu-item-41740"
-                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41740"><a
-                        href="http://www.gob.mx/sep">Secretaría de Educación Pública</a></li>
-                </ul>
-                </div>
-            </div>
-    
-            <div class="col-12">
-                <div id="liston-inferior">
-                    Todos los derechos reservados © 2023 
-                    <span id="to-break">/</span> 
-                    Gobierno del Estado de Tamaulipas 2022 - 2028
-                </div>
-            </div>
-        </div>
-        </div> --}}
-{{-- </div> --}}
-
-{{-- <div class="header-con">
-  <div class="row">
-    <div id="footer-rows" class="row cols-same-height">
-      <div class="col-3">
-        <h2>Secretaría de Educación</h2>
-        <p>Calzada General Luis Caballero s/n,<br>
-          entre calle Ayacahuite y calle Álamo,<br>
-          Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
-        <p>
-          834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
-      </div>
-      <div id="footer-links" class="col-3>
-        <div class="row">
-          <div class="col-md-3 col-xs-6 mt10 mb10">
-            <h2>Secretaría de Educación</h2>
-            <div class="menu-secretaria-de-educacion-container">
-              <ul id="menu-secretaria-de-educacion" class="clean-list menu">
-                <li id="menu-item-584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-584"><a
-                    href="http://www.tamaulipas.gob.mx/educacion/conocenos/">Conócenos</a></li>
-                <li id="menu-item-21089"
-                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21089"><a
-                    href="https://www.tamaulipas.gob.mx/educacion/conocenos/">Código de Conducta</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-3">
-            <h2>Información por Perfiles</h2>
-            <div class="menu-informacion-por-perfiles-container">
-              <ul id="menu-informacion-por-perfiles" class="clean-list menu">
-                <li id="menu-item-590" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-590"><a
-                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/padres-de-familia/">Padres de Familia</a></li>
-                <li id="menu-item-589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-589"><a
-                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/estudiantes/">Estudiantes</a></li>
-                <li id="menu-item-588" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-588"><a
-                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/escuelas/">Escuelas</a></li>
-                <li id="menu-item-587" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-587"><a
-                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/docentes/">Docentes</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-3">
-            <h2>Sitios Recomendados</h2>
-            <div class="menu-sitios-recomendados-container">
-              <ul id="menu-sitios-recomendados" class="clean-list menu">
-                <li id="menu-item-41738"
-                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41738"><a
-                    href="http://www.tamaulipas.gob.mx/">Gobierno del Estado de Tamaulipas</a></li>
-                <li id="menu-item-41739"
-                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41739"><a
-                    href="http://www.diftamaulipas.gob.mx/">DIF Tamaulipas</a></li>
-                <li id="menu-item-41740"
-                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41740"><a
-                    href="http://www.gob.mx/sep">Secretaría de Educación Pública</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-6 mt10 mb10">
-            <h2></h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="info col-sm-12 visible-xs-block">
-        <h2>Secretaría de Educación</h2>
-        <p>Calzada General Luis Caballero s/n,<br>
-          entre calle Ayacahuite y calle Álamo,<br>
-          Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
-        <p>
-          834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
-      </div>
-    </div>
-  </div>
-</div> --}}
 <!-- Modal Events end -->
 @endsection
 {{-- page scripts --}}
@@ -724,6 +665,7 @@
 
 <script>
 
+  // -------------------- validación de imagen para el formulario de registro 
   function validarArchivo(){
 
     
@@ -804,21 +746,117 @@
     });
   }
 
+  // -------------------- validación de imagen para el formulario de registro 
+
+
+  // -------------------- validación de imagen para el formulario de actualizar 
+    function validarArchivoRem(){
+
+        var mostrarBotonUp = document.getElementById("verImagenUp");
+        var mostrarMensajeUp = document.getElementById("archivoCargadoUp");
+        var mostrarMensajeImgUp = document.getElementById("archivoCargadoErrorUp");
+        const $seleccionArchivosUp = document.querySelector("#getFileDibujoUpdate"),
+          $imagenPrevisualizacionUp = document.querySelector("#imagenPrevisualizacionUp");
+        const archivos = $seleccionArchivosUp.files;
+        if (!archivos || !archivos.length) {
+          // console.log("No imagen");
+          $imagenPrevisualizacionUp.src = "";
+          mostrarMensajeImgUp.style.display = "inline";
+          mostrarBotonUp.style.display = "none";
+          mostrarMensajeUp.style.display = "none";
+          return;
+        }
+
+      // console.log("ValidarImg");
+    }
+
+    function is_imgRem(idinputfile) {
+
+        var fileInputUp = document.getElementById(idinputfile);
+        var mostrarBotonUp = document.getElementById("verImagenUp");
+        var mostrarMensajeUp = document.getElementById("archivoCargadoUp");
+
+        fileInputUp.addEventListener('change', function () {
+
+        var filePathUp = this.value;
+        var allowedExtensionsUp = /(.jpg|.jpeg|.png)$/i;
+        console.log(filePathUp);
+        if (!allowedExtensionsUp.exec(filePathUp)) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Extensión no permitida. Utiliza: .jpeg/.jpg/.png/'
+          })
+          mostrarBotonUp.style.display = "none";
+          mostrarMensajeUp.style.display = "none";
+          fileInputUp.value = '';
+          return false;
+
+        } else {
+
+          
+          var mostrarMensajeImgUp = document.getElementById("archivoCargadoErrorUp");
+          const $seleccionArchivosUp = document.querySelector("#getFileDibujoUpdate"),
+            $imagenPrevisualizacionUp = document.querySelector("#imagenPrevisualizacionUp");
+          // $seleccionArchivosUp.addEventListener("change", () => {
+          const archivos = $seleccionArchivosUp.files;
+          if (!archivos || !archivos.length) {
+            console.log("No imagen");
+            $imagenPrevisualizacionUp.src = "";
+            return;
+          }
+
+          mostrarBotonUp.style.display = "inline";
+          mostrarMensajeUp.style.display = "inline";
+          mostrarMensajeImgUp.style.display = "none";
+          const primerArchivoUp = archivos[0];
+          const objectURLUp = URL.createObjectURL(primerArchivoUp);
+          $imagenPrevisualizacionUp.src = objectURLUp;
+          // });
+          return true;
+        }
+
+        });
+    }
+
+    // -------------------- validación de imagen para el formulario de actualizar 
 </script>
 
 <script>
-  is_img('getFileDibujo'); //Ponemos el Id del input
-
+  is_img('getFileDibujo'); //Registro
+  is_imgRem('getFileDibujoUpdate'); //Actualización
 </script>
+
 
 @if(session('registro') === 'Ok')
   <script>
     Swal.fire(
       '¡Registrado correctamente!',
-      'El alumno ha sido registrado',
+      'El alumno ha sido registrado, hemos enviado un mensaje con sus datos al correo proporcionado',
       'success'
     )
 
+  </script>
+@endif
+
+@if(session('registro') === 'updateOk')
+  <script>
+    Swal.fire(
+      '¡Actualizado correctamente!',
+      'Se ha actualizado el registro',
+      'success'
+    )
   </script>
 @endif
 
@@ -886,6 +924,50 @@
   </script>
 @endif
 
+@if(session('enviarDudas') === 'Ok')
+  <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Mensaje enviado correctamente'
+      })
+  </script>
+@endif
+
+<script>
+  $('.formulario-update').onclick(function(e){
+
+    console.log("entro click submit");
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estás seguro de actualizar el registro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ab0033',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          this.submit();
+        }
+    })
+
+  });
+</script>
 
 <script>
   $(document).ready(function () {
@@ -900,6 +982,15 @@
     }
 
   })
+
+  function regresarFormRegistro(){
+      var curp_label = document.getElementById("curp");
+      curp_label.value = "";
+      var mostrarFormUpdate = document.getElementById("form-actualizar");
+      var mostrarFormRegistro = document.getElementById("form-registro");
+      mostrarFormRegistro.style.display = "block";
+      mostrarFormUpdate.style.display = "none";
+  }
 
   function buscarCurp() {
 
@@ -943,9 +1034,13 @@
         success: function (data) {
 
           // console.log(data);
-          if (data == 1) {
+          if (data[0] == 1) {
+
+            var mostrarFormUpdate = document.getElementById("form-actualizar");
+            var mostrarFormRegistro = document.getElementById("form-registro");
 
             console.log("alumno existente");
+            console.log(data);
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
@@ -963,7 +1058,33 @@
               title: 'El alumno ya ha sido registrado'
             })
 
+            var mostrarBotonActualizar = document.getElementById("actualizarReg");
+            mostrarBotonActualizar.disabled = false;
+
+            var curp_valUp = document.getElementById("curpUp");
+            var inp_nombreUp = document.getElementById("nombre_alumnoUp");
+            var inp_apellido_pUp = document.getElementById("ap_paternoUp");
+            var inp_apellido_mUp = document.getElementById("ap_maternoUp");
+            var inp_escuelaUp = document.getElementById("escuelaUp");
+            var inp_grado_escolarUp = document.getElementById("gradoEscolarUp");
+            var inp_municipioUp = document.getElementById("municipioUp");
+            var inp_idRegistroUp = document.getElementById("idRegistro");
+            var inp_urlRegistroUp = document.getElementById("urlRegistro");
+
+            inp_nombreUp.value = data[1][0].nombre_alumno;
+            inp_apellido_pUp.value = data[1][0].ap_paterno;
+            inp_apellido_mUp.value = data[1][0].ap_materno;
+            inp_escuelaUp.value = data[1][0].nombre_cct + " - " + data[1][0].Clavecct;
+            inp_grado_escolarUp.value = data[1][0].grado_alumno + "° " + data[1][0].grupo_alumno;
+            inp_municipioUp.value = data[1][0].nombre_municipio;
+            inp_idRegistroUp.value = data[1][0].id_registro_concurso;
+            inp_urlRegistroUp.value = data[1][0].url_archivo_dibujo;
+
+            mostrarFormRegistro.style.display = "none";
+            mostrarFormUpdate.style.display = "block";
+
           } else {
+
             $.ajax({
               url: "{{ route('alumno.buscar') }}",
               // url: "https://proyectoscete.tamaulipas.gob.mx/concursodedibujo/public/consultar-curp",
@@ -982,13 +1103,14 @@
 
                   var mostrarBotonRegistrar = document.getElementById("registrar");
                   mostrarBotonRegistrar.disabled = false;
+
                   var curp_val = document.getElementById("curp");
                   var inp_nombre = document.getElementById("nombre_alumno");
                   var inp_apellido_p = document.getElementById("ap_paterno");
                   var inp_apellido_m = document.getElementById("ap_materno");
                   var inp_escuela = document.getElementById("escuela");
                   var inp_grado_escolar = document.getElementById("gradoEscolar");
-                  var inp_municipio = document.getElementById("municipio");
+                  var inp_municipio = document.getElementById("nombre_municipio");
 
                   var inp_clave_cct = document.getElementById("cct");
                   var inp_nombre_cct = document.getElementById("nombre_cct");
@@ -1036,7 +1158,7 @@
                 var inp_apellido_m = document.getElementById("ap_materno");
                 var inp_escuela = document.getElementById("escuela");
                 var inp_grado_escolar = document.getElementById("gradoEscolar");
-                var inp_municipio = document.getElementById("municipio");
+                var inp_municipio = document.getElementById("nombre_municipio");
                 inp_nombre.value = "";
                 inp_apellido_p.value = "";
                 inp_apellido_m.value = "";

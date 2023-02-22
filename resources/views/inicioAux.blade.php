@@ -287,6 +287,151 @@
         </div>
       </div>
 
+
+      {{-- <div class="header-con"> --}}
+    {{-- <div class="row">
+        <div class="col-12">
+            <div class="col-3">
+                <h2>Secretaría de Educación</h2>
+                <p>Calzada General Luis Caballero s/n,<br>
+                entre calle Ayacahuite y calle Álamo,<br>
+                Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
+                <p>
+                834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
+            </div>
+            <div class="col-3">
+                <h2>Secretaría de Educación</h2>
+                <div class="menu-secretaria-de-educacion-container">
+                    <ul id="menu-secretaria-de-educacion" class="clean-list menu">
+                        <li id="menu-item-584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-584"><a
+                            href="http://www.tamaulipas.gob.mx/educacion/conocenos/">Conócenos</a></li>
+                        <li id="menu-item-21089"
+                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21089"><a
+                            href="https://www.tamaulipas.gob.mx/educacion/conocenos/">Código de Conducta</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-3" id="footer-links">
+                <h2>Información por Perfiles</h2>
+                <div class="menu-informacion-por-perfiles-container">
+                <ul id="menu-informacion-por-perfiles" class="clean-list menu">
+                    <li id="menu-item-590" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-590"><a
+                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/padres-de-familia/">Padres de Familia</a></li>
+                    <li id="menu-item-589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-589"><a
+                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/estudiantes/">Estudiantes</a></li>
+                    <li id="menu-item-588" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-588"><a
+                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/escuelas/">Escuelas</a></li>
+                    <li id="menu-item-587" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-587"><a
+                        href="http://www.tamaulipas.gob.mx/educacion/perfiles/docentes/">Docentes</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-3">
+                <h2>Sitios Recomendados</h2>
+                <div class="menu-sitios-recomendados-container">
+                <ul id="menu-sitios-recomendados" class="clean-list menu">
+                    <li id="menu-item-41738"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41738"><a
+                        href="http://www.tamaulipas.gob.mx/">Gobierno del Estado de Tamaulipas</a></li>
+                    <li id="menu-item-41739"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41739"><a
+                        href="http://www.diftamaulipas.gob.mx/">DIF Tamaulipas</a></li>
+                    <li id="menu-item-41740"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41740"><a
+                        href="http://www.gob.mx/sep">Secretaría de Educación Pública</a></li>
+                </ul>
+                </div>
+            </div>
+    
+            <div class="col-12">
+                <div id="liston-inferior">
+                    Todos los derechos reservados © 2023 
+                    <span id="to-break">/</span> 
+                    Gobierno del Estado de Tamaulipas 2022 - 2028
+                </div>
+            </div>
+        </div>
+        </div> --}}
+{{-- </div> --}}
+
+{{-- <div class="header-con">
+  <div class="row">
+    <div id="footer-rows" class="row cols-same-height">
+      <div class="col-3">
+        <h2>Secretaría de Educación</h2>
+        <p>Calzada General Luis Caballero s/n,<br>
+          entre calle Ayacahuite y calle Álamo,<br>
+          Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
+        <p>
+          834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
+      </div>
+      <div id="footer-links" class="col-3>
+        <div class="row">
+          <div class="col-md-3 col-xs-6 mt10 mb10">
+            <h2>Secretaría de Educación</h2>
+            <div class="menu-secretaria-de-educacion-container">
+              <ul id="menu-secretaria-de-educacion" class="clean-list menu">
+                <li id="menu-item-584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-584"><a
+                    href="http://www.tamaulipas.gob.mx/educacion/conocenos/">Conócenos</a></li>
+                <li id="menu-item-21089"
+                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21089"><a
+                    href="https://www.tamaulipas.gob.mx/educacion/conocenos/">Código de Conducta</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-3">
+            <h2>Información por Perfiles</h2>
+            <div class="menu-informacion-por-perfiles-container">
+              <ul id="menu-informacion-por-perfiles" class="clean-list menu">
+                <li id="menu-item-590" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-590"><a
+                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/padres-de-familia/">Padres de Familia</a></li>
+                <li id="menu-item-589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-589"><a
+                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/estudiantes/">Estudiantes</a></li>
+                <li id="menu-item-588" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-588"><a
+                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/escuelas/">Escuelas</a></li>
+                <li id="menu-item-587" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-587"><a
+                    href="http://www.tamaulipas.gob.mx/educacion/perfiles/docentes/">Docentes</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-3">
+            <h2>Sitios Recomendados</h2>
+            <div class="menu-sitios-recomendados-container">
+              <ul id="menu-sitios-recomendados" class="clean-list menu">
+                <li id="menu-item-41738"
+                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41738"><a
+                    href="http://www.tamaulipas.gob.mx/">Gobierno del Estado de Tamaulipas</a></li>
+                <li id="menu-item-41739"
+                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41739"><a
+                    href="http://www.diftamaulipas.gob.mx/">DIF Tamaulipas</a></li>
+                <li id="menu-item-41740"
+                  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41740"><a
+                    href="http://www.gob.mx/sep">Secretaría de Educación Pública</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-6 mt10 mb10">
+            <h2></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="info col-sm-12 visible-xs-block">
+        <h2>Secretaría de Educación</h2>
+        <p>Calzada General Luis Caballero s/n,<br>
+          entre calle Ayacahuite y calle Álamo,<br>
+          Cd. Victoria, Tamaulipas, México, C.P. 87078</p>
+        <p>
+          834 318 6600<br>834 318 6601<br>834 318 6602<br> </p>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
 </body>
 </html>
 
