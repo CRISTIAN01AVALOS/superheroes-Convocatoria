@@ -49,7 +49,12 @@
                     <div class="card-body">
 
                         {{-- <iframe src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe> --}}
-                        <iframe class="col-12" height="1000" src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe>
+                        <iframe type="application/pdf" class="col-12" height='1000' src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
+                        {{-- <object data="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}"
+                        width="800"
+                        height="800"
+                        type="text/html">
+                        </object> --}}
 
                     </div>
                 </div>
