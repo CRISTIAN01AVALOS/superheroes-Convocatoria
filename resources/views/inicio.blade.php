@@ -25,7 +25,7 @@
 </div>
 <br>
 
-<div class="col-12">
+<div class="img-res col-12">
   <div class="card" id="carousel-caption">
 
     <div class="card-content">
@@ -48,17 +48,17 @@
       </div>
     </div>
 
-    <div class="col-12 div-botones2">
+    <div class="div-botones2 col-12">
       <div class="row">
 
-        <div class="col-sm-3 col-3 dashboard-users-success">
-          <div class="card text-center">
+        <div class="col-3 dashboard-users-success text-center">
+          <div class="card">
             <div class="card-content">
               <div class="card-body py-1 post-centro zoomea">
                 <a href="{{ route('alumno.bases-concurso') }}"> 
 
                   <img src="{{ asset('images/slider/bu1.jpg') }}" alt="Logo Tamaulipas"
-                  class="res-logo" >
+                  class="res-logo">
                  </a>
                 <div class="text-card2">Bases del concurso</div>
               </div>
@@ -66,8 +66,8 @@
           </div>
         </div>
 
-        <div class="col-sm-3 col-3 dashboard-users-success">
-          <div class="card text-center">
+        <div class="col-3 dashboard-users-success text-center">
+          <div class="card ">
             <div class="card-content">
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#premios-con">
@@ -80,8 +80,8 @@
           </div>
         </div>
 
-        <div class="col-sm-3 col-3 dashboard-users-danger">
-          <div class="card text-center">
+        <div class="col-3 dashboard-users-success text-center">
+          <div class="card ">
             <div class="card-content">
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#dudas-con">
@@ -95,8 +95,8 @@
           </div>
         </div>
 
-        <div class="col-sm-3 col-3 dashboard-users-success">
-          <div class="card text-center">
+        <div class="col-3 dashboard-users-success text-center">
+          <div class="card ">
             <div class="card-content">
               <div class="card-body py-1 post-centro zoomea">
                 <a href="#registro-con">

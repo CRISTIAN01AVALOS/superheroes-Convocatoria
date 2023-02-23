@@ -62,10 +62,9 @@
     transform: scale(1.2);
   }
 
-  
   .div-botones2{
-    width: 85% !important; 
-    padding-left: 12.5% !important;
+    width: 85%; 
+    padding-left: 12.5%;
   }
 
     /* height: 300px; */
@@ -78,8 +77,12 @@
   }
 
   
-
-  @media only screen and (max-width: 1200px) {
+  .img-ban{
+    width:85%;
+    height: 200px;
+  }
+  
+  @media only screen and (min-width: 993px) and (max-width: 1200px) {
    
     .res-logo{
         width: 130px;
@@ -93,12 +96,17 @@
 
     .div-botones2{
         width: 85%; 
-        padding-left: 10%;
+        padding-left: 15%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
     }
 
   }
 
-  @media only screen and (max-width: 992px) {
+  @media only screen and (min-width: 831px) and (max-width: 992px) {
    
     .res-logo{
         width: 120px;
@@ -112,11 +120,41 @@
 
     .div-botones2{
         width: 85%; 
-        padding-left: 10%;
+        padding-left: 15%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
     }
 
   }
-  @media only screen and (max-width: 768px) {
+
+  @media only screen and (min-width: 769px) and (max-width: 830px) {
+   
+    .res-logo{
+        width: 110px;
+        height: 65px;
+    }
+
+    .text-card2{
+        font-size: 14px;
+        width: 110px;
+    }
+
+    .div-botones2{
+        width: 85%; 
+        padding-left: 15%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 711px) and (max-width: 768px) {
   
     .res-logo{
         width: 100px;
@@ -132,31 +170,139 @@
         width: 85%; 
         padding-left: 10%;
     }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
   }
 
-  @media only screen and (min-width: 400px) and (max-width: 480px) {
-
+  @media only screen and (min-width: 661px) and (max-width: 710px) {
+  
     .res-logo{
-        width: 50px;
+        width: 90px;
+        height: 50px;
+    }
+
+    .text-card2{
+        font-size: 12px;
+        width: 90px;
+    }
+
+    .div-botones2{
+        width: 85%; 
+        padding-left: 10%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 561px) and (max-width: 660px) {
+  
+    .res-logo{
+        width: 80px;
+        height: 40px;
+    }
+
+    .text-card2{
+        font-size: 12px;
+        width: 80px;
+    }
+
+    .div-botones2{
+        width: 85%; 
+        padding-left: 10%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 511px) and (max-width: 560px) {
+  
+    .res-logo{
+        width: 70px;
+        height: 40px;
+    }
+
+    .text-card2{
+        font-size: 12px;
+        width: 70px;
+    }
+
+    .div-botones2{
+        width: 85%; 
+        padding-left: 10%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 481px) and (max-width: 510px) {
+  
+    .res-logo{
+        width: 60px;
         height: 30px;
     }
 
     .text-card2{
-        font-size: 3px;
+        font-size: 12px;
+        width: 60px;
+    }
+
+    .div-botones2{
+        width: 85%; 
+        padding-left: 10%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 376px) and (max-width: 480px) {
+
+    .res-logo{
+        width: 50px;
+        height: 28px;
+    }
+
+    .text-card2{
+        font-size: 5px;
         width: 50px;
     }
 
     .div-botones2{
         width: 85%; 
-        padding-left: 2%;
+        padding-left: 10%;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
     }
 
   }
+  
 
-  @media only screen and (min-width: 200px) and (max-width: 375px) {
+  @media only screen and (min-width: 291px) and (max-width: 375px) {
     .res-logo{
-        width: 40px;
-        height: 20px;
+        width: 50px;
+        height: 25px;
     }
 
     .text-card2{
@@ -165,7 +311,36 @@
     }
 
     .div-botones2{
-        width: 85% !important; 
-        padding-left: 3% !important;
+        width: 85%; 
+        padding-left: 2%;
     }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  }
+
+  @media only screen and (min-width: 100px) and (max-width: 290px) {
+    .res-logo{
+        width: 30px;
+        height: 15px;
+    }
+
+    .text-card2{
+        font-size: 4px;
+        width: 30px;
+    }
+
+    .div-botones2{
+        width: 85%;
+        padding-left: .5px;
+    }
+
+    .zoomea:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
   }
