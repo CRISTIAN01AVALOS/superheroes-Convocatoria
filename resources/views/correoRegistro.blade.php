@@ -70,8 +70,8 @@
                     <ul>
                         <li><b>Alumno:</b> {{ $info->nombre_alumno }} {{ $info->ap_paterno }} {{ $info->ap_materno }}</li>
                         <li><b>CURP:</b> {{ $info->curp }}</li>
-                        <li><b>Escuela:</b> {{ $info->nombre_cct }}°</li>
-                        <li><b>Grado:</b> {{ $info->grado_alumno }}</li>
+                        <li><b>Escuela:</b> {{ $info->nombre_cct }}</li>
+                        <li><b>Grado:</b> {{ $info->grado_alumno }}°</li>
                         <li><b>Grupo:</b> {{ $info->grupo_alumno }}</li>
                         <hr>
                         <li><b>Folio:</b> {{ $info->folio }}</li>

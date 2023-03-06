@@ -188,15 +188,8 @@ class DashboardController extends Controller
 
     public function search(Request $request){
 
-        // echo '<script>';
-        // echo 'console.log('. json_encode( strtoupper($request->input('valor')) ) .');';
-        // echo '</script>';
-
-        //$servicio = 'http://sce.tamaulipas.gob.mx/curp_renapoVS/service1.asmx?wsdl';
-        // $servicio = 'https://sce.tamaulipas.gob.mx/WS_RENAPO_V2/Consulta_curp.asmx?wsdl';
         $servicio = 'https://escolares-siie.tamaulipas.gob.mx/Datos_Alumno_WS/ws.asmx?WSDL';
-        #Curp femenini:  LIRC920503MTSNDN08
-        #Curp masculino: MAHE870316HTSRRD01 HEVJ140414HTSRZNA0
+        # HEVJ140414HTSRZNA0    HEVD111120MTSRLNA6  AAHG131014MTSLRNA1  AAHK160724MNELRRA1 
         $parametros = array(
                         'CURP' => strtoupper($request->input('valor')),
                         'Id_Valor' => 1,
@@ -241,22 +234,14 @@ class DashboardController extends Controller
                 $xml        = '<package>'.$xml.'</package>';
                 $data       = simplexml_load_string($xml);
 
-                // if ($data == "") {
-
-                //     // return json_decode($data, true);
-
-                // } else {
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']); 
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-                    curl_setopt($ch, CURLOPT_HEADER, 0); 
-                    $data_municipio = curl_exec($ch); 
-                    curl_close($ch); 
-                    array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
-                    return $arrayData;
-
-                // }
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']); 
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+                curl_setopt($ch, CURLOPT_HEADER, 0); 
+                $data_municipio = curl_exec($ch); 
+                curl_close($ch);
+                array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
+                return $arrayData;
 
             }
             
@@ -269,4 +254,31 @@ class DashboardController extends Controller
 
 
     }
+
+    public function searchTest(Request $request){
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/servicios/'); 
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        // curl_setopt($ch, CURLOPT_HEADER, 0); 
+        // $data_municipio = curl_exec($ch); 
+        // curl_close($ch);
+        // return json_decode($data_municipio, true);
+
+        // $fields = array('param0' => 'UUIDcase234d', 'param1' => 'HEVJ140414HTSRZNA0');
+        // $fields_string = http_build_query($fields);
+
+        // $fieldsHeaders = array('usuario' => 'rhcete', 'contrasenia' => urlencode('P4$$W0rdrhc3te'), 'Content-Type' => 'application/x-www-form-urlencoded');
+        // $fields_string_Headers = http_build_query($fieldsHeaders);
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, "https://proyectoscete.tamaulipas.gob.mx/insumos/public/servicios/");
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string );
+        // curl_setopt($ch, CURLOPT_HEADER, $fields_string_Headers); 
+        // $data = curl_exec($ch);
+        // curl_close($ch);
+        // return json_decode($data, true);
+    }
+
 }
