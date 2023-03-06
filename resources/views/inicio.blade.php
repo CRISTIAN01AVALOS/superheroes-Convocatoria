@@ -201,7 +201,7 @@
                       <label for="telefono_titular">Teléfono (Campo obligatorio)</label>
                       <input type="number" id="telefono_titular" class="form-control @error('telefono_titular') is-invalid @enderror"
                         name="telefono_titular" value="{{ old('telefono_titular') }}"
-                        placeholder="Teléfono del papá, mamá o persona adulta que considere" maxlength="10" required>
+                        placeholder="Teléfono del papá, mamá o persona adulta que considere" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode<=57" required>
                       @error('telefono_titular')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
