@@ -133,7 +133,7 @@
                     <div class="form-group">
                       <label for="curp">Curp (Campo obligatorio)</label>
                       <input type="text" id="curp" class="form-control" name="curp" placeholder="Curp del alumno"
-                        maxlength="18" required value="{{ old('curp') }}">
+                        maxlength="18" required value="{{ old('curp') }}" onchange="curpValidarVacio()">
                     </div>
                   </div>
                   <div class="col-6">
@@ -246,7 +246,7 @@
                       <input type="text" id="nombre_personaje"
                         class="form-control @error('nombre_personaje') is-invalid @enderror" name="nombre_personaje"
                         value="{{ old('nombre_personaje') }}" placeholder="Nombre del personaje"
-                        maxlength="30" required>
+                        maxlength="150" required>
                       @error('nombre_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -260,7 +260,7 @@
                       <input type="text" id="valores_personaje"
                         class="form-control @error('valores_personaje') is-invalid @enderror" name="valores_personaje"
                         value="{{ old('valores_personaje') }}" placeholder="Valores del personaje"
-                        maxlength="90">
+                        maxlength="256">
                       @error('valores_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -274,7 +274,7 @@
                       <input type="text" id="descripcion_personaje"
                         class="form-control @error('descripcion_personaje') is-invalid @enderror"
                         name="descripcion_personaje" value="{{ old('descripcion_personaje') }}"
-                        placeholder="Breve descripción del personaje" maxlength="120" required>
+                        placeholder="Breve descripción del personaje" maxlength="256" required>
                       @error('descripcion_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -970,12 +970,49 @@
 </script>
 
 <script>
+
+  function curpValidarVacio(){
+
+    var curp_val = document.getElementById("curp");
+    var inp_nombre = document.getElementById("nombre_alumno");
+    var inp_apellido_p = document.getElementById("ap_paterno");
+    var inp_apellido_m = document.getElementById("ap_materno");
+    var inp_escuela = document.getElementById("escuela");
+    var inp_grado_escolar = document.getElementById("gradoEscolar");
+    var inp_municipio = document.getElementById("nombre_municipio");
+
+    var curpAlumno = $('#curp').val();
+
+    // if (curpAlumno == "") {
+      console.log("esta vacio el input");
+      inp_nombre.value = "";
+      inp_apellido_p.value = "";
+      inp_apellido_m.value = "";
+      inp_escuela.value = "";
+      inp_grado_escolar.value = "";
+      inp_municipio.value = "";
+    // } else {
+    //   var mostrarBotonRegistrar = document.getElementById("registrar");
+    //   mostrarBotonRegistrar.disabled = false;
+    // }
+
+  }
+
+
   $(document).ready(function () {
+
+    
 
     var curpAlumno = $('#curp').val();
 
     if (curpAlumno == "") {
       console.log("esta vacio el input");
+      inp_nombre.value = 1;
+      inp_apellido_p.value = 1;
+      inp_apellido_m.value = "";
+      inp_escuela.value = "";
+      inp_grado_escolar.value = "";
+      inp_municipio.value = "";
     } else {
       var mostrarBotonRegistrar = document.getElementById("registrar");
       mostrarBotonRegistrar.disabled = false;
@@ -990,6 +1027,31 @@
       var mostrarFormRegistro = document.getElementById("form-registro");
       mostrarFormRegistro.style.display = "block";
       mostrarFormUpdate.style.display = "none";
+  }
+
+  function buscarTest(){
+    
+    var curpAlumno = $('#curp').val();
+    $.ajax({
+        url: "{{ route('alumno.buscarTest') }}",
+        data: {
+          valor: curpAlumno,
+          "_token": "{{ csrf_token() }}",
+        },
+        dataType: "json",
+        type: "POST",
+        success: function (data) {
+
+          console.log(data);
+          console.log(data[0]);
+
+        },
+        error: function (data) {
+          console.log("Error");
+          console.log(data);
+        }
+    });
+
   }
 
   function buscarCurp() {
@@ -1074,7 +1136,7 @@
             inp_nombreUp.value = data[1][0].nombre_alumno;
             inp_apellido_pUp.value = data[1][0].ap_paterno;
             inp_apellido_mUp.value = data[1][0].ap_materno;
-            inp_escuelaUp.value = data[1][0].nombre_cct + " - " + data[1][0].Clavecct;
+            inp_escuelaUp.value = data[1][0].nombre_cct + " - " + data[1][0].cct;
             inp_grado_escolarUp.value = data[1][0].grado_alumno + "° " + data[1][0].grupo_alumno;
             inp_municipioUp.value = data[1][0].nombre_municipio;
             inp_idRegistroUp.value = data[1][0].id_registro_concurso;
