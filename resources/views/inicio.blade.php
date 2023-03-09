@@ -133,7 +133,7 @@
                     <div class="form-group">
                       <label for="curp">Curp (Campo obligatorio)</label>
                       <input type="text" id="curp" class="form-control" name="curp" placeholder="Curp del alumno"
-                        maxlength="18" required value="{{ old('curp') }}" onchange="curpValidarVacio()">
+                        maxlength="18" required value="{{ old('curp') }}" onchange="curpValidarVacio()" style="text-transform: uppercase;">
                     </div>
                   </div>
                   <div class="col-6">
