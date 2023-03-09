@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-6 d-flex justify-content-end" style="padding-top: 12px;">
-      <button type="button" class="btn btn-info mr-1 mb-1">Acceder</button>
+      <button type="button" class="btn btn-info mr-1 mb-1">ACCEDER</button>
     </div>
   </div>
   {{-- </div>
