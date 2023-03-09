@@ -39,7 +39,7 @@
             <div class="carousel-item active text-center">
               {{-- <img class="img-fluid" src="{{asset('images/slider/BANNER-DE-BIENVENIDA.png') }}"
               alt="First slide"> --}}
-              <img class="img-fluid" src="{{ asset('images/slider/banner_plataforma1.jpg') }}"
+              <img class="img-fluid" src="{{ asset('images/slider/banner_plataforma2.jpg') }}"
                 alt="First slide" width="85%" height="200px">
             </div>
 
