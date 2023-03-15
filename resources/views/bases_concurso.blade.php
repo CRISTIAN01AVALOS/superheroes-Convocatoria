@@ -58,13 +58,14 @@
                             <h4 class="card-title text-center"> <b> BASES DEL CONCURSO </b> </h4>
 
                             <p class="card-text text-justify">
-                            <b>1. </b> Podrán  participar  todos  los  niños  y  niñas  de  Nivel  Primaria  y  Centros  de  Atención  Múltiple 
-                                residentes en Tamaulipas. <br>
+                            {{-- <b>1. </b> Podrán  participar  todos  los  niños  y  niñas  de  Nivel  Primaria  y  Centros  de  Atención  Múltiple 
+                                residentes en Tamaulipas. <br> --}}
+                            <b>1. </b> Podrán participar todos los niños y niñas de nivel Primaria y 
+                            Centros de Atención Múltiple (Primaria) en Tamaulipas. <br>
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>2. </b> El  concurso  se  divide  por  regiones,  es  decir,  habrá  un(a)  ganador(a)  por  cada  una  de  las  seis 
-                                regiones de Tamaulipas:
+                                <b>2. </b> Habrá un(a) ganador(a) por cada una de las seis regiones de Tamaulipas:
                                 <ul>
                                     <li>Región  fronteriza  (Nuevo  Laredo,  Guerrero,  Mier,  Miguel  Alemán,  Camargo,  Gustavo  Díaz 
                                         Ordaz, Reynosa, Río Bravo, Valle Hermoso y Matamoros). </li>
