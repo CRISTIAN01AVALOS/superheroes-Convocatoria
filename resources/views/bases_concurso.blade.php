@@ -58,13 +58,14 @@
                             <h4 class="card-title text-center"> <b> BASES DEL CONCURSO </b> </h4>
 
                             <p class="card-text text-justify">
-                            <b>1. </b> Podrán  participar  todos  los  niños  y  niñas  de  Nivel  Primaria  y  Centros  de  Atención  Múltiple 
-                                residentes en Tamaulipas. <br>
+                            {{-- <b>1. </b> Podrán  participar  todos  los  niños  y  niñas  de  Nivel  Primaria  y  Centros  de  Atención  Múltiple 
+                                residentes en Tamaulipas. <br> --}}
+                            <b>1. </b> Podrán participar todos los niños y niñas de nivel Primaria y 
+                            Centros de Atención Múltiple (Primaria) en Tamaulipas. <br>
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>2. </b> El  concurso  se  divide  por  regiones,  es  decir,  habrá  un(a)  ganador(a)  por  cada  una  de  las  seis 
-                                regiones de Tamaulipas:
+                                <b>2. </b> Habrá un(a) ganador(a) por cada una de las seis regiones de Tamaulipas:
                                 <ul>
                                     <li>Región  fronteriza  (Nuevo  Laredo,  Guerrero,  Mier,  Miguel  Alemán,  Camargo,  Gustavo  Díaz 
                                         Ordaz, Reynosa, Río Bravo, Valle Hermoso y Matamoros). </li>
@@ -83,22 +84,24 @@
                                 <ul>
                                     <li>Técnica.</li>
                                     <li>Representación de la región.</li>
-                                    <li>Descripción breve del personaje.</li>
-                                    <li>Que incluya al menos un valor de la Nueva Escuela Mexicana (un párrafo).</li>
+                                    <li>Descripción breve del personaje (un párrafo).</li>
+                                    <li>Que incluya al menos un valor de la Nueva Escuela Mexicana.</li>
                                     <li>Originalidad.</li>
                                 </ul>
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>4. </b>Cada participante podrá inscribir un solo dibujo, de autoría propia e inédito, el cual no debe haber 
-                                participado en otros certámenes.
+                                {{-- <b>4. </b>Cada participante podrá inscribir un solo dibujo, de autoría propia e inédito, el cual no debe haber 
+                                participado en otros certámenes. --}}
+                                <b>4. </b>Cada participante podrá inscribir un sólo dibujo.
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>5. </b>La fecha de recepción de los trabajos será <b>hasta el lunes 20 de marzo del 2023</b>. Participarán 
+                                {{-- <b>5. </b>La fecha de recepción de los trabajos será <b>hasta el lunes 20 de marzo del 2023</b>. Participarán 
                                 en el concurso aquellos dibujos que  hayan sido recibidos o tengan una fecha de envío que  no 
                                 exceda el límite del día de recepción. No se tomarán en cuenta los dibujos que no se sujeten a las 
-                                bases del concurso.
+                                bases del concurso. --}}
+                                <b>5. </b>La fecha de recepción de los trabajos será hasta el 18 de abril de 2023. 
                             </p>
 
                             <p class="card-text text-justify">
@@ -106,55 +109,69 @@
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>7. </b>La ilustración debe estar hecha a mano y en técnica libre. Se puede utilizar lápiz, grafito, carbón, 
-                                pasteles, lápices de colores, técnicas a blanco y negro, crayones, u otros materiales.
+                                {{-- <b>7. </b>La ilustración debe estar hecha a mano y en técnica libre. Se puede utilizar lápiz, grafito, carbón, 
+                                pasteles, lápices de colores, técnicas a blanco y negro, crayones, u otros materiales. --}}
+                                <b>7. </b>La ilustración debe estar hecha a mano y en técnica libre.
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>8. </b>Serán rechazados los dibujos que hagan uso de personajes o imágenes de la televisión, del cine, 
+                                {{-- <b>8. </b>Serán rechazados los dibujos que hagan uso de personajes o imágenes de la televisión, del cine, 
                                 historietas,  revistas,  logotipos,  marcas,  emblemas  comerciales  o  políticos.  No  se  aceptarán 
-                                elementos bélicos en el dibujo.
+                                elementos bélicos en el dibujo. --}}
+                                <b>8. </b>Serán rechazados los dibujos que hagan uso de personajes o imágenes de la televisión, del cine e historietas.
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>9. </b>El  dibujo  deberá  ser  digitalizado  a  través  de  una  fotografía  o  escaneo  (alta  calidad  y  bien 
-                                iluminada) y enviado como archivo adjunto. Consulta la página web:
+                                {{-- <b>9. </b>El  dibujo  deberá  ser  digitalizado  a  través  de  una  fotografía  o  escaneo  (alta  calidad  y  bien 
+                                iluminada) y enviado como archivo adjunto. Consulta la página web: --}}
+                                <b>9. </b>Sube la foto de tu dibujo en esta página:
                                 <a href="https://proyectoscete.tamaulipas.gob.mx/concursodedibujo/">https://proyectoscete.tamaulipas.gob.mx/concursodedibujo/</a>
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>10. </b>En el cuerpo del dibujo se deberá precisar la siguiente información:
+                                {{-- <b>10. </b>En el cuerpo del dibujo se deberá precisar la siguiente información:
                                 <ul>
                                     <li>Nombre de autor(a).</li>
                                     <li>Nombre del personaje.</li>
                                     <li>Valores de la Nueva Escuela Mexicana que promueve.</li>
                                     <li>Descripción breve del personaje.</li>
+                                </ul> --}}
+                                <b>10. </b>Agrega en el dibujo:
+                                <ul>
+                                    <li>Tu nombre.</li>
+                                    <li>Nombre del personaje.</li>
+                                    <li>Valor que elegiste.</li>
+                                    <li>Descripción breve del personaje.</li>
                                 </ul>
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>11. </b>Los y las participantes deberán conservar en buen estado su dibujo, ya que, en caso de ganar, se 
-                                solicitará el documento original. 
+                                {{-- <b>11. </b>Los y las participantes deberán conservar en buen estado su dibujo, ya que, en caso de ganar, se 
+                                solicitará el documento original.  --}}
+                                <b>11. </b>Conserva tu dibujo en buen estado porque puede ser el ganador.
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>12. </b>Por cada una de las seis regiones, se elegirá un dibujo ganador. Cada niño y niña que gane, se le 
-                                otorgará reconocimiento.
+                                {{-- <b>12. </b>Por cada una de las seis regiones, se elegirá un dibujo ganador. Cada niño y niña que gane, se le 
+                                otorgará reconocimiento. --}}
+                                <b>12. </b>El Gobierno de Tamaulipas será el propietario de las obras y de los derechos de autor. 
+                                En caso de su publicación, se reconocerá a sus autores y se darán los créditos correspondientes.
                             </p>
 
                             <p class="card-text text-justify">
-                                <b>13. </b>Los y las concursantes no podrán ser familiares del Comité Organizador o de los y las integrantes 
-                                del jurado.
+                                {{-- <b>13. </b>Los y las concursantes no podrán ser familiares del Comité Organizador o de los y las integrantes 
+                                del jurado. --}}
+                                <b>13. </b>Todos los participantes del presente concurso reconocen y aceptan los términos asentados en esta convocatoria.
                             </p>
 
-                            <p class="card-text text-justify">
+                            {{-- <p class="card-text text-justify">
                                 <b>14. </b>Todos los trabajos serán propiedad del Gobierno de Tamaulipas y la Secretaría de Educación de 
                                 Tamaulipas y consecuentemente propietarias de los derechos de autor. Estas instituciones serán 
                                 propietarias  de  los  derechos  de  autor  y  en  caso  de  publicar  los  trabajos,  se  reconocerán  a  sus 
                                 autores y se darán los créditos de la obra.
-                            </p>
+                            </p> --}}
 
-                            <p class="card-text text-justify">
+                            {{-- <p class="card-text text-justify">
                                 <b>15. </b>Todos los participantes del presente concurso reconocen y aceptan los términos asentados en 
                                 esta Convocatoria.
                                 <div class="table-responsive">
@@ -177,9 +194,9 @@
                                     </tbody>
                                 </table>
                                 </div>
-                            </p>
+                            </p> --}}
 
-                            <p class="card-text text-justify">
+                            {{-- <p class="card-text text-justify">
                                 <b>JURADO CALIFICADOR</b> <br>
                                 El jurado calificador estará integrado por representantes de las siguientes instituciones:
                                 <ul>
@@ -189,17 +206,27 @@
                                     <li>Sistema de Protección Integral de Niñas, Niños y Adolescentes (SIPINNA), Tamaulipas.</li>
                                 </ul>
                                 <b>El fallo del jurado será inapelable.</b> Cualquier situación no prevista en la presente Convocatoria será resuelta por el jurado
-                            </p>
+                            </p> --}}
 
                             <p class="card-text text-justify">
                                 <b>Para dudas o aclaraciones puede escribir al correo:</b> <br>
                                 consultadibujaunsuperheroe@set.edu.mx
-                            </p>             
-                            <br>
-                            <p class="card-text text-justify">
-                               <b>Convocatoria - Concurso de Dibujo</b> <a href="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" download="Convocatoria - Concurso de Dibujo">(Descargar)</a>
-                            </p>
+                            </p>    
                             
+                            <p class="card-text text-justify">
+                                <b>Publicación de ganadores 28 de abril de 2023.</b> <br> <br>
+                                El fallo del jurado será inapelable. Cualquier situación no prevista en la presente Convocatoria será resuelta por el jurado.
+                            </p>  
+
+                            <br>
+                            {{-- <p class="card-text text-justify">
+                               <b>Convocatoria - Concurso de Dibujo</b> <a href="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" download="Convocatoria - Concurso de Dibujo">(Descargar)</a>
+                            </p> --}}
+                            
+                            <p class="card-text text-justify">
+                                <b>Convocatoria - Concurso de Dibujo</b> <a href="{{asset('images/convocatoria/CONVOCATORIA_CONCURSO_DIBUJO_2023.pdf')}}" download="Convocatoria - Concurso de Dibujo">(Descargar)</a>
+                             </p>
+
                             {{-- <iframe src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe> --}}
                             {{-- <iframe type="application/pdf" class="col-12" height='1000' src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0" allowfullscreen webkitallowfullscreen></iframe> --}}
                             {{-- <object data="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}"
