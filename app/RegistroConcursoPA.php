@@ -94,13 +94,23 @@ class RegistroConcursoPA extends Model
 
     public function scopeValidMunicipio($query, $municipio) {
     	if ($municipio != 0) {
-    		return $query->where('registro_concurso.id_municipio',$municipio);
+            // if($region !=0){
+            //     return $query->where('registro_concurso.id_municipio',$municipio)->where('cat_regiones.Id_Region',$region);
+            // }else{
+            //     return $query->where('registro_concurso.id_municipio',$municipio);
+            // }
+            return $query->where('registro_concurso.id_municipio',$municipio);
     	}
     }
 
     public function scopeValidRegion($query, $region) { //////?????
     	if ($region != 0) {
-    		return $query->where('cat_regiones.Id_Region',$region);
+            // if($municipio !=0){
+            //     return $query->where('cat_regiones.Id_Region',$region)->where('registro_concurso.id_municipio',$municipio);
+            // }else{
+            //     return $query->where('cat_regiones.Id_Region',$region);
+            // }
+            return $query->where('cat_regiones.Id_Region',$region);
     	}
     }
 

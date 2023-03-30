@@ -1,7 +1,10 @@
 @extends('layouts.contentIncludes')
 @section('title','Concurso de dibujo')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> -->
+<!-- <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" /> -->
+
+<!-- <meta charset="utf-8"> -->
 @section('content')
 
 <div class="container-fluid py-4 mt-3">
@@ -21,9 +24,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                 <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono1.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -42,9 +46,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                 <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono2.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -63,9 +68,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-success shadow-success text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-success shadow-success text-center rounded-circle">
                 <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono3.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -84,9 +90,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
                 <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono4.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -109,9 +116,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                 <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono1.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -130,9 +138,10 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+              <!-- <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
                 <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-              </div>
+              </div> -->
+              <img src="{{asset('images/icon/icono4.png') }}" width="50px" height="50px">
             </div>
           </div>
         </div>
@@ -303,7 +312,7 @@
               </tbody>
             </table>
           <br><br>
-          <div id="ttt"></div>
+          <div id="ttt" ><meta charset="utf-8"></div>
         </div>
       </div>
     </div>
@@ -1154,7 +1163,7 @@
     $('#region_select').on('change', function() {
       let urlEditar = '{{ route("mostrarMunicipios", ":idreg") }}';
       urlEditar = urlEditar.replace(':idreg', this.value);
-      if(this.value != 0){
+      //if(this.value != 0){
         $.ajax({
         url: urlEditar,
         // data:{'region_id' : this.value},
@@ -1162,54 +1171,40 @@
         dataType: 'json', // added data type
           success: function(data) {
             arrayCentro=data[0];
+            $("#municipio_select").val("0").attr("selected",true);
             var htmlSel='<option value="0" selected>Seleccionar</option>';
             for (var i = 0; i < data[0].length; i++) {
               htmlSel+='<option value="'+data[0][i].id+'">'+data[0][i].nombre+'</option>'; 
             }
+
             $("#municipio_select").html(htmlSel);
           }
         });
         load();
-      }
+      //}
     });
 
     $('#municipio_select').on('change', function() {
-      // if(this.value != 0){
-      //   console.log(arrayCentro.length);
-      //   for (var i = 0; i < arrayCentro.length; i++) {
-      //     if(this.value==arrayCentro[i].id){
-      //       // console.log(arrayCentro[i])
-      //       $("#region_select option[value="+arrayCentro[i].id_region+"]").attr("selected",true);
-      //     } 
-      //   }
-      //   load();
-      // }
+
       let urlEditar = '{{ route("mostrarRegiones", ":idreg") }}';
       urlEditar = urlEditar.replace(':idreg', this.value);
       // console.log(urlEditar);
       var mun=this.value;
-      if(this.value != 0){
+      // console.log(mun);
+      //if(this.value != 0){
         $.ajax({
         url: urlEditar,
         type: 'GET',
         dataType: 'json', // added data type
           success: function(data) {
-            $("#region_select option[value=0]").attr("selected",true);
+            $("#region_select").val("0").attr("selected",true);
             if(data!=null){
-              $("#region_select option[value="+data[0].id_region+"]").attr("selected",true);
+              $("#region_select").val(data[0].id_region).attr("selected",true);
             }
-            // console.log(mun+'--valor del combo municipio')
-            // console.log(data[0][1].id+'--data');
-            // for (var i = 0; i < data[0].length; i++) {
-            //   if(mun==data[0][i].id){
-            //     $("#region_select option[value="+data[0][i].id_region+"]").attr("selected",true);
-            //     //break;
-            //   } 
-            // }
           }
         });
         load();
-      }
+      //}
     });
 
     // $("#observaciones").keypress(function(){
@@ -1316,6 +1311,7 @@
       var tablita="";
       $.ajax({
           method: "post",
+          encoding:"UTF-8",
           url:'{{ route("filtrar") }}',
           data:{
             estatus: est,
@@ -1328,52 +1324,159 @@
           dataType:"json",
           beforeSend: function() {
           },
-          success:function( data ) {
-            var reg=data.resFiltrado;
-            tablita+="<table><thead><th>FOLIO</th><th>CURP</th><th>NOMBRE COMPLETO</th><th>GENERO ALUMNO</th><th>GRADO ALUMNO</th><th>CLAVE ESCUELA</th><th>NOMBRE ESCUELA</th><th>MUNICIPIO</th><th>REGION</th><th>NIVEL</th><th>TELEFONO TITULAR</th><th>DOMICILIO</th><th>CORREO TITULAR</th><th>NOMBRE PERSONAJE</th><th>VALORES PERSONAJE</th><th>DESCRIPCIÓN PERSONAJE</th><th>JUEZ 1</th><th>JUEZ 2</th><th>JUEZ 3</th><th>JUEZ 4</th><th>JUEZ 5</th><th>TOTAL PUNTAJE</th></thead>";
-            tablita+="<tbody>";
-            for(var i=0;i<reg.length;i++){
-              // console.log(reg[i]['id_registro_concurso']);
-              tablita+="<tr>";
-              tablita+="<td>"+reg[i]['folio']+"</td>";
-              tablita+="<td>"+reg[i]['curp']+"</td>";
-              tablita+="<td>"+reg[i]['ap_paterno']+" "+reg[i]['ap_materno']+" "+reg[i]['nombre_alumno']+"</td>";
-              tablita+="<td>"+reg[i]['genero_alumno']+"</td>";
-              tablita+="<td>"+reg[i]['grado_alumno']+"° "+reg[i]['grupo_alumno']+"</td>";
-              tablita+="<td>"+reg[i]['cct']+"</td>";
-              tablita+="<td>"+reg[i]['nombre_cct']+"</td>";
-              tablita+="<td>"+reg[i]['nombre_municipio']+"</td>";
-              tablita+="<td>"+reg[i]['Region']+"</td>";
-              tablita+="<td>"+reg[i]['Nombre_Nivel']+"</td>";
-              tablita+="<td>"+reg[i]['telefono_titular']+"</td>";
-              tablita+="<td>"+reg[i]['domicilio_casa']+"</td>";
-              tablita+="<td>"+reg[i]['correo_titular']+"</td>";
-              tablita+="<td>"+reg[i]['nombre_personaje']+"</td>";
-              tablita+="<td>"+reg[i]['valores_personaje']+"</td>";
-              tablita+="<td>"+reg[i]['descripcion_personaje']+"</td>";
-              tablita+="<td>"+reg[i]['Juez1']+"</td>";
-              tablita+="<td>"+reg[i]['Juez2']+"</td>";
-              tablita+="<td>"+reg[i]['Juez3']+"</td>";
-              tablita+="<td>"+reg[i]['Juez4']+"</td>";
-              tablita+="<td>"+reg[i]['Juez5']+"</td>";
-              tablita+="<td>"+reg[i]['total_puntaje']+"</td>";
-              // if(reg[i]["estatus_id"]==2){
-              //   tablita+="<td>Seleccionado</td>";
-              // }
-              tablita+="</tr>";
-            }
-            tablita+="</tbody>";
-            tablita+="</table>";
-              $('#ttt').html(tablita);
-            //  console.log(tablita);
-            // window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#ttt').html()));
-            var Result = 'data:application/vnd.ms-excel,';
-            var DatosEncode = encodeURIComponent($('#ttt').html());
+//           success:function( data ) {
+//             var reg=data.resFiltrado;
+//             tablita+="<table><thead><th>FOLIO</th><th>CURP</th><th>NOMBRE COMPLETO</th><th>GENERO ALUMNO</th><th>GRADO ALUMNO</th><th>CLAVE ESCUELA</th><th>NOMBRE ESCUELA</th><th>MUNICIPIO</th><th>REGION</th><th>NIVEL</th><th>TELEFONO TITULAR</th><th>DOMICILIO</th><th>CORREO TITULAR</th><th>NOMBRE PERSONAJE</th><th>VALORES PERSONAJE</th><th>DESCRIPCIÓN PERSONAJE</th><th>JUEZ 1</th><th>JUEZ 2</th><th>JUEZ 3</th><th>JUEZ 4</th><th>JUEZ 5</th><th>TOTAL PUNTAJE</th></thead>";
+//             tablita+="<tbody>";
+//             for(var i=0;i<reg.length;i++){
+//               // console.log(reg[i]['id_registro_concurso']);
+//               tablita+="<tr>";
+//               tablita+="<td>"+reg[i]['folio']+"</td>";
+//               tablita+="<td>"+reg[i]['curp']+"</td>";
+//               tablita+="<td>"+reg[i]['ap_paterno']+" "+reg[i]['ap_materno']+" "+reg[i]['nombre_alumno']+"</td>";
+//               tablita+="<td>"+reg[i]['genero_alumno']+"</td>";
+//               tablita+="<td>"+reg[i]['grado_alumno']+"° "+reg[i]['grupo_alumno']+"</td>";
+//               tablita+="<td>"+reg[i]['cct']+"</td>";
+//               tablita+="<td>"+reg[i]['nombre_cct']+"</td>";
+//               tablita+="<td>"+reg[i]['nombre_municipio']+"</td>";
+//               tablita+="<td>"+reg[i]['Region']+"</td>";
+//               tablita+="<td>"+reg[i]['Nombre_Nivel']+"</td>";
+//               tablita+="<td>"+reg[i]['telefono_titular']+"</td>";
+//               tablita+="<td>"+reg[i]['domicilio_casa']+"</td>";
+//               tablita+="<td>"+reg[i]['correo_titular']+"</td>";
+//               tablita+="<td>"+reg[i]['nombre_personaje']+"</td>";
+//               tablita+="<td>"+reg[i]['valores_personaje']+"</td>";
+//               tablita+="<td>"+reg[i]['descripcion_personaje']+"</td>";
+//               tablita+="<td>"+reg[i]['Juez1']+"</td>";
+//               tablita+="<td>"+reg[i]['Juez2']+"</td>";
+//               tablita+="<td>"+reg[i]['Juez3']+"</td>";
+//               tablita+="<td>"+reg[i]['Juez4']+"</td>";
+//               tablita+="<td>"+reg[i]['Juez5']+"</td>";
+//               tablita+="<td>"+reg[i]['total_puntaje']+"</td>";
+//               // if(reg[i]["estatus_id"]==2){
+//               //   tablita+="<td>Seleccionado</td>";
+//               // }
+//               tablita+="</tr>";
+//             }
+//             tablita+="</tbody>";
+//             tablita+="</table>";
+//               $('#ttt').html(tablita);
+//             //  console.log(tablita);
+//             window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#ttt').html())); 
+//             // var Result = 'data:application/vnd.ms-excel,';
+//             // var DatosEncode = encodeURIComponent($('#ttt').html());
 
-            window.open(Result + DatosEncode);
-// e.preventDefault();
-            // e.preventDefault();
-          },
+//             // window.open(Result + DatosEncode);
+// // e.preventDefault();
+//             // e.preventDefault();
+
+//             // exportTableToExcel('excelDibujos')
+
+//             // window.open('data:application/vnd.ms-excel;base64,' + jQuery.base64.encodeURIComponent(jQuery('#ttt').html()));
+//           },
+              success:function( data ) {
+              // console.log(data);
+
+              var reg=data.resFiltrado;
+              var dibujos = data.resFiltrado2;
+              var juez = data.jueces;
+
+              // console.log(reg);
+              // console.log(dibujos);
+              // console.log(reg.length);
+              // console.log(dibujos.length);
+              // console.log(juez[0].name + " " + juez[0].apellidos);
+              var th_jueces = "";
+              for (let index = 0; index < juez.length; index++) {
+                th_jueces += "<th>"+ juez[index].name + " " + juez[index].apellidos +"</th>";
+              }
+              tablita+='<html><head><meta charset="UTF-8"></head><table><thead style="background-color: #ab0033;color:#FFFFFF;"><th>FOLIO</th><th>CURP</th><th>NOMBRE COMPLETO</th><th>GENERO</th><th>GRADO</th><th>CCT</th><th>NOMBRE CCT</th><th>MUNICIPIO</th><th>REGION</th><th>NIVEL</th><th>TELEFONO TITULAR</th><th>DOMICILIO</th><th>CORREO TITULAR</th><th>NOMBRE PERSONAJE</th><th>VALORES PERSONAJE</th><th>DESCRIPCIÓN PERSONAJE</th><th>ESTATUS</th>'+ th_jueces +'<th>TOTAL PUNTAJE</th></thead>';
+              tablita+="<tbody>";
+              for(var i=0;i<dibujos.length;i++){
+                // console.log(reg[i]['id_registro_concurso']);
+
+                
+                  tablita+="<tr>";
+                  tablita+="<td>"+dibujos[i]['folio']+"</td>";
+                  tablita+="<td>"+dibujos[i]['curp']+"</td>";
+                  tablita+="<td>"+dibujos[i]['ap_paterno']+" "+dibujos[i]['ap_materno']+" "+dibujos[i]['nombre_alumno']+"</td>";
+                  tablita+="<td>"+dibujos[i]['genero_alumno']+"</td>";
+                  tablita+="<td>"+dibujos[i]['grado_alumno']+"° "+dibujos[i]['grupo_alumno']+"</td>";
+                  tablita+="<td>"+dibujos[i]['cct']+"</td>";
+                  tablita+="<td>"+dibujos[i]['nombre_cct']+"</td>";
+                  tablita+="<td>"+dibujos[i]['nombre_municipio']+"</td>";
+                  tablita+="<td>"+dibujos[i]['Region']+"</td>";
+                  tablita+="<td>"+dibujos[i]['Nombre_Nivel']+"</td>";
+                  tablita+="<td>"+dibujos[i]['telefono_titular']+"</td>";
+                  tablita+="<td>"+dibujos[i]['domicilio_casa']+"</td>";
+                  tablita+="<td>"+dibujos[i]['correo_titular']+"</td>";
+                  tablita+="<td>"+dibujos[i]['nombre_personaje']+"</td>";
+                  tablita+="<td>"+dibujos[i]['valores_personaje']+"</td>";
+                  tablita+="<td>"+dibujos[i]['descripcion_personaje']+"</td>";
+
+                  if (dibujos[i]['estatus_id']==1){
+                    tablita+="<td>Registrado</td>";
+                  }else if (dibujos[i]['estatus_id']==2){
+                    if (vRol=="J"){ //juradooooo si es jurado hace esto
+                      if (dibujos[i]['estatus_eval_id']==3){
+                        tablita+="<td>Por Evaluar</td>";
+                      }else if (data.estatus_eval_id==1){
+                        if (dibujos[i]['countJuez']==1){
+                          tablita+="<td>Evaluado</td>";
+                          }else{
+                            tablita+="<td>Por Evaluar</td>";
+                          }
+
+                      }else if (dibujos[i]['estatus_eval_id']==2){
+                        tablita+="<td>Evaluado</td>";
+                      }
+                    }else{// //si es admin
+                      if(dibujos[i]['estatus_eval_id']==3){
+                        tablita+="<td>Seleccionado</td>";
+                      }else{
+                          if( dibujos[i]['countEval'] > 0 && dibujos[i]['data.countEval'] < 5){
+                            tablita+="<td>En Evaluación</td>";
+                          }else if( dibujos[i]['countEval'] == 5 ){
+                            tablita+="<td>Evaluado</td>";
+                          }else{
+                            tablita+="<td>En Evaluación</td>";
+                          }
+                      }
+                    }
+                  }else if (dibujos[i]['estatus_id']==3){
+                    tablita+="<td>No Seleccionado</td>";
+                  }
+                  
+                  // for (let w = 0; w < reg.length; w++) {
+                    for (let index = 0; index < reg.length; index++) {
+                      // console.log(reg[index][i]['Juez1']);
+                      // var w = 0;
+                      tablita+="<td>"+reg[index][i]['Juez'+index]+"</td>";
+                      // w++;
+                      // tablita+="<td>"+reg[w][i]['Juez'+index]+"</td>";
+                      // w++;
+                      // tablita+="<td>"+reg[w][i]['Juez'+index]+"</td>";
+                      // w++;
+                      // tablita+="<td>"+reg[w][i]['Juez'+index]+"</td>";
+                      // w++;
+                      // tablita+="<td>"+reg[w][i]['Juez'+index]+"</td>";
+                      // // console.log(w);
+                      // break;
+                    }
+                  // }
+                  tablita+="<td>"+dibujos[i]['total_puntaje']+"</td>";
+
+                  tablita+="</tr>";
+              }
+
+              tablita+="</tbody>";
+              tablita+="</table></html>";
+                $('#ttt').html(tablita);
+              //  console.log(tablita);
+              var Result = 'data:application/vnd.ms-excel,';
+              var DatosEncode = encodeURIComponent($('#ttt').html());
+              window.open(Result + DatosEncode);
+              },
           error:function( data ) {
           },
       });
@@ -1382,6 +1485,37 @@
 
   });
 
+  function exportTableToExcel( filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel; charset=UTF-8';
+    // var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById('ttt');
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
  </script>
 
 @endsection

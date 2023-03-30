@@ -43,13 +43,18 @@
 
   .dt-button { /*Estilo boton excel de datatable*/ 
     padding: 0;
-    border: none;
+    border: none; 
     color:#FFFFFF;
   }
 
   .dt-button:hover{ /*Estilo boton excel de datatable*/ 
     padding: 0;
     border: none;
+    color:#FFFFFF;
+  }
+
+  .theadColor { /*Estilo boton excel de datatable*/ 
+    background-color: #ab0033 !important;
     color:#FFFFFF;
   }
 </style>

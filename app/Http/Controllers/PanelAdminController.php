@@ -303,12 +303,89 @@ class PanelAdminController extends Controller
         //return view('tablaAdmin');
     }
 
+    // public function filtrarBusqueda(Request $request){
+
+    //     //dd($request);
+
+    //     //$Agenda = Agenda::nombres($nombre)->apellidos($apellido)->paginate(5);
+        
+    //     $estatus_id = $request->estatus;
+    //     $estatus_eval_id = $request->estatus_eval;
+    //     $id_municipio = $request->municipio;
+    //     $grado = $request->grado;
+    //     $nivel = $request->nivel_select;
+    //     $region = $request->region_select;
+
+    //     $selectUser=User::join('insumos.model_has_roles','users.id','=','model_has_roles.model_id')
+    //     ->join('insumos.roles','roles.id','=','model_has_roles.role_id')
+    //     ->where('roles.id',10)
+    //     ->select('users.id')
+    //     ->orderBy('users.id', 'asc')
+    //     ->get();
+
+    //     // for($i=0; i<=$selectUser.length(); i=i+1){ //as $key=>$value
+    //     //     var_dump( $selectUser);
+    //     //     $resFiltrado=RegistroConcursoPA::validRol()//->validRolUser()
+    //     //     ->validEstatus($estatus_id,$estatus_eval_id)
+    //     //     ->validEstatusEval($estatus_id,$estatus_eval_id)
+    //     //     ->validMunicipio($id_municipio)
+    //     //     ->validGrado($grado)
+    //     //     ->validRegion($region)
+    //     //     ->validNivel($nivel)
+    //     //     ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
+    //     //     ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+    //     //     ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+    //     //     ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+    //     //     DB::raw("(SELECT count(*) FROM evaluacion_concurso
+    //     //                                 WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+
+    //     //     DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$value->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez".$value->id),
+    //     //     )
+    //     //     ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+    //     //     ->get();
+    //     // }
+    //     // dd($resFiltrado);
+    //     $resFiltrado=RegistroConcursoPA::validRol()//->validRolUser()
+    //         ->validEstatus($estatus_id,$estatus_eval_id)
+    //         ->validEstatusEval($estatus_id,$estatus_eval_id)
+    //         ->validMunicipio($id_municipio)
+    //         ->validGrado($grado)
+    //         ->validRegion($region)
+    //         ->validNivel($nivel)
+    //         ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
+    //         ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+    //         ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+    //         ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+    //         DB::raw("(SELECT count(*) FROM evaluacion_concurso
+    //                                     WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+    //         // ,
+    //         // DB::raw("(SELECT COUNT(*)
+    //         // FROM concursodd_vs.evaluacion_concurso e
+    //         // INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+    //         // WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+    //         // AND e.user_id=".$user->id.") as countJuez")
+    //         DB::raw("(SELECT sum(CASE WHEN e1.user_id = 35 THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez1"),
+    //         DB::raw("(SELECT sum(CASE WHEN e2.user_id = 37 THEN e2.total END) FROM evaluacion_concurso e2 WHERE e2.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez2"),
+    //         DB::raw("(SELECT sum(CASE WHEN e3.user_id = 38 THEN e3.total END) FROM evaluacion_concurso e3 WHERE e3.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez3"),
+    //         DB::raw("(SELECT sum(CASE WHEN e4.user_id = 39 THEN e4.total END) FROM evaluacion_concurso e4 WHERE e4.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez4"),
+    //         DB::raw("(SELECT sum(CASE WHEN e5.user_id = 40 THEN e5.total END) FROM evaluacion_concurso e5 WHERE e5.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez5")
+    //         )
+    //         ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+    //         ->get();
+
+    //     // echo '<script>';
+    //     // echo "window.open('data:application/vnd.ms-excel,' + encodeURIComponent(". json_encode(registros2) ."))";
+    //     // echo 'console.log('. json_encode('no redirect 2') .');';
+    //     // echo '</script>';
+
+    //     return response()->json(['resFiltrado' => $resFiltrado]);
+    // }
+
     public function filtrarBusqueda(Request $request){
 
         //dd($request);
-
         //$Agenda = Agenda::nombres($nombre)->apellidos($apellido)->paginate(5);
-        
+        $user=auth()->user();
         $estatus_id = $request->estatus;
         $estatus_eval_id = $request->estatus_eval;
         $id_municipio = $request->municipio;
@@ -318,67 +395,62 @@ class PanelAdminController extends Controller
 
         $selectUser=User::join('insumos.model_has_roles','users.id','=','model_has_roles.model_id')
         ->join('insumos.roles','roles.id','=','model_has_roles.role_id')
-        ->where('roles.id',10)
-        ->select('users.id')
+        ->where('roles.name','Jurado_concurso')
+        ->select('users.id', 'users.name', 'users.apellidos')
         ->orderBy('users.id', 'asc')
         ->get();
 
-        // for($i=0; i<=$selectUser.length(); i++){ //as $key=>$value
-            // var_dump( $selectUser);
-            // $resFiltrado=RegistroConcursoPA::validRol()//->validRolUser()
-            // ->validEstatus($estatus_id,$estatus_eval_id)
-            // ->validEstatusEval($estatus_id,$estatus_eval_id)
-            // ->validMunicipio($id_municipio)
-            // ->validGrado($grado)
-            // ->validRegion($region)
-            // ->validNivel($nivel)
-            // ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-            // ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-            // ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
-            // ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
-            // DB::raw("(SELECT count(*) FROM evaluacion_concurso
-            //                             WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+        $array_usuarios_data = array();
 
-            // DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$value->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez".$value->id),
-            // )
-            // ->orderBy('registro_concurso.id_registro_concurso', 'asc')
-            // ->get();
-        // }
-        // dd($resFiltrado);
-        // $resFiltrado=RegistroConcursoPA::validRol()//->validRolUser()
-        //     ->validEstatus($estatus_id,$estatus_eval_id)
-        //     ->validEstatusEval($estatus_id,$estatus_eval_id)
-        //     ->validMunicipio($id_municipio)
-        //     ->validGrado($grado)
-        //     ->validRegion($region)
-        //     ->validNivel($nivel)
-        //     ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-        //     ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-        //     ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
-        //     ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
-        //     DB::raw("(SELECT count(*) FROM evaluacion_concurso
-        //                                 WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
-        //     // ,
-        //     // DB::raw("(SELECT COUNT(*)
-        //     // FROM concursodd_vs.evaluacion_concurso e
-        //     // INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-        //     // WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
-        //     // AND e.user_id=".$user->id.") as countJuez")
-        //     DB::raw("(SELECT sum(CASE WHEN e1.user_id = 35 THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez1"),
-        //     DB::raw("(SELECT sum(CASE WHEN e2.user_id = 37 THEN e2.total END) FROM evaluacion_concurso e2 WHERE e2.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez2"),
-        //     DB::raw("(SELECT sum(CASE WHEN e3.user_id = 38 THEN e3.total END) FROM evaluacion_concurso e3 WHERE e3.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez3"),
-        //     DB::raw("(SELECT sum(CASE WHEN e4.user_id = 39 THEN e4.total END) FROM evaluacion_concurso e4 WHERE e4.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez4"),
-        //     DB::raw("(SELECT sum(CASE WHEN e5.user_id = 40 THEN e5.total END) FROM evaluacion_concurso e5 WHERE e5.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez5")
-        //     )
-        //     ->orderBy('registro_concurso.id_registro_concurso', 'asc')
-        //     ->get();
+        for($i=0; $i < count($selectUser); $i++){ //as $key=>$value
 
-        // echo '<script>';
-        // echo "window.open('data:application/vnd.ms-excel,' + encodeURIComponent(". json_encode(registros2) ."))";
-        // echo 'console.log('. json_encode('no redirect 2') .');';
-        // echo '</script>';
 
-        return response()->json(['resFiltrado' => $resFiltrado]);
+            $resFiltrado = RegistroConcursoPA::validRol()//->validRolUser()
+            ->validEstatus($estatus_id,$estatus_eval_id)
+            ->validEstatusEval($estatus_id,$estatus_eval_id)
+            ->validMunicipio($id_municipio)
+            ->validGrado($grado)
+            ->validRegion($region)
+            ->validNivel($nivel)
+            ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
+            ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+            ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+            ->select(DB::raw("(SELECT count(*) FROM evaluacion_concurso
+                                        WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+
+            DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$selectUser[$i]->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez".$i),
+            )
+            ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+            ->get();
+
+            $resFiltrado2 = RegistroConcursoPA::validRol()//->validRolUser()
+            ->validEstatus($estatus_id,$estatus_eval_id)
+            ->validEstatusEval($estatus_id,$estatus_eval_id)
+            ->validMunicipio($id_municipio)
+            ->validGrado($grado)
+            ->validRegion($region)
+            ->validNivel($nivel)
+            ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
+            ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+            ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+            ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+            DB::raw("(SELECT count(*) FROM evaluacion_concurso
+                                        WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+            DB::raw("(SELECT COUNT(*)
+            FROM evaluacion_concurso e
+            INNER JOIN  registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+            WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+            AND e.user_id=".$user->id.") as countJuez")
+            )
+            ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+            ->get();
+
+            array_push($array_usuarios_data, $resFiltrado);
+
+
+        }
+
+        return response()->json(['resFiltrado' => $array_usuarios_data, 'resFiltrado2' => $resFiltrado2, 'jueces' => $selectUser]);
     }
 
     public function show(Request $request){
@@ -423,8 +495,8 @@ class PanelAdminController extends Controller
             ->validEstatusEval($estatus_id,$estatus_eval_id)
             ->validMunicipio($id_municipio)
             ->validGrado($grado)
-             ->validRegion($region)
-             ->validNivel($nivel)
+            ->validRegion($region)
+            ->validNivel($nivel)
             ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
             ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
             ->select('registro_concurso.*', 'cat_regiones.Region',
@@ -450,11 +522,14 @@ class PanelAdminController extends Controller
 
     public function showMunicipios($idreg){
         // dd($request);
-        // $region_id = $request->idreg;
 
-        $municipios=Municipio::where('id_region',$idreg )->get();
+        if($idreg==0){
+            $municipios=Municipio::get();
+        }else{
+            $municipios=Municipio::where('id_region',$idreg )->get();
+        }
+        // $municipios=Municipio::where('id_region',$idreg )->get();
         // dd($municipios);
-
         return response()->json([$municipios]);
      }
 
