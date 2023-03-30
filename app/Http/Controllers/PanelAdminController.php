@@ -393,6 +393,13 @@ class PanelAdminController extends Controller
         $nivel = $request->nivel_select;
         $region = $request->region_select;
 
+        $req = array(
+            'id_municipio' => $id_municipio, 
+            'grado' => $grado, 
+            'region' => $region, 
+            'nivel' => $nivel, 
+        );
+
         $selectUser=User::join('insumos.model_has_roles','users.id','=','model_has_roles.model_id')
         ->join('insumos.roles','roles.id','=','model_has_roles.role_id')
         ->where('roles.name','Jurado_concurso')
@@ -406,12 +413,15 @@ class PanelAdminController extends Controller
 
 
             $resFiltrado = RegistroConcursoPA::validRol()//->validRolUser()
+            // ->validEstatus($estatus_id,$estatus_eval_id)
+            // ->validEstatusEval($estatus_id,$estatus_eval_id)
+            // ->validMunicipio($id_municipio)
+            // ->validGrado($grado)
+            // ->validRegion($region)
+            // ->validNivel($nivel)
             ->validEstatus($estatus_id,$estatus_eval_id)
             ->validEstatusEval($estatus_id,$estatus_eval_id)
-            ->validMunicipio($id_municipio)
-            ->validGrado($grado)
-            ->validRegion($region)
-            ->validNivel($nivel)
+            ->filtrosAlumnosRegistrados($req)
             ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
             ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
             ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
@@ -426,10 +436,13 @@ class PanelAdminController extends Controller
             $resFiltrado2 = RegistroConcursoPA::validRol()//->validRolUser()
             ->validEstatus($estatus_id,$estatus_eval_id)
             ->validEstatusEval($estatus_id,$estatus_eval_id)
-            ->validMunicipio($id_municipio)
-            ->validGrado($grado)
-            ->validRegion($region)
-            ->validNivel($nivel)
+            ->filtrosAlumnosRegistrados($req)
+            // ->validEstatus($estatus_id,$estatus_eval_id)
+            // ->validEstatusEval($estatus_id,$estatus_eval_id)
+            // ->validMunicipio($id_municipio)
+            // ->validGrado($grado)
+            // ->validRegion($region)
+            // ->validNivel($nivel)
             ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
             ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
             ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
@@ -490,13 +503,20 @@ class PanelAdminController extends Controller
         // }else if ($request->municipio_select != 0){
         //     $registros=RegistroConcursoPA::where('id_municipio', $request->municipio_select)->get(); //1=Registrado
         // }else{
+            $req = array(
+                'id_municipio' => $id_municipio, 
+                'grado' => $grado, 
+                'region' => $region, 
+                'nivel' => $nivel, 
+            );
             $registros=RegistroConcursoPA::validRol()//->validRolUser()
             ->validEstatus($estatus_id,$estatus_eval_id)
             ->validEstatusEval($estatus_id,$estatus_eval_id)
-            ->validMunicipio($id_municipio)
-            ->validGrado($grado)
-            ->validRegion($region)
-            ->validNivel($nivel)
+            ->filtrosAlumnosRegistrados($req)
+            // ->validMunicipio($id_municipio)
+            // ->validGrado($grado)
+            // ->validRegion($region)
+            // ->validNivel($nivel)
             ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
             ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
             ->select('registro_concurso.*', 'cat_regiones.Region',
@@ -511,6 +531,8 @@ class PanelAdminController extends Controller
             )
             ->orderBy('registro_concurso.id_registro_concurso', 'asc')
             ->get();
+
+            // return $req;
             //dd($registros);
             
             $evaluacion=EvaluacionConcurso::where('user_id',$user->id)->get();

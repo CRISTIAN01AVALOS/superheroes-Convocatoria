@@ -92,6 +92,33 @@ class RegistroConcursoPA extends Model
         }
     }
 
+    
+    public function scopeFiltrosAlumnosRegistrados($query, $req) {
+
+    	if (isset($req['id_municipio'])) {
+            if ($req['id_municipio'] != 0 && $req['id_municipio'] != '0') {
+                $query = $query->where('registro_concurso.id_municipio',$req['id_municipio']);
+            }
+    	}
+    	if (isset($req['grado'])) {
+            if ($req['grado'] != 0 && $req['grado'] != '0') {
+                $query = $query->where('registro_concurso.grado_alumno',$req['grado']);
+            }
+    	}
+    	if (isset($req['region'])) {
+            if ($req['region'] != 0 && $req['region'] != '0') {
+                $query = $query->where('cat_regiones.Id_Region',$req['region']);
+            }
+    	}
+    	if (isset($req['nivel'])) {
+            if ($req['nivel'] != 0 && $req['nivel'] != '0') {
+                $query = $query->where('registro_concurso.nivel_id',$req['nivel']);
+            }
+    	}
+
+        return $query;
+    }
+
     public function scopeValidMunicipio($query, $municipio) {
     	if ($municipio != 0) {
             // if($region !=0){

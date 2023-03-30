@@ -1163,6 +1163,12 @@
     $('#region_select').on('change', function() {
       let urlEditar = '{{ route("mostrarMunicipios", ":idreg") }}';
       urlEditar = urlEditar.replace(':idreg', this.value);
+      
+      $("#municipio_select").val("0").attr("selected",true);
+             
+             let element = document.getElementById("municipio_select");
+             element.value = '0';
+
       //if(this.value != 0){
         $.ajax({
         url: urlEditar,
@@ -1171,7 +1177,7 @@
         dataType: 'json', // added data type
           success: function(data) {
             arrayCentro=data[0];
-            $("#municipio_select").val("0").attr("selected",true);
+
             var htmlSel='<option value="0" selected>Seleccionar</option>';
             for (var i = 0; i < data[0].length; i++) {
               htmlSel+='<option value="'+data[0][i].id+'">'+data[0][i].nombre+'</option>'; 
@@ -1188,6 +1194,12 @@
 
       let urlEditar = '{{ route("mostrarRegiones", ":idreg") }}';
       urlEditar = urlEditar.replace(':idreg', this.value);
+      
+      $("#region_select").val("0").attr("selected",true);
+             
+             let element = document.getElementById("region_select");
+             element.value = '0';
+
       // console.log(urlEditar);
       var mun=this.value;
       // console.log(mun);
@@ -1197,7 +1209,6 @@
         type: 'GET',
         dataType: 'json', // added data type
           success: function(data) {
-            $("#region_select").val("0").attr("selected",true);
             if(data!=null){
               $("#region_select").val(data[0].id_region).attr("selected",true);
             }
@@ -1388,10 +1399,12 @@
               // console.log(juez[0].name + " " + juez[0].apellidos);
               var th_jueces = "";
               for (let index = 0; index < juez.length; index++) {
-                th_jueces += "<th>"+ juez[index].name + " " + juez[index].apellidos +"</th>";
-              }
-              tablita+='<html><head><meta charset="UTF-8"></head><table><thead style="background-color: #ab0033;color:#FFFFFF;"><th>FOLIO</th><th>CURP</th><th>NOMBRE COMPLETO</th><th>GENERO</th><th>GRADO</th><th>CCT</th><th>NOMBRE CCT</th><th>MUNICIPIO</th><th>REGION</th><th>NIVEL</th><th>TELEFONO TITULAR</th><th>DOMICILIO</th><th>CORREO TITULAR</th><th>NOMBRE PERSONAJE</th><th>VALORES PERSONAJE</th><th>DESCRIPCIÓN PERSONAJE</th><th>ESTATUS</th>'+ th_jueces +'<th>TOTAL PUNTAJE</th></thead>';
+              th_jueces += '<th style="background-color: #ab0033 !important; color: white;">'+ juez[index].name + ' ' + juez[index].apellidos +'</th>';
+            }
+            // style="background-color: #ab0033 !important;"
+            tablita+='<html><head><meta charset="UTF-8"><style>.color-th{background-color: #ab0033 !important; color: white; }</style></head><table style="table-layout:none" border="1"><thead><th class="color-th">FOLIO</th><th class="color-th">CURP</th><th class="color-th">NOMBRE COMPLETO</th><th class="color-th">GENERO ALUMNO</th><th class="color-th">GRADO ALUMNO</th><th class="color-th">CLAVE ESCUELA</th><th class="color-th">NOMBRE ESCUELA</th><th class="color-th">MUNICIPIO</th><th class="color-th">REGION</th><th class="color-th">NIVEL</th><th class="color-th">TELEFONO TITULAR</th><th class="color-th">DOMICILIO</th><th class="color-th">CORREO TITULAR</th><th class="color-th">NOMBRE PERSONAJE</th><th class="color-th">VALORES PERSONAJE</th><th class="color-th">DESCRIPCIÓN PERSONAJE</th><th class="color-th">ESTATUS</th>'+ th_jueces +'<th class="color-th">TOTAL PUNTAJE</th></thead>';
               tablita+="<tbody>";
+              
               for(var i=0;i<dibujos.length;i++){
                 // console.log(reg[i]['id_registro_concurso']);
 
