@@ -10,9 +10,14 @@ class AuthenticationController extends Controller
   public function loginPage(){
     $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
     return view('pages.auth-login',['pageConfigs' => $pageConfigs]);
-    // return view('pages.login_nuevo',['pageConfigs' => $pageConfigs]);
 
   }
+
+  /**/
+  public function loginPanelAdmin(){  //Te lleva a la Vista del Login Panel Admin
+    return view('auth.login');
+  }
+
   //Register page
   public function registerPage(){
     $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];

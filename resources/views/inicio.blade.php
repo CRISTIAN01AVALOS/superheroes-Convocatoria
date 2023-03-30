@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-6 d-flex justify-content-end" style="padding-top: 12px;">
-      <button type="button" class="btn btn-info mr-1 mb-1">ACCEDER</button>
+      <a type="button" href="{{ route('loginPanelAdmin') }}" class="btn btn-info mr-1 mb-1">Acceder</a>
     </div>
   </div>
   {{-- </div>
@@ -737,6 +737,7 @@
         mostrarMensaje.style.display = "inline";
         mostrarMensajeImg.style.display = "none";
         const primerArchivo = archivos[0];
+        console.log(primerArchivo);
         const objectURL = URL.createObjectURL(primerArchivo);
         $imagenPrevisualizacion.src = objectURL;
         // });

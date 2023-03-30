@@ -37,27 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    // Login
-    public function showLoginForm(){
-      $pageConfigs = ['bodyCustomClass' => 'bg-full-screen-image'];
-  
-        return view('/auth/login', [
-            'pageConfigs' => $pageConfigs
-      ]);
-    }
-
-     /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect('/login');
-    }
 }

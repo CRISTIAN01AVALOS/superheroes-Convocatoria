@@ -75,6 +75,11 @@ class AuthController extends Controller
                 $tokenResult->token->expires_at
             )->toDateTimeString()
         ]);
+        // if(Auth::attempt($credentials)){
+        //   return redirect()->route('home');
+        // }else{
+        //   return back()->withErrors(['email' => trans('auth.failed')]);
+        // }
     }
      /**
     * Logout user (Revoke the token)

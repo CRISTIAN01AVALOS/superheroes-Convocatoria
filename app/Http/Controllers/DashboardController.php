@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
-    //ecommerce
-    public function dashboardEcommerce(){
-        return view('pages.dashboard-ecommerce');
-    }
-    // analystic
-    public function dashboardAnalytics(){
-        return view('pages.dashboard-analytics');
-    }
+    // //ecommerce
+    // public function dashboardEcommerce(){
+    //     return view('pages.dashboard-ecommerce');
+    // }
+    // // analystic
+    // public function dashboardAnalytics(){
+    //     return view('pages.dashboard-analytics');
+    // }
 
     public function inicioCon(){
         return view('inicio');
