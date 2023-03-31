@@ -41,9 +41,12 @@ class DashboardController extends Controller
      */
     public function guardarRegistro(StoreFormConcurso $request){
 
-        // dd($request->nivel_id);
+        $buscar_alumno = RegistroConcurso::where('curp', $request['curp'])->get();
+        
         if($request->hasFile("getFileDibujo")){
-
+            if (count($buscar_alumno) > 0) {
+                return redirect('/')->with('registro', 'Ok');
+            } else {
                 $registro = new RegistroConcurso($request->all());
                 $registro->save();
                 $fecha_registro = new DateTime(date("Y-m-d"));
@@ -51,46 +54,47 @@ class DashboardController extends Controller
                 $registro->folio = $fecha_registro->format("y")."-CD-".$idConCeros;
                 $registro->update();
 
-            try {
+                try {
 
-                $file=$request->file("getFileDibujo");
-                $nombre = "dibujo-".$registro->id_registro_concurso.".".$file->guessExtension();
-    
-                $ruta = public_path("dibujos_de_alumnos/".$nombre);
-    
-                if($file->guessExtension()=="jpg" || $file->guessExtension()=="png" || $file->guessExtension()=="jpeg"){
-                
-                    copy($file, $ruta);
-
-                    $fecha_registro = new DateTime(date("Y-m-d"));
-                    $update_registro = RegistroConcurso::find($registro->id_registro_concurso);
-                    $update_registro->url_archivo_dibujo = $nombre;
-
-                    try {
-
-                        $update_registro->update();
-
-                        Mail::to($request['correo_titular'])->send(new CorreRegistroSuccess(
-                            $registro
-                        ));
-
-                        return redirect('/')->with('registro', 'Ok');
-
-                    } catch (QueryException  $e) {
-                        echo '<script>';
-                        echo 'console.log('. json_encode( $e ) .');';
-                        echo '</script>';
-                        return redirect('/')->with('registro', 'imagenFormatoNo');
-                        // return redirect('/')->with('message-fail', $e->getMessage());
-                    }
+                    $file=$request->file("getFileDibujo");
+                    $nombre = "dibujo-".$registro->id_registro_concurso.".".$file->guessExtension();
+        
+                    $ruta = public_path("dibujos_de_alumnos/".$nombre);
+        
+                    if($file->guessExtension()=="jpg" || $file->guessExtension()=="png" || $file->guessExtension()=="jpeg"){
                     
-                }
+                        copy($file, $ruta);
 
-            } catch (QueryException $e) {
-                echo '<script>';
-                echo 'console.log('. json_encode( $e ) .');';
-                echo '</script>';
-                return redirect('/')->with('registro', 'No');
+                        $fecha_registro = new DateTime(date("Y-m-d"));
+                        $update_registro = RegistroConcurso::find($registro->id_registro_concurso);
+                        $update_registro->url_archivo_dibujo = $nombre;
+
+                        try {
+
+                            $update_registro->update();
+
+                            Mail::to($request['correo_titular'])->send(new CorreRegistroSuccess(
+                                $registro
+                            ));
+
+                            return redirect('/')->with('registro', 'Ok');
+
+                        } catch (QueryException  $e) {
+                            echo '<script>';
+                            echo 'console.log('. json_encode( $e ) .');';
+                            echo '</script>';
+                            return redirect('/')->with('registro', 'imagenFormatoNo');
+                            // return redirect('/')->with('message-fail', $e->getMessage());
+                        }
+                        
+                    }
+
+                } catch (QueryException $e) {
+                    echo '<script>';
+                    echo 'console.log('. json_encode( $e ) .');';
+                    echo '</script>';
+                    return redirect('/')->with('registro', 'No');
+                }
             }
         }else{
             return redirect('/')->with('registro', 'imagenNo');
