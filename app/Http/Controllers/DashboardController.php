@@ -41,7 +41,7 @@ class DashboardController extends Controller
      */
     public function guardarRegistro(StoreFormConcurso $request){
 
-
+        // dd($request->nivel_id);
         if($request->hasFile("getFileDibujo")){
 
                 $registro = new RegistroConcurso($request->all());

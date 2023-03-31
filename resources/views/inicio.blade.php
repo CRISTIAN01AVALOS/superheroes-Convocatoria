@@ -302,8 +302,9 @@
                       maxlength="30" readonly>
                     <input type="text" id="grado_alumno" class="form-control" name="grado_alumno" placeholder=""
                       maxlength="30" readonly>
+                    <input type="text" id="nivel_id" class="form-control" name="nivel_id" placeholder="" maxlength="30" readonly>
                   </div>
-
+                  
                   <div class="col-12">
                     <div class="form-group">
                       <label for="">Archivo (Campo obligatorio)</label>
@@ -1184,6 +1185,7 @@
                   var inp_id_cct = document.getElementById("id_municipio");
                   var inp_grupo_escolar = document.getElementById("grupo_alumno");
                   var inp_gradoEscolar2 = document.getElementById("grado_alumno");
+                  var inp_id_nivel_cct = document.getElementById("nivel_id");
 
                   inp_nombre.value = data[0][0].AluNombre;
                   inp_apellido_p.value = data[0][0].AluApePat;
@@ -1201,6 +1203,7 @@
                   inp_id_cct.value = data[1].id;
                   inp_grupo_escolar.value = data[0][0].Grupo;
                   inp_gradoEscolar2.value = data[0][0].Grado;
+                  inp_id_nivel_cct.value = data[1].Id_Nivel; 
 
                 } else {
                   Swal.fire(

@@ -18,6 +18,7 @@ class RegistroConcurso extends Model
         'genero_alumno',
         'cct',
         'nombre_cct',
+        'nivel_id',
         'grado_alumno',
         'grupo_alumno',
         'estatus_alumno',

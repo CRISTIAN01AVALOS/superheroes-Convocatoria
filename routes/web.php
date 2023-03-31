@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     // aqui solo rutas para el panel admin, se protegen con la autenticacion
     // aqui solo rutas para el panel admin, se protegen con la autenticacion
     // aqui solo rutas para el panel admin, se protegen con la autenticacion
-    Route::get('/panelAdmin','PanelAdminController@index')->name('panelAdmin');
+    Route::get('/concurso-dibujo','PanelAdminController@index')->name('panelAdmin');
     // Route::get('/dashboard-ecommerce','PanelAdminController@index')->name('panelAdmin');
 
     //para bloquear desde el middleware
