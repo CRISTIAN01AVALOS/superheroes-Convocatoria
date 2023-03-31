@@ -142,7 +142,7 @@ class PanelAdminController extends Controller
           //dd($evaluacion[0]->registro_concurso_id);
 
         if (isset($evaluacion[0])) {
-            return redirect('dashboard-ecommerce');
+            return redirect('concurso-dibujo');
         }else{
             $registro=RegistroConcursoPA::select('*','cat_nivel.Nombre_Nivel')->join('insumos.cat_nivel', 'registro_concurso.nivel_id','=','cat_nivel.Id_Nivel')->find($id);
             return view('evaluarForm', ['id' => $id, 'registro' => $registro]);
@@ -214,7 +214,7 @@ class PanelAdminController extends Controller
             
             if ($cambiarEstatus->save()){ 
                 //return view('evaluarForm', ['status' => 'Ok', 'msge' => 'Se registro correctamente']);
-                return redirect('dashboard-ecommerce');
+                return redirect('concurso-dibujo');
             }else{
                 echo '<script>';
                 echo 'console.log('. json_encode('no redirect 2') .');';
@@ -244,7 +244,7 @@ class PanelAdminController extends Controller
             echo '<script>';
             echo 'console.log('. json_encode('Se reviso') .');';
             echo '</script>';
-            return redirect('dashboard-ecommerce');
+            return redirect('concurso-dibujo');
         }else{
             echo '<script>';
             echo 'console.log('. json_encode('No se reviso ERROR') .');';
@@ -292,7 +292,7 @@ class PanelAdminController extends Controller
         ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
         ->find($id);
         //dd($registro);
-        return response()->json($registro);
+        return response()->json($registro); 
     }
 
     public function listado(){
