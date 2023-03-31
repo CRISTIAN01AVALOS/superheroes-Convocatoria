@@ -2,7 +2,7 @@
 <link href="{{ asset('images/img/blue.png') }}" rel="icon" type="image/png">
 
 <title>
-  TITULO SISTEMA
+  Evaluación de dibujos
 </title>
 <!--     Fonts and icons     -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

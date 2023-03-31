@@ -1218,14 +1218,14 @@
       //}
     });
 
-    // $("#observaciones").keypress(function(){
-    //   console.log(this.value+'o chankeypresce')
-    //   if ($('#observaciones').val().length <= 0 || $('#observaciones').val()==null) {
-    //     $("#btnRevisar").prop('disabled', true);
-    //   }else{
-    //     $("#btnRevisar").prop('disabled', false);
-    //   }
-    // });
+    $("#observaciones").keypress(function(){
+      console.log(this.value+'o chankeypresce')
+      if ($('#observaciones').val().length <= 0 || $('#observaciones').val()==null) {
+        $("#btnRevisar").prop('disabled', true);
+      }else{
+        $("#btnRevisar").prop('disabled', false);
+      }
+    });
     
 
     // $('#observaciones').on('change', function() {
@@ -1464,7 +1464,11 @@
                     for (let index = 0; index < reg.length; index++) {
                       // console.log(reg[index][i]['Juez1']);
                       // var w = 0;
-                      tablita+="<td>"+reg[index][i]['Juez'+index]+"</td>";
+                      if(reg[index][i]['Juez'+index]==null){
+                        tablita+="<td>-</td>";
+                      }else{
+                        tablita+="<td>"+reg[index][i]['Juez'+index]+"</td>";
+                      }
                       // w++;
                       // tablita+="<td>"+reg[w][i]['Juez'+index]+"</td>";
                       // w++;
@@ -1477,7 +1481,11 @@
                       // break;
                     }
                   // }
-                  tablita+="<td>"+dibujos[i]['total_puntaje']+"</td>";
+                  if(dibujos[i]['total_puntaje']==null){
+                    tablita+="<td>-</td>";
+                  }else{
+                    tablita+="<td>"+dibujos[i]['total_puntaje']+"</td>";
+                  }
 
                   tablita+="</tr>";
               }

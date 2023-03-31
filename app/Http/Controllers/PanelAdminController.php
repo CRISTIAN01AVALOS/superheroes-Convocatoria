@@ -76,7 +76,10 @@ class PanelAdminController extends Controller
         }
         
         $estatus_select=EstatusSelec::get(); 
-        $total_seleccionadosd=RegistroConcursoPA::where('estatus_id',2)->where('estatus_eval_id',3)->count(); //2=Seleccionado
+        ///Card Por Evaluar de Jurado
+        
+        $total_seleccPorEvaluar=RegistroConcursoPA::where('estatus_id',2)->count(); //2=Seleccionado
+        $total_seleccionadosd=$total_seleccPorEvaluar-$total_evaluados;  ////total por evaluar  (resta total evaluados menos todos seleccionados)
 
         $cat_estatus=CatEstatus::get();  ///catalogos
         $cat_estatus_eval=CatEstatusEval::get();  ///catalogos
@@ -462,7 +465,7 @@ class PanelAdminController extends Controller
 
 
         }
-
+        
         return response()->json(['resFiltrado' => $array_usuarios_data, 'resFiltrado2' => $resFiltrado2, 'jueces' => $selectUser]);
     }
 
