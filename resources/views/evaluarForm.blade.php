@@ -512,7 +512,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
-                                      <button type="submit" class="btn colorBtnPrincipal" >Aceptar</button>
+                                      <button type="submit" class="btn colorBtnPrincipal" btn="btnAceptarEval" >Aceptar</button>
                                     </div>
                                   </div>
                                 </div>
@@ -596,7 +596,7 @@
 
 @section('page-scripts')
 <script src="{{ asset('js/scripts/modal/components-modal.js') }}"></script>
-<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- <script src="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"></script>
 <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> -->
@@ -614,6 +614,11 @@
         urlEditar = urlEditar.replace(':temp', url_dibujo);
         
         imagenPrevisualizacionUp.src = urlEditar;
+
+        // $("#btnAceptarEval").click(function(){
+        //   $("#btnAceptarEval").prop('disabled', true);
+        // });
+        
     });
 
     // function fnMostrarDibujo(){
@@ -625,7 +630,28 @@
     //     urlEditar = urlEditar.replace(':temp', url_dibujo);
         
     //     imagenPrevisualizacionUp.src = urlEditar;
-    // }
+    // }  
 
 </script>
+
+@if(session('guardarEvaluacion') === 'errorEval')
+  <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'error',
+        title: 'Ya ha sido Evaluado este dibujo'
+      })
+  </script>
+@endif
 @endsection

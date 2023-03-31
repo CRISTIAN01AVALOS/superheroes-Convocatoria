@@ -1094,6 +1094,7 @@
     $("#mostrarDibujo").hide();
     $("#revisarDibujo").hide();
     $("#visualizarNoSeleccionado").hide();
+    $("#estatus_eval_id").prop('disabled', true);
 
     $('#tablaListado').DataTable({
       "language": {
@@ -1319,6 +1320,9 @@
       var est_e=$("#estatus_eval_id").val();
       var mun=$("#municipio_select").val();
       var grad=$("#grado_select").val();
+      var region=$("#region_select").val();
+      var nivel=$("#nivel_select").val();
+      
       var tablita="";
       $.ajax({
           method: "post",
@@ -1328,8 +1332,9 @@
             estatus: est,
             estatus_eval: est_e,
             municipio: mun,
-            // region:,
+            region:region,
             grado: grad,
+            nivel: nivel,
           },
           headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
           dataType:"json",
