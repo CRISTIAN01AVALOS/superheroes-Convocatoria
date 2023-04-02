@@ -1094,12 +1094,7 @@
     $("#mostrarDibujo").hide();
     $("#revisarDibujo").hide();
     $("#visualizarNoSeleccionado").hide();
-    if(vRol=='J'){
-      $("#estatus_eval_id").prop('disabled', false);
-    }else{
-      $("#estatus_eval_id").prop('disabled', true);
-    }
-    
+    // $("#estatus_eval_id").prop('disabled', true); //lo comente 1 abr 2023 porque me desactivaba en el del juez el combo
 
     $('#tablaListado').DataTable({
       "language": {
