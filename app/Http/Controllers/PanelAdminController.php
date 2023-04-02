@@ -196,50 +196,58 @@ class PanelAdminController extends Controller
             $total_puntaje=$total_puntaje + $sumaPuntaje;
         }
 
+        $existeEval = EvaluacionConcurso::where('registro_concurso_id',$request->hId)->where('user_id',$user_id)->get();
+        $existeEValCount = $existeEval->count();
+
         try {
-
-            $evaluarD = EvaluacionConcurso::create([
-                'tecnica' => $request->rbTecnica,
-                'repre_region' => $request->rbRegion,
-                'desc_personaje' => $request->rbPersonaje,
-                'originalidad' => $request->rbOriginalidad,
-                'total' => $sumaPuntaje,
-                'registro_concurso_id' => $request->hId,
-                'user_id' => $user_id,
-            ]);
-
-            echo '<script>';
-            echo 'console.log('. json_encode('try') .');';
-            echo '</script>';
-
-            if($evaluarD->save()){
-                $cambiarEstatus = RegistroConcursoPA::find($request->hId);
-                $cambiarEstatus->estatus_eval_id = $estatus_eval_id;
-                $cambiarEstatus->total_puntaje = $total_puntaje;
-                
-                if ($cambiarEstatus->save()){ 
-                    //return view('evaluarForm', ['status' => 'Ok', 'msge' => 'Se registro correctamente']);
-                    return redirect('concurso-dibujo');
-                    echo '<script>';
-                    echo 'console.log('. json_encode('save') .');';
-                    echo '</script>';
+            if($existeEValCount!=0){
+                return redirect('concurso-dibujo')->with('statusExisEval', 'NOK3');
+            }else{
+                $evaluarD = EvaluacionConcurso::create([
+                    'tecnica' => $request->rbTecnica,
+                    'repre_region' => $request->rbRegion,
+                    'desc_personaje' => $request->rbPersonaje,
+                    'originalidad' => $request->rbOriginalidad,
+                    'total' => $sumaPuntaje,
+                    'registro_concurso_id' => $request->hId,
+                    'user_id' => $user_id,
+                ]);
+    
+                if($evaluarD->save()){
+                    $cambiarEstatus = RegistroConcursoPA::find($request->hId);
+                    $cambiarEstatus->estatus_eval_id = $estatus_eval_id;
+                    $cambiarEstatus->total_puntaje = $total_puntaje;
+                    
+                    if ($cambiarEstatus->save()){ 
+                        echo '<script>';
+                        echo 'console.log('. json_encode('save') .');';
+                        echo '</script>';
+    
+                        // return view('concurso-dibujo', ['type_message' => 'succes']);
+                        return redirect('concurso-dibujo')->with('statusEval', 'OK1');
+    
+                    }else{
+                        echo '<script>';
+                        echo 'console.log('. json_encode('no redirect 2') .');';
+                        echo '</script>';
+                        return redirect('concurso-dibujo')->with('statusErrEst', 'NOK2');
+                    }
                 }else{
                     echo '<script>';
-                    echo 'console.log('. json_encode('no redirect 2') .');';
-                    echo '</script>';
+                        echo 'console.log('. json_encode('no save') .');';
+                        echo '</script>';
+                    // return redirect('evaluar/'.$request->hId);
+                    return redirect('concurso-dibujo')->with('statusErrEval', 'NOK1');
                 }
-            }else{
-                echo '<script>';
-                    echo 'console.log('. json_encode('no save') .');';
-                    echo '</script>';
-                return redirect('evaluar/'.$request->hId);
             }
+            
         } catch (\Throwable $th) {
             echo '<script>';
             echo 'console.log('. json_encode('catch Throwable') .');';
             echo 'console.log('. json_encode($th) .');';
             echo '</script>';
-            return redirect('evaluar/'.$request->hId);
+            // return redirect('evaluar/'.$request->hId);
+            return redirect('concurso-dibujo')->with('statusEvalErr', 'OK2');
         }
         // $evaluarD->save();
 
@@ -258,7 +266,8 @@ class PanelAdminController extends Controller
         $revisarEstatus = RegistroConcursoPA::find($request->hiddenId);
 
         if($revisarEstatus->estatus_id != 1){
-            return redirect('concurso-dibujo');
+            // return redirect('concurso-dibujo');
+            return redirect('concurso-dibujo')->with('statusRevErr', 'NOK1');
             echo '<script>';
             echo 'console.log('. json_encode('Ya esta Revisado') .');';
             echo '</script>';
@@ -275,18 +284,22 @@ class PanelAdminController extends Controller
                     echo '<script>';
                     echo 'console.log('. json_encode('Se reviso') .');';
                     echo '</script>';
-                    return redirect('concurso-dibujo');
+                    // return redirect('concurso-dibujo');
+                    return redirect('concurso-dibujo')->with('statusRev', 'OK1');
+                    
                 }else{
                     echo '<script>';
                     echo 'console.log('. json_encode('No se reviso ERROR') .');';
                     echo '</script>';
-                    return redirect('concurso-dibujo');
+                    // return redirect('concurso-dibujo');
+                    return redirect('concurso-dibujo')->with('statusRevErr', 'NOK2');
                 }
             } catch (\Throwable $th) {
                 echo '<script>';
                 echo 'console.log('. json_encode($th) .');';
                 echo '</script>';
-                return redirect('concurso-dibujo');
+                // return redirect('concurso-dibujo');
+                return redirect('concurso-dibujo')->with('statusRevErr', 'NOK3');
             }
         }
         

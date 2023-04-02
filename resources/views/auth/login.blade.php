@@ -147,33 +147,32 @@
             </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <!-- <img src="./login_nuevo_files/imagen-prueba.png" -->
-              <img src="{{ asset('images/logo/imagen-prueba.png') }}"
-                class="img-fluid authentication-cover-img d-block" width="730" >
+              <!-- <img src="{{ asset('images/logo/imagen-prueba.png') }}" 
+                class="img-fluid authentication-cover-img d-block" width="730" >-->
+                <img class="img-fluid" src="{{ asset('images/slider/banner_plataforma2.jpg') }}"
+                class="img-fluid authentication-cover-img d-block" width="900px" >
             </div>
-            <div class="carousel-item">
-              <!-- <img src="./login_nuevo_files/imagen-prueba2.png" -->
+            <!-- <div class="carousel-item">
               <img src="{{ asset('images/logo/imagen-prueba2.png') }}"
               class="img-fluid authentication-cover-img d-block" width="730" >
-              
-            </div>
+            </div> -->
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-          </button>
+          </button> -->
         </div>
  
         <div class="mx-auto">
           <!-- <h3>Discover the powerful admin template 🥳</h3> -->
-          <p class="colorText">
+          <!-- <p class="colorText">
             Lorem ipsum dolor sit amet. Et fuga mollitia qui tempora incidunt non esse amet.
             <br> Aut quia maiores quo quisquam fugiat aut atque autem ad Quis amet est vero voluptate.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>

@@ -171,9 +171,9 @@
           <div class="d-flex justify-content-between">
             <h6 class="mb-2">Alumnos registrados</h6>
           </div>
-        </div>
+        </div> 
         @endcan
-        
+
         <div class="mb-2 p-3">
         
           <!-- <button type="button" class="btn colorBtnPrincipal" id="btnFiltros">Filtros</button> -->
@@ -1279,7 +1279,23 @@
         if($("#observaciones").val()!=""){
           $("#AceptaRevisionModal").modal("show");
         }else{
-          $("#alertaModal2").show();
+          // $("#alertaModal2").show();
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+
+              Toast.fire({
+                icon: 'error',
+                title: 'Favor de ingresar Observaciones'
+              })
         }
       }else if($("#estatus_selec_id").val()=="1"){
         $("#AceptaRevisionModal").modal("show");
@@ -1543,5 +1559,96 @@
     }
 }
  </script>
+
+@if(session('statusRev')==='OK1' )<!-- cuando revisa normalmente -->
+  <script>
+    Swal.fire(
+      '¡Revisado correctamente!',
+      'El dibujo ha sido revisado correctamente',
+      'success'
+    )
+  </script>
+@endif
+
+@if(session('statusRevErr')==='NOK1' ) 
+  <script>
+    Swal.fire(
+      '¡Alerta!',
+      'El dibujo ya ha sido revisado',
+      'error'
+    )
+  </script>
+@endif
+
+@if(session('statusRevErr')==='NOK2' ) 
+  <script>
+    Swal.fire(
+      '¡Alerta!',
+      'El dibujo no se ha revisado',
+      'error'
+    )
+  </script>
+@endif
+
+@if(session('statusRevErr')==='NOK3' ) 
+  <script>
+    Swal.fire(
+      'Error!',
+      'Ha habido un error y no se ha podido revisar el dibujo',
+      'error'
+    )
+  </script>
+@endif
+
+@if(session('statusEval')==='OK1' )<!-- cuando evalua normalmente -->
+  <script>
+    Swal.fire(
+      '¡Evaluado correctamente!',
+      'El dibujo ha sido evaluado correctamente',
+      'success'
+    )
+  </script>
+@endif
+
+<!-- ///cuando entra en la excepcion al picarle mas de una ves al boton y unique constraint no permite registrar mas de uno -->
+@if(session('statusEvalErr')==='OK2' ) 
+  <script>
+    Swal.fire(
+      '¡Evaluado correctamente!',
+      'El dibujo ha sido evaluado correctamente',
+      'success'
+    )
+  </script>
+@endif
+
+@if(session('statusErrEval')==='NOK1' ) 
+<script>
+    Swal.fire(
+      '¡No se ha podido revisar!',
+      'El dibujo no ha sido registrado',
+      'error'
+    )
+  </script>
+@endif
+
+@if(session('statusErrEst')==='NOK2' ) 
+<script>
+    Swal.fire(
+      '¡No se ha podido revisar!',
+      'El dibujo no ha sido registrado',
+      'error'
+    )
+  </script>
+@endif
+
+@if(session('statusExisEval')==='NOK3' ) 
+<script>
+    Swal.fire(
+      '¡Alerta!',
+      'El dibujo ya ha sido Evaluado por este Juez',
+      'error'
+    )
+  </script>
+@endif
 
 @endsection

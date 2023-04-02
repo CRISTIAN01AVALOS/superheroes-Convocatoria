@@ -508,7 +508,7 @@
                                     <div class="modal-body text-start">
                                       ¿Esta seguro que desea Evaluar este dibujo?
                                       <br><br>
-                                      Una vez evaluado ya no podra modificar la evaluación.
+                                      Una vez evaluado ya no podrá modificar la evaluación.
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
@@ -654,4 +654,11 @@
       })
   </script>
 @endif
+
+@if (session('message'))
+    <div class="alert alert-success text-center msg" id="message">
+        <strong>{{ session('message') }}</strong>
+    </div>
+@endif
+
 @endsection
