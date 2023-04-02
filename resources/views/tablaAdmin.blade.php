@@ -1563,9 +1563,9 @@
 @if(session('statusRev')==='OK1' )<!-- cuando revisa normalmente -->
   <script>
     Swal.fire(
-      '¡Revisado correctamente!',
-      'El dibujo ha sido revisado correctamente',
-      'success'
+      '¡Revisado correctamente!',//
+      // 'El dibujo ha sido revisado correctamente',
+      // 'success'
     )
   </script>
 @endif
@@ -1603,9 +1603,9 @@
 @if(session('statusEval')==='OK1' )<!-- cuando evalua normalmente -->
   <script>
     Swal.fire(
-      '¡Evaluado correctamente!',
-      'El dibujo ha sido evaluado correctamente',
-      'success'
+      '¡Evaluado correctamente!'//,
+      // 'El dibujo ha sido evaluado correctamente',
+      // 'success'
     )
   </script>
 @endif
@@ -1614,9 +1614,9 @@
 @if(session('statusEvalErr')==='OK2' ) 
   <script>
     Swal.fire(
-      '¡Evaluado correctamente!',
-      'El dibujo ha sido evaluado correctamente',
-      'success'
+      '¡Evaluado correctamente!'//,
+      // 'El dibujo ha sido evaluado correctamente',
+      // 'success'
     )
   </script>
 @endif
