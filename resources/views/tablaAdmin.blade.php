@@ -1094,7 +1094,12 @@
     $("#mostrarDibujo").hide();
     $("#revisarDibujo").hide();
     $("#visualizarNoSeleccionado").hide();
-    $("#estatus_eval_id").prop('disabled', true);
+    if(vRol=='J'){
+      $("#estatus_eval_id").prop('disabled', false);
+    }else{
+      $("#estatus_eval_id").prop('disabled', true);
+    }
+    
 
     $('#tablaListado').DataTable({
       "language": {
