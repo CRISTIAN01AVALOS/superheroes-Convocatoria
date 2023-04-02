@@ -214,7 +214,7 @@
                             </p>    
                             
                             <p class="card-text text-justify">
-                                <b>Publicación de ganadores 28 de abril de 2023.</b> <br> <br>
+                                <b>Publicación de ganadores 27 de abril de 2023.</b> <br> <br>
                                 El fallo del jurado será inapelable. Cualquier situación no prevista en la presente Convocatoria será resuelta por el jurado.
                             </p>  
 
@@ -224,7 +224,7 @@
                             </p> --}}
                             
                             <p class="card-text text-justify">
-                                <b>Convocatoria - Concurso de Dibujo</b> <a href="{{asset('images/convocatoria/CONVOCATORIA_CONCURSO_DIBUJO_2023.pdf')}}" download="Convocatoria - Concurso de Dibujo">(Descargar)</a>
+                                <b>Convocatoria - Concurso de Dibujo</b> <a href="{{asset('images/convocatoria/CONVOCATORIA_CONCURSO_DIBUJO_2023-02.pdf')}}" download="Convocatoria - Concurso de Dibujo">(Descargar)</a>
                              </p>
 
                             {{-- <iframe src="{{asset('images/convocatoria/ConvocatoriaSuperhéroes.pdf')}}" frameborder="0"></iframe> --}}

@@ -158,7 +158,7 @@
                       <label for="ap_paterno">Apellido paterno</label>
                       {{-- value="{{ old('ap_paterno') }}" --}}
                       <input type="text" id="ap_paterno" class="form-control" name="ap_paterno" placeholder=""
-                        maxlength="30" readonly value="{{ old('ap_paterno') }}">
+                        maxlength="50" readonly value="{{ old('ap_paterno') }}">
                     </div>
                   </div>
 
@@ -228,7 +228,7 @@
                       <label for="correo_titular">Correo electrónico (Campo obligatorio)</label>
                       <input type="email" id="correo_titular" class="form-control @error('correo_titular') is-invalid @enderror"
                         name="correo_titular" value="{{ old('correo_titular') }}"
-                        placeholder="Correo electrónico del papá, mamá o persona adulta que considere" maxlength="30"
+                        placeholder="Correo electrónico del papá, mamá o persona adulta que considere" maxlength="50"
                         required>
                       @error('correo_titular')
                         <span class="invalid-feedback" role="alert">
@@ -478,7 +478,7 @@
 
                   <h5> <b> Se otorgará un reconocimiento a las personas ganadoras. </b> </h5>
 
-                  <h5>Los resultados del concurso se darán a conocer el 28 de abril de 2023 en los sitios de internet oficiales
+                  <h5>Los resultados del concurso se darán a conocer el 27 de abril de 2023 en los sitios de internet oficiales
                   de la Secretaría de Educación de Tamaulipas.</h5>
 
               </div>
