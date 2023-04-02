@@ -278,7 +278,6 @@ class PanelAdminController extends Controller
                 $revisar->estatus_id = $estatus_id;
                 $revisar->observaciones = $request->observaciones;
                 // $revisar->save();
-            
     
                 if($revisar->save()){
                     echo '<script>';

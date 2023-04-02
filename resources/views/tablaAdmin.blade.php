@@ -1094,7 +1094,8 @@
     $("#mostrarDibujo").hide();
     $("#revisarDibujo").hide();
     $("#visualizarNoSeleccionado").hide();
-    // $("#estatus_eval_id").prop('disabled', true); //lo comente 1 abr 2023 porque me desactivaba en el del juez el combo
+    // $("#estatus_eval_id").prop('disabled', true); //lo comente 1 abr 2023 porque me desactivaba en el del juez el 
+    ////
 
     $('#tablaListado').DataTable({
       "language": {

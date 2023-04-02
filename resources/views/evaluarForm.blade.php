@@ -660,5 +660,4 @@
         <strong>{{ session('message') }}</strong>
     </div>
 @endif
-
 @endsection
