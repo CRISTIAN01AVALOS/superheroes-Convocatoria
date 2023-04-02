@@ -245,6 +245,7 @@ class DashboardController extends Controller
                 // $data_municipio = curl_exec($ch); 
                 // curl_close($ch);
                 // array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
+                return json_decode($data, true)[0];
 
                 $data_municipio = json_decode( file_get_contents('https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']), true );
                 
