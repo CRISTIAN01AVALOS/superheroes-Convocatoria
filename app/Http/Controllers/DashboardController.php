@@ -42,14 +42,8 @@ class DashboardController extends Controller
     public function guardarRegistro(StoreFormConcurso $request){
 
         $buscar_alumno = RegistroConcurso::where('curp', $request['curp'])->get();
-<<<<<<< HEAD
-
-        if($request->hasFile("getFileDibujo")){
-
-=======
         
         if($request->hasFile("getFileDibujo")){
->>>>>>> Concurso-panel-admin
             if (count($buscar_alumno) > 0) {
                 return redirect('/')->with('registro', 'Ok');
             } else {
@@ -252,10 +246,29 @@ class DashboardController extends Controller
                 // $data_municipio = curl_exec($ch); 
                 // curl_close($ch);
                 // array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
-
-                $data_municipio = json_decode( file_get_contents('https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']), true );
                 
-                array_push($arrayData, json_decode($data, true), $data_municipio);
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                curl_setopt($ch, CURLOPT_HEADER, false);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']);
+                curl_setopt($ch, CURLOPT_REFERER, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3000); // 3 sec.
+                curl_setopt($ch, CURLOPT_TIMEOUT, 10000); // 10 sec.
+                $data_municipio = curl_exec($ch);
+                curl_close($ch);
+
+                // $arrContextOptions=array(
+                //     "ssl"=>array(
+                //         "verify_peer"=>false,
+                //         "verify_peer_name"=>false,
+                //     ),
+                // );  
+                
+                // $data_municipio = json_decode( file_get_contents('https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']), false, stream_context_create($arrContextOptions) );
+                
+                array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
                 return $arrayData;
 
             }

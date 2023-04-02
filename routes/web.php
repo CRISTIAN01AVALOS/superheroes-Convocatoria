@@ -13,6 +13,20 @@ use App\Http\Controllers\LanguageController;
 // dashboard Routes
 // Route::get('/','DashboardController@dashboardEcommerce');
 
+Route::get('clear_cache', function () {
+    $clear[0] = \Artisan::call('cache:clear');
+    $clear[1] = \Artisan::call('route:clear');
+    $clear[2] = \Artisan::call('optimize:clear');
+    $clear[3] = \Artisan::call('config:cache');
+    $clear[4] = \Artisan::call('view:clear');
+    $clear[5] = \Artisan::call('clear-compiled');
+    $clear[6] = \Artisan::call('config:clear');
+
+    dd($clear);
+});
+
+
+
 Route::get('/','DashboardController@inicioCon')->name('alumno.inicio');
 
 Route::group(['middleware' => 'auth'], function () {
