@@ -238,13 +238,16 @@ class DashboardController extends Controller
                 $xml        = '<package>'.$xml.'</package>';
                 $data       = simplexml_load_string($xml);
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']); 
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-                curl_setopt($ch, CURLOPT_HEADER, 0); 
-                $data_municipio = curl_exec($ch); 
-                curl_close($ch);
-                array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
+                // $ch = curl_init();
+                // curl_setopt($ch, CURLOPT_URL, 'https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']); 
+                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+                // curl_setopt($ch, CURLOPT_HEADER, 0); 
+                // $data_municipio = curl_exec($ch); 
+                // curl_close($ch);
+                // array_push($arrayData, json_decode($data, true), json_decode($data_municipio, true));
+
+                $data_municipio = json_decode( file_get_contents('https://proyectoscete.tamaulipas.gob.mx/insumos/public/municipio-cct/'.json_decode($data, true)[0]['Clavecct']), true );
+                array_push($arrayData, json_decode($data, true), $data_municipio);
                 return $arrayData;
 
             }
