@@ -44,7 +44,8 @@ return [
         'database' => [
             'driver' => 'database',
             'table' => 'cache',
-            'connection' => null,
+            'connection' => 'insumos',
+            'lock_connection' => 'insumos',
         ],
 
         'file' => [

@@ -12,9 +12,40 @@ use App\Http\Controllers\LanguageController;
 */
 // dashboard Routes
 // Route::get('/','DashboardController@dashboardEcommerce');
+
 Route::get('/','DashboardController@inicioCon')->name('alumno.inicio');
-Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
-Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
+
+Route::group(['middleware' => 'auth'], function () {
+    // aqui solo rutas para el panel admin, se protegen con la autenticacion
+    // aqui solo rutas para el panel admin, se protegen con la autenticacion
+    // aqui solo rutas para el panel admin, se protegen con la autenticacion
+    Route::get('/concurso-dibujo','PanelAdminController@index')->name('panelAdmin');
+    // Route::get('/dashboard-ecommerce','PanelAdminController@index')->name('panelAdmin');
+
+    //para bloquear desde el middleware
+    //Route::get('/panelAdmin','PanelAdminController@index')->name('panelAdmin')->middleware('permission:ver-administrar');
+    
+    //Route::get('/panelAdmin/filtro','PanelAdminController@show');
+    Route::get('/show','PanelAdminController@listado')->name('cargarTabla');
+    Route::get('/formulario','PanelAdminController@formulario');
+    //Route::get('/evaluar/{id}','PanelAdminController@evaluarForm')->name('evaluar');
+    Route::get('/evaluar/{id}','PanelAdminController@evaluarForm')->name('evaluar')->middleware('permission:guardar-evaluar');
+    Route::get('/evaluar2/{id}','PanelAdminController@evaluarForm2')->name('evaluar2')->middleware('permission:guardar-evaluar');
+    Route::post('/evaluar','PanelAdminController@evaluarStore')->name('guardarEvaluacion');
+    Route::get('/mostrarInfo/{id}','PanelAdminController@mostrarInfooo')->name('mostrarInfou');
+    Route::get('/verEvaluacion/{id}','PanelAdminController@verEvaluacion')->name('verEvaluacion');
+    Route::post('/revisar','PanelAdminController@revisarUpdate')->name('concurso.revisarDibujo'); 
+    Route::post('/filtrar','PanelAdminController@filtrarBusqueda')->name('filtrar');
+    Route::get('/mostrar','PanelAdminController@show')->name('mostrar');
+    //Route::post('/mostrar','PanelAdminController@show')->name('mostrar');
+    Route::get('/mostrarMunicipios/{idreg}','PanelAdminController@showMunicipios')->name('mostrarMunicipios');
+    Route::get('/mostrarRegiones/{idreg}','PanelAdminController@showRegiones')->name('mostrarRegiones');
+    
+});
+
+Route::get('/iniciar-sesion','AuthenticationController@loginPanelAdmin')->name('loginPanelAdmin');
+//  Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
+//  Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
 //consultar curp alumno
 Route::post('/consultar-curp','DashboardController@search')->name('alumno.buscar');
@@ -29,6 +60,7 @@ Route::get('/bases-concurso/', 'DashboardController@basesConcurso')->name('alumn
 
 // enviar formulario de dudas y preguntas
 Route::post('/enviar-dudas-preguntas/', 'DashboardController@enviarFomurlarioDudas')->name('alumno.enviarFomurlarioDudas');
+
 
 Route::get('/clear_cache', function () {
     $clear[0] = \Artisan::call('cache:clear');
@@ -133,7 +165,6 @@ Route::get('/page-users-view','UsersController@viewUser');
 Route::get('/page-users-edit','UsersController@editUser');
 // Authentication  Route
 Route::get('/auth-login','AuthenticationController@loginPage');
-// Route::get('/login_nuevo','AuthenticationController@loginPage');
 Route::get('/auth-register','AuthenticationController@registerPage');
 Route::get('/auth-forgot-password','AuthenticationController@forgetPasswordPage');
 Route::get('/auth-reset-password','AuthenticationController@resetPasswordPage');
@@ -171,3 +202,7 @@ Route::get('/ecommerce', 'AccessController@home')->middleware('role:Admin');
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

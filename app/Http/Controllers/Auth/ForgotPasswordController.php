@@ -19,12 +19,4 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
-
-    public function showLinkRequestForm(){
-      $pageConfigs = ['bodyCustomClass' => 'bg-full-screen-image'];
-
-      return view('/auth/passwords/email', [
-        'pageConfigs' => $pageConfigs
-      ]);
-  }
 }

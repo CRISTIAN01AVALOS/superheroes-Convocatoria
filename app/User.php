@@ -11,7 +11,10 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens,HasRoles;
-
+    
+    // driver para conectarse a otra BD
+    protected $connection = "insumos";
+    
     /**
      * The attributes that are mass assignable.
      *
