@@ -150,7 +150,7 @@
               <!-- <img src="{{ asset('images/logo/imagen-prueba.png') }}" 
                 class="img-fluid authentication-cover-img d-block" width="730" >-->
                 <img class="img-fluid" src="{{ asset('images/slider/banner_plataforma2.jpg') }}"
-                class="img-fluid authentication-cover-img d-block" width="900px" >
+                class="img-fluid authentication-cover-img d-block" width="900px" height="614px">
             </div>
             <!-- <div class="carousel-item">
               <img src="{{ asset('images/logo/imagen-prueba2.png') }}"
@@ -181,7 +181,7 @@
     <!-- Login -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 pr-4 borderrr ">
     <!-- <div class="d-flex col-12 col-lg-5 col-xl-4 authentication-bg p-sm-5 p-4 borderrr"> -->
-      <div class="mx-auto otro ">
+      <div class="mx-auto otro col-12 col-lg-5 col-xl-4 pr-4">
 
         <center>
           <!-- <img src="./login_nuevo_files/tam.png" -->
