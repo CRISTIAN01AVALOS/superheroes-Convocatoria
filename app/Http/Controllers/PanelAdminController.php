@@ -613,5 +613,83 @@ class PanelAdminController extends Controller
 
         return response()->json([$municipios]);
      }
+
+     public function ejecPermisos(){
+
+        $user = User::find(34);
+        $role = Role::find(7);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Jurado_concurso');
+        // return $user;
+
+        $user = User::find(35);
+        $role = Role::find(7);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Jurado_concurso');
+        // return $user;
+
+        $user = User::find(36);
+        $role = Role::find(7);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Jurado_concurso');
+        // return $user;
+
+        $user = User::find(37);
+        $role = Role::find(7);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Jurado_concurso');
+        // return $user;
+
+        $user = User::find(38);
+        $role = Role::find(7);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Jurado_concurso');
+        // return $user;
+
+        ////ADMIN
+        $user = User::find(39);
+        $role = Role::find(6);
+        $permiso = Permission::find(99);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Admin_concurso');
+        // return $user;
+
+        $user = User::find(39);
+        $role = Role::find(6);
+        $permiso = Permission::create(['name' => 'revisar-dibujo']);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('Admin_concurso');
+        // return $user;
+
+        //SUPER ADMIN
+        $user = User::find(40);
+        $role = Role::find(5);
+        $permiso = Permission::find(99);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('SuperAdmin_concurso');
+        // return $user;
+
+        $user = User::find(40);
+        $role = Role::find(5);
+        $permiso = Permission::find(100);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('SuperAdmin_concurso');
+        // return $user;
+
+        $user = User::find(40);
+        $role = Role::find(5);
+        $permiso = Permission::find(101);
+        $role->givePermissionTo($permiso);
+        $user->assignRole('SuperAdmin_concurso');
+        // return $user;
+
+        return $user;
+
+     }
     
 }
