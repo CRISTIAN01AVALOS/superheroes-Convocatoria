@@ -57,8 +57,6 @@ class PanelAdminController extends Controller
         )
         ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
         ->get();
-        //dd($registros);
-        
 
         $total_registrados=RegistroConcursoPA::count(); //1=Registrado
         $total_seleccionados=RegistroConcursoPA::where('estatus_id',2)->count(); //2=Seleccionado
