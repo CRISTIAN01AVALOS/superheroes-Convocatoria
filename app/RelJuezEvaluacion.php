@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RelJuezEvaluacion extends Model
 {
-    // protected $connection = "concursodd_vs"; 
+    // protected $connection = "concursodd_vs";
     protected $primaryKey = 'id_juez_evaluacion';
     protected $table = 'rel_juez_evaluacion'; 
     protected $fillable = [

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluacionConcurso extends Model
 {
-    // protected $connection = "concursodd_vs"; 
+    // protected $connection = "concursodd_vs";
     protected $primaryKey = 'id_evaluacion_concurso';
     protected $table = 'evaluacion_concurso'; 
     protected $fillable = [
