@@ -62,6 +62,7 @@ class RegistroConcurso extends Model
         'valores_personaje',
         'descripcion_personaje',
         'url_archivo_dibujo',
+        'nivel_id',
     ];
 
 }
