@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroConcursoPA extends Model
 {
-    protected $connection = "concursodd_vs";
+    // protected $connection = "concursodd_vs";
     protected $primaryKey = 'id_registro_concurso';
-    protected $table = 'registro_concurso'; 
+    protected $table = 'cdvs_registro_concurso'; 
     protected $fillable = [
         'folio',
         'curp',
@@ -42,7 +42,7 @@ class RegistroConcursoPA extends Model
     public function scopeValidRol($query){
         $user = auth()->user();
         if($user->hasRole('Jurado_concurso')){
-            return $query->where("registro_concurso.estatus_id", 2);
+            return $query->where("cdvs_registro_concurso.estatus_id", 2);
         }
     }
 
@@ -65,11 +65,11 @@ class RegistroConcursoPA extends Model
             // return $query->where('registro_concurso.estatus_id',$estatus)->where('registro_concurso.estatus_eval_id',$estatus_eval);
 
             if($estatus == 1) {
-                return $query->where('registro_concurso.estatus_id',$estatus)->where('registro_concurso.estatus_eval_id',3);
+                return $query->where('cdvs_registro_concurso.estatus_id',$estatus)->where('cdvs_registro_concurso.estatus_eval_id',3);
             }elseif($estatus == 2) {
-                return $query->where('registro_concurso.estatus_id',$estatus)->where('registro_concurso.estatus_eval_id',$estatus_eval);
+                return $query->where('cdvs_registro_concurso.estatus_id',$estatus)->where('cdvs_registro_concurso.estatus_eval_id',$estatus_eval);
             }else{
-                return $query->where('registro_concurso.estatus_id',$estatus)->where('registro_concurso.estatus_eval_id',3);
+                return $query->where('cdvs_registro_concurso.estatus_id',$estatus)->where('cdvs_registro_concurso.estatus_eval_id',3);
             }
     	}
     }
@@ -77,17 +77,17 @@ class RegistroConcursoPA extends Model
     public function scopeValidEstatusEval($query, $estatus, $estatus_eval) {
         $user = auth()->user();
     	// if ($estatus_eval != 0) {
-    	// 	// return $query->where('registro_concurso.estatus_eval_id',$estatus_eval)->where('registro_concurso.estatus_id',2);
-        //     return $query->where('registro_concurso.estatus_eval_id',$estatus_eval)->where('registro_concurso.estatus_id',$estatus);
+    	// 	// return $query->where('cdvs_registro_concurso.estatus_eval_id',$estatus_eval)->where('cdvs_registro_concurso.estatus_id',2);
+        //     return $query->where('cdvs_registro_concurso.estatus_eval_id',$estatus_eval)->where('cdvs_registro_concurso.estatus_id',$estatus);
     	// }
         if($user->hasRole('Jurado_concurso')){
             $estatus2=2;
             if ($estatus_eval != 0) {
-                return $query->where('registro_concurso.estatus_eval_id',$estatus_eval)->where('registro_concurso.estatus_id',$estatus2);
+                return $query->where('cdvs_registro_concurso.estatus_eval_id',$estatus_eval)->where('cdvs_registro_concurso.estatus_id',$estatus2);
             }
         }else{
             if ($estatus_eval != 0) {
-                return $query->where('registro_concurso.estatus_eval_id',$estatus_eval)->where('registro_concurso.estatus_id',$estatus);
+                return $query->where('cdvs_registro_concurso.estatus_eval_id',$estatus_eval)->where('cdvs_registro_concurso.estatus_id',$estatus);
             }
         }
     }
@@ -97,12 +97,12 @@ class RegistroConcursoPA extends Model
 
     	if (isset($req['id_municipio'])) {
             if ($req['id_municipio'] != 0 && $req['id_municipio'] != '0') {
-                $query = $query->where('registro_concurso.id_municipio',$req['id_municipio']);
+                $query = $query->where('cdvs_registro_concurso.id_municipio',$req['id_municipio']);
             }
     	}
     	if (isset($req['grado'])) {
             if ($req['grado'] != 0 && $req['grado'] != '0') {
-                $query = $query->where('registro_concurso.grado_alumno',$req['grado']);
+                $query = $query->where('cdvs_registro_concurso.grado_alumno',$req['grado']);
             }
     	}
     	if (isset($req['region'])) {
@@ -112,7 +112,7 @@ class RegistroConcursoPA extends Model
     	}
     	if (isset($req['nivel'])) {
             if ($req['nivel'] != 0 && $req['nivel'] != '0') {
-                $query = $query->where('registro_concurso.nivel_id',$req['nivel']);
+                $query = $query->where('cdvs_registro_concurso.nivel_id',$req['nivel']);
             }
     	}
 
@@ -122,18 +122,18 @@ class RegistroConcursoPA extends Model
     public function scopeValidMunicipio($query, $municipio) {
     	if ($municipio != 0) {
             // if($region !=0){
-            //     return $query->where('registro_concurso.id_municipio',$municipio)->where('cat_regiones.Id_Region',$region);
+            //     return $query->where('cdvs_registro_concurso.id_municipio',$municipio)->where('cat_regiones.Id_Region',$region);
             // }else{
-            //     return $query->where('registro_concurso.id_municipio',$municipio);
+            //     return $query->where('cdvs_registro_concurso.id_municipio',$municipio);
             // }
-            return $query->where('registro_concurso.id_municipio',$municipio);
+            return $query->where('cdvs_registro_concurso.id_municipio',$municipio);
     	}
     }
 
     public function scopeValidRegion($query, $region) { //////?????
     	if ($region != 0) {
             // if($municipio !=0){
-            //     return $query->where('cat_regiones.Id_Region',$region)->where('registro_concurso.id_municipio',$municipio);
+            //     return $query->where('cat_regiones.Id_Region',$region)->where('cdvs_registro_concurso.id_municipio',$municipio);
             // }else{
             //     return $query->where('cat_regiones.Id_Region',$region);
             // }
@@ -143,13 +143,13 @@ class RegistroConcursoPA extends Model
 
     public function scopeValidNivel($query, $nivel) {
     	if ($nivel != 0) {
-    		return $query->where('registro_concurso.nivel_id',$nivel);
+    		return $query->where('cdvs_registro_concurso.nivel_id',$nivel);
     	}
     }
 
     public function scopeValidGrado($query, $grado) {
     	if ($grado != 0) {
-    		return $query->where('registro_concurso.grado_alumno',$grado);
+    		return $query->where('cdvs_registro_concurso.grado_alumno',$grado);
     	}
     }
 

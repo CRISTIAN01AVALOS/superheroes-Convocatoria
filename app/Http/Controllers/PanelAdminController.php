@@ -49,15 +49,14 @@ class PanelAdminController extends Controller
         $user = auth()->user();
         
         $registros=RegistroConcursoPA::validRol()
-        ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-        ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-        ->select('registro_concurso.*', 'cat_regiones.Region',
+        ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+        ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+        ->select('cdvs_registro_concurso.*', 'cat_regiones.Region',
         DB::raw("(SELECT count(*) FROM evaluacion_concurso
-                                WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval")
+                                WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval")
         )
-        ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+        ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
         ->get();
-        //dd($registros);
 
         $total_registrados=RegistroConcursoPA::count(); //1=Registrado
         $total_seleccionados=RegistroConcursoPA::where('estatus_id',2)->count(); //2=Seleccionado
@@ -68,10 +67,10 @@ class PanelAdminController extends Controller
         }else{ //si es Jurado
             //dd(auth()->user()->id);
             $total_evaluados=EvaluacionConcurso::
-            // join('concursodd_vs.registro_concurso', 'evaluacion_concurso.registro_concurso_id', '=', 'registro_concurso.id_registro_concurso')
+            // join('cdvs_registro_concurso', 'evaluacion_concurso.registro_concurso_id', '=', 'cdvs_registro_concurso.id_registro_concurso')
             where('evaluacion_concurso.user_id',auth()->user()->id)->count();
-            // ->where('registro_concurso.estatus_id',2)
-            // ->where('registro_concurso.estatus_eval_id',1)->count(); //2=Evaluado
+            // ->where('cdvs_registro_concurso.estatus_id',2)
+            // ->where('cdvs_registro_concurso.estatus_eval_id',1)->count(); //2=Evaluado
             // $total_evaluados=RegistroConcursoPA::where('estatus_id',2)->where('estatus_eval_id',1)->count(); //2=Evaluado
         }
         
@@ -144,7 +143,7 @@ class PanelAdminController extends Controller
         if (isset($evaluacion[0])) {
             return redirect('concurso-dibujo');
         }else{
-            $registro=RegistroConcursoPA::select('*','cat_nivel.Nombre_Nivel')->join('insumos.cat_nivel', 'registro_concurso.nivel_id','=','cat_nivel.Id_Nivel')->find($id);
+            $registro=RegistroConcursoPA::select('*','cat_nivel.Nombre_Nivel')->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id','=','cat_nivel.Id_Nivel')->find($id);
             return view('evaluarForm', ['id' => $id, 'registro' => $registro]);
         }
         // return view('evaluarForm', ['id' => $id]);
@@ -311,14 +310,14 @@ class PanelAdminController extends Controller
 
         // $evaluacion=RelJuezEvaluacion::validRolJuez()
         // ->join('evaluacion_concurso', 'rel_juez_evaluacion.evaluacion_concurso_id', '=', 'evaluacion_concurso.id_evaluacion_concurso')
-        // ->join('insumos.users', 'rel_juez_evaluacion.user_id', '=', 'users.id')
+        // ->join('INSUMOS_DB.users', 'rel_juez_evaluacion.user_id', '=', 'users.id')
         // ->where('rel_juez_evaluacion.registro_concurso_id', "=", $id)
         // ->select('evaluacion_concurso.id_evaluacion_concurso','users.name', 'evaluacion_concurso.tecnica', 'evaluacion_concurso.repre_region', 'evaluacion_concurso.desc_personaje', 'evaluacion_concurso.originalidad', 'evaluacion_concurso.total')
         // ->get();
 
         $evaluacion=EvaluacionConcurso::validRolJuez()
         // ->join('evaluacion_concurso', 'rel_juez_evaluacion.evaluacion_concurso_id', '=', 'evaluacion_concurso.id_evaluacion_concurso')
-        ->join('insumos.users', 'evaluacion_concurso.user_id', '=', 'users.id')
+        ->join('INSUMOS_DB.users', 'evaluacion_concurso.user_id', '=', 'users.id')
         ->where('evaluacion_concurso.registro_concurso_id', "=", $id)
         ->select('evaluacion_concurso.id_evaluacion_concurso','users.name', 'evaluacion_concurso.tecnica', 'evaluacion_concurso.repre_region', 'evaluacion_concurso.desc_personaje', 'evaluacion_concurso.originalidad', 'evaluacion_concurso.total')
         ->get();
@@ -330,18 +329,18 @@ class PanelAdminController extends Controller
         $user=auth()->user();
         //dd($id);
         $registro=RegistroConcursoPA::select( '*', DB::raw("(SELECT COUNT(*)
-        FROM concursodd_vs.evaluacion_concurso e
-        INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-        WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+        FROM evaluacion_concurso e
+        INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+        WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
         AND e.user_id=".$user->id." and r.id_registro_concurso=".$id.") as countJuez"),
         DB::raw("(SELECT COUNT(*)
-        FROM concursodd_vs.evaluacion_concurso e
-        INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-        WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+        FROM evaluacion_concurso e
+        INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+        WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
         AND e.user_id=".$user->id." and r.id_registro_concurso=".$id.") as countJuez"), 'cat_nivel.Nombre_Nivel')
-        // ->join('insumos.cat_centrosdetrabajo', 'cat_centrosdetrabajo.clavecct', '=' ,'registro_concurso.cct')->collation('utf8mb4_general_ci')
-        // ->join('insumos.cat_nivel', 'cat_centrosdetrabajo.Id_Nivel', '=', 'cat_nivel.Id_Nivel')
-        ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+        // ->join('INSUMOS_DB.cat_centrosdetrabajo', 'cat_centrosdetrabajo.clavecct', '=' ,'cdvs_registro_concurso.cct')->collation('utf8mb4_general_ci')
+        // ->join('INSUMOS_DB.cat_nivel', 'cat_centrosdetrabajo.Id_Nivel', '=', 'cat_nivel.Id_Nivel')
+        ->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
         ->find($id);
         //dd($registro);
         return response()->json($registro); 
@@ -371,8 +370,8 @@ class PanelAdminController extends Controller
     //     $nivel = $request->nivel_select;
     //     $region = $request->region_select;
 
-    //     $selectUser=User::join('insumos.model_has_roles','users.id','=','model_has_roles.model_id')
-    //     ->join('insumos.roles','roles.id','=','model_has_roles.role_id')
+    //     $selectUser=User::join('INSUMOS_DB.model_has_roles','users.id','=','model_has_roles.model_id')
+    //     ->join('INSUMOS_DB.roles','roles.id','=','model_has_roles.role_id')
     //     ->where('roles.id',10)
     //     ->select('users.id')
     //     ->orderBy('users.id', 'asc')
@@ -387,16 +386,16 @@ class PanelAdminController extends Controller
     //     //     ->validGrado($grado)
     //     //     ->validRegion($region)
     //     //     ->validNivel($nivel)
-    //     //     ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-    //     //     ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-    //     //     ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
-    //     //     ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+    //     //     ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+    //     //     ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+    //     //     ->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+    //     //     ->select('cdvs_registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
     //     //     DB::raw("(SELECT count(*) FROM evaluacion_concurso
-    //     //                                 WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+    //     //                                 WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval"),
 
-    //     //     DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$value->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez".$value->id),
+    //     //     DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$value->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez".$value->id),
     //     //     )
-    //     //     ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+    //     //     ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
     //     //     ->get();
     //     // }
     //     // dd($resFiltrado);
@@ -407,25 +406,25 @@ class PanelAdminController extends Controller
     //         ->validGrado($grado)
     //         ->validRegion($region)
     //         ->validNivel($nivel)
-    //         ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-    //         ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-    //         ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
-    //         ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+    //         ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+    //         ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+    //         ->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+    //         ->select('cdvs_registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
     //         DB::raw("(SELECT count(*) FROM evaluacion_concurso
-    //                                     WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+    //                                     WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval"),
     //         // ,
     //         // DB::raw("(SELECT COUNT(*)
-    //         // FROM concursodd_vs.evaluacion_concurso e
-    //         // INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-    //         // WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+    //         // FROM evaluacion_concurso e
+    //         // INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+    //         // WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
     //         // AND e.user_id=".$user->id.") as countJuez")
-    //         DB::raw("(SELECT sum(CASE WHEN e1.user_id = 35 THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez1"),
-    //         DB::raw("(SELECT sum(CASE WHEN e2.user_id = 37 THEN e2.total END) FROM evaluacion_concurso e2 WHERE e2.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez2"),
-    //         DB::raw("(SELECT sum(CASE WHEN e3.user_id = 38 THEN e3.total END) FROM evaluacion_concurso e3 WHERE e3.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez3"),
-    //         DB::raw("(SELECT sum(CASE WHEN e4.user_id = 39 THEN e4.total END) FROM evaluacion_concurso e4 WHERE e4.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez4"),
-    //         DB::raw("(SELECT sum(CASE WHEN e5.user_id = 40 THEN e5.total END) FROM evaluacion_concurso e5 WHERE e5.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez5")
+    //         DB::raw("(SELECT sum(CASE WHEN e1.user_id = 35 THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez1"),
+    //         DB::raw("(SELECT sum(CASE WHEN e2.user_id = 37 THEN e2.total END) FROM evaluacion_concurso e2 WHERE e2.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez2"),
+    //         DB::raw("(SELECT sum(CASE WHEN e3.user_id = 38 THEN e3.total END) FROM evaluacion_concurso e3 WHERE e3.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez3"),
+    //         DB::raw("(SELECT sum(CASE WHEN e4.user_id = 39 THEN e4.total END) FROM evaluacion_concurso e4 WHERE e4.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez4"),
+    //         DB::raw("(SELECT sum(CASE WHEN e5.user_id = 40 THEN e5.total END) FROM evaluacion_concurso e5 WHERE e5.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez5")
     //         )
-    //         ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+    //         ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
     //         ->get();
 
     //     // echo '<script>';
@@ -455,8 +454,8 @@ class PanelAdminController extends Controller
             'nivel' => $nivel,  
         );
 
-        $selectUser=User::join('insumos.model_has_roles','users.id','=','model_has_roles.model_id')
-        ->join('insumos.roles','roles.id','=','model_has_roles.role_id')
+        $selectUser=User::join('INSUMOS_DB.model_has_roles','users.id','=','model_has_roles.model_id')
+        ->join('INSUMOS_DB.roles','roles.id','=','model_has_roles.role_id')
         ->where('roles.name','Jurado_concurso')
         ->select('users.id', 'users.name', 'users.apellidos')
         ->orderBy('users.id', 'asc')
@@ -477,15 +476,15 @@ class PanelAdminController extends Controller
             ->validEstatus($estatus_id,$estatus_eval_id)
             ->validEstatusEval($estatus_id,$estatus_eval_id)
             ->filtrosAlumnosRegistrados($req)
-            ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-            ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-            ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+            ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+            ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+            ->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
             ->select(DB::raw("(SELECT count(*) FROM evaluacion_concurso
-                                        WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+                                        WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval"),
 
-            DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$selectUser[$i]->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=registro_concurso.id_registro_concurso) AS Juez".$i),
+            DB::raw("(SELECT sum(CASE WHEN e1.user_id = ".$selectUser[$i]->id." THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez".$i),
             )
-            ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+            ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
             ->get();
 
             $resFiltrado2 = RegistroConcursoPA::validRol()//->validRolUser()
@@ -498,23 +497,22 @@ class PanelAdminController extends Controller
             // ->validGrado($grado)
             // ->validRegion($region)
             // ->validNivel($nivel)
-            ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-            ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-            ->join('insumos.cat_nivel', 'registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
-            ->select('registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
+            ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+            ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+            ->join('INSUMOS_DB.cat_nivel', 'cdvs_registro_concurso.nivel_id', '=', 'cat_nivel.Id_Nivel')
+            ->select('cdvs_registro_concurso.*', 'cat_regiones.Region', 'cat_nivel.Nombre_Nivel',
             DB::raw("(SELECT count(*) FROM evaluacion_concurso
-                                        WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval"),
+                                        WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval"),
             DB::raw("(SELECT COUNT(*)
             FROM evaluacion_concurso e
-            INNER JOIN  registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-            WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+            INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+            WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
             AND e.user_id=".$user->id.") as countJuez")
             )
-            ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+            ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
             ->get();
 
             array_push($array_usuarios_data, $resFiltrado);
-
 
         }
         
@@ -547,13 +545,13 @@ class PanelAdminController extends Controller
         //     ->validEstatusEval($estatus_eval_id)
         //     ->validMunicipio($id_municipio)
         //     ->validGrado($grado)
-        //     ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-        //     ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-        //     ->select('registro_concurso.*', 'cat_regiones.Region',
+        //     ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+        //     ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+        //     ->select('cdvs_registro_concurso.*', 'cat_regiones.Region',
         //     DB::raw("(SELECT count(*) FROM evaluacion_concurso
-        //                             WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval")
+        //                             WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval")
         //     )
-        //     ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+        //     ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
         //     ->get();
         // }else if ($request->municipio_select != 0){
         //     $registros=RegistroConcursoPA::where('id_municipio', $request->municipio_select)->get(); //1=Registrado
@@ -572,19 +570,19 @@ class PanelAdminController extends Controller
             // ->validGrado($grado)
             // ->validRegion($region)
             // ->validNivel($nivel)
-            ->join('insumos.cat_municipios', 'registro_concurso.id_municipio', '=', 'cat_municipios.id')
-            ->join('insumos.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
-            ->select('registro_concurso.*', 'cat_regiones.Region',
+            ->join('INSUMOS_DB.cat_municipios', 'cdvs_registro_concurso.id_municipio', '=', 'cat_municipios.id')
+            ->join('INSUMOS_DB.cat_regiones', 'cat_regiones.id_Region', '=', 'cat_municipios.id_region')
+            ->select('cdvs_registro_concurso.*', 'cat_regiones.Region',
             DB::raw("(SELECT count(*) FROM evaluacion_concurso
-                                        WHERE evaluacion_concurso.registro_concurso_id = registro_concurso.id_registro_concurso) as countEval")
+                                        WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval")
             ,
             DB::raw("(SELECT COUNT(*)
-            FROM concursodd_vs.evaluacion_concurso e
-            INNER JOIN  concursodd_vs.registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
-            WHERE e.registro_concurso_id =registro_concurso.id_registro_concurso
+            FROM evaluacion_concurso e
+            INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+            WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
             AND e.user_id=".$user->id.") as countJuez")
             )
-            ->orderBy('registro_concurso.id_registro_concurso', 'asc')
+            ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
             ->get();
 
             // return $req;
