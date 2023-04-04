@@ -67,7 +67,7 @@ class PanelAdminController extends Controller
         }else{ //si es Jurado
             //dd(auth()->user()->id);
             $total_evaluados=EvaluacionConcurso::
-            // join('concursodd_vs.cdvs_registro_concurso', 'evaluacion_concurso.registro_concurso_id', '=', 'cdvs_registro_concurso.id_registro_concurso')
+            // join('cdvs_registro_concurso', 'evaluacion_concurso.registro_concurso_id', '=', 'cdvs_registro_concurso.id_registro_concurso')
             where('evaluacion_concurso.user_id',auth()->user()->id)->count();
             // ->where('cdvs_registro_concurso.estatus_id',2)
             // ->where('cdvs_registro_concurso.estatus_eval_id',1)->count(); //2=Evaluado
@@ -329,13 +329,13 @@ class PanelAdminController extends Controller
         $user=auth()->user();
         //dd($id);
         $registro=RegistroConcursoPA::select( '*', DB::raw("(SELECT COUNT(*)
-        FROM concursodd_vs.evaluacion_concurso e
-        INNER JOIN  concursodd_vs.cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+        FROM evaluacion_concurso e
+        INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
         WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
         AND e.user_id=".$user->id." and r.id_registro_concurso=".$id.") as countJuez"),
         DB::raw("(SELECT COUNT(*)
-        FROM concursodd_vs.evaluacion_concurso e
-        INNER JOIN  concursodd_vs.cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+        FROM evaluacion_concurso e
+        INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
         WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
         AND e.user_id=".$user->id." and r.id_registro_concurso=".$id.") as countJuez"), 'cat_nivel.Nombre_Nivel')
         // ->join('INSUMOS_DB.cat_centrosdetrabajo', 'cat_centrosdetrabajo.clavecct', '=' ,'cdvs_registro_concurso.cct')->collation('utf8mb4_general_ci')
@@ -414,8 +414,8 @@ class PanelAdminController extends Controller
     //                                     WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval"),
     //         // ,
     //         // DB::raw("(SELECT COUNT(*)
-    //         // FROM concursodd_vs.evaluacion_concurso e
-    //         // INNER JOIN  concursodd_vs.cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+    //         // FROM evaluacion_concurso e
+    //         // INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
     //         // WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
     //         // AND e.user_id=".$user->id.") as countJuez")
     //         DB::raw("(SELECT sum(CASE WHEN e1.user_id = 35 THEN e1.total END) FROM evaluacion_concurso e1 WHERE e1.registro_concurso_id=cdvs_registro_concurso.id_registro_concurso) AS Juez1"),
@@ -577,8 +577,8 @@ class PanelAdminController extends Controller
                                         WHERE evaluacion_concurso.registro_concurso_id = cdvs_registro_concurso.id_registro_concurso) as countEval")
             ,
             DB::raw("(SELECT COUNT(*)
-            FROM concursodd_vs.evaluacion_concurso e
-            INNER JOIN  concursodd_vs.cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
+            FROM evaluacion_concurso e
+            INNER JOIN  cdvs_registro_concurso r ON r.id_registro_concurso=e.registro_concurso_id
             WHERE e.registro_concurso_id =cdvs_registro_concurso.id_registro_concurso
             AND e.user_id=".$user->id.") as countJuez")
             )
