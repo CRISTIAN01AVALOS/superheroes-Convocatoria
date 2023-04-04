@@ -690,6 +690,7 @@ class PanelAdminController extends Controller
 
         return $user;
 
+        
      }
     
 }
