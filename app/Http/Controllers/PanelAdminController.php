@@ -584,12 +584,10 @@ class PanelAdminController extends Controller
             )
             ->orderBy('cdvs_registro_concurso.id_registro_concurso', 'asc')
             ->get();
-
             // return $req;
             //dd($registros);
             
             $evaluacion=EvaluacionConcurso::where('user_id',$user->id)->get();
-
             //dd($evaluacion);
 
         return response()->json([$registros, $evaluacion, 'vRol'=>$vRol]);
