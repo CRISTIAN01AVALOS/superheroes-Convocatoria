@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mostrarMunicipios/{idreg}','PanelAdminController@showMunicipios')->name('mostrarMunicipios');
     Route::get('/mostrarRegiones/{idreg}','PanelAdminController@showRegiones')->name('mostrarRegiones');
     Route::get('/ejecutarPermisos','PanelAdminController@ejecPermisos')->name('ejecutarPermisos');
+    Route::get('/artisan','PanelAdminController@artisan')->name('artisan');
     
 });
 
