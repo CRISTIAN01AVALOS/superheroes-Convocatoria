@@ -274,7 +274,7 @@
                       <input type="text" id="descripcion_personaje"
                         class="form-control @error('descripcion_personaje') is-invalid @enderror"
                         name="descripcion_personaje" value="{{ old('descripcion_personaje') }}"
-                        placeholder="Breve descripción del personaje" maxlength="256" required>
+                        placeholder="Breve descripción del personaje" maxlength="900" required>
                       @error('descripcion_personaje')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
